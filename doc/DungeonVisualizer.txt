@@ -1,0 +1,45 @@
+DungeonVisualizer.cpp — Janela, entrada e renderização
+=====================================================
+Implementação: source/DungeonVisualizer.cpp
+Interface: source/DungeonVisualizer.hpp
+
+Responsabilidade
+----------------
+Mantém a janela SFML, as câmeras, a fonte e o único Game Loop interativo.
+Observa Game e compõe Menu, separando a apresentação das regras da partida.
+
+Inicialização e loop
+--------------------
+init() cria a janela, limita a renderização a 60 FPS, desativa repetição de
+teclas e carrega a fonte copiada pelo CMake. run() processa eventos, acumula
+tempo e atualiza Menu em passos fixos de 1/60 s somente durante Playing e com
+foco. O delta por quadro é limitado a 0,25 s. Pausas e trocas de tela descartam
+o acumulador, evitando avanço de tempo ao retomar.
+
+O parâmetro frameLimit permite encerrar após alguns quadros nos smoke tests.
+setUpdateFunction() registra uma extensão posterior à atualização normal;
+não constitui outro loop de simulação.
+
+Entrada e câmera
+----------------
+handleEvent() trata fechar, redimensionar, perder foco, navegar menus, confirmar,
+pausar e editar campos. O caminho CSV aceita UTF-8 e Backspace por caractere;
+o nome no ranking usa a entrada ASCII limitada implementada para essa tela.
+readInput() reúne WASD, gatilho e mira em GameInput. A posição do mouse é
+convertida da janela para o mundo com a câmera correta.
+
+fitMap() enquadra as dimensões do cenário. Setas deslocam o centro por pisos;
+F enquadra o mapa e Home restaura a escala. A interface usa uma viewport
+proporcional independente. Ao iniciar ou continuar uma partida, o cenário é
+reenquadrado; retomar uma pausa conserva a câmera.
+
+Desenho e integração
+--------------------
+render() desenha pisos, paredes, nave, aliens, projéteis, portal, asteroides,
+itens, gravidade e efeitos. O HUD mostra motores, round, pontuação, inimigos,
+tipo de cenário, semente e atributos da arma. renderMenu() apresenta as telas
+de seleção, CSV, pausa, controles, mecânicas, scores e derrota.
+
+registerNPC()/unregisterNPC() mantêm referências observadoras a NPCs externos:
+o chamador deve desregistrar objetos antes de destruí-los. O visualizador não
+implementa dano, progressão, geração de mapas ou serialização de regras.

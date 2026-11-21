@@ -1,0 +1,29 @@
+GameConfig.cpp — Configuração e balanceamento
+============================================
+Implementação: source/GameConfig.cpp
+Interface: source/GameConfig.hpp
+
+Responsabilidade
+----------------
+Reúne e valida configurações de jogador, arma, ondas, asteroides, gravidade,
+itens, drops, pontuação, sementes e limites globais de entidades.
+
+Validação
+---------
+validate() constrói componentes temporários para reutilizar suas verificações,
+sem abrir janela ou carregar recursos gráficos. Confere também probabilidades
+no intervalo [0, 1], limites não nulos para projéteis/explosões e duração
+positiva e finita dos efeitos. Configuração inválida produz uma exceção.
+
+Configuração recomendada
+------------------------
+recommended() parte dos valores padrão e aplica a recomendação experimental
+offline growth18: drop 0,90; mistura nominal de upgrades 0,40; avançados 0,30;
+crescimento de resistência 18 por round; intervalo inicial de spawn 1,6 s;
+força de progressão de arma 1,2; chance de asteroides 0,15; gravidade 12 m/s²;
+vida útil dos itens 35 s.
+
+GameConfig{} conserva o baseline para reproduzir experimentos. O jogo interativo
+usa recommended(). Isso não é ajuste dinâmico de dificuldade: os parâmetros
+não são recalculados pelo desempenho do jogador. A análise da recomendação
+está em doc/BALANCING_REPORT.md.

@@ -1,115 +1,95 @@
-# Validação da implementação integrada
+# Validação da progressão procedural e do balanceamento
 
-Registro de 21/11/2026. A pasta de trabalho não possui `.git`; nenhum repositório foi inicializado e não houve commit, push ou deploy.
+Registro de 21/11/2026, Linux/GCC 13.3.0, CMake 3.28.3 e SFML 2.6.1. Nenhum commit ou push foi feito nesta etapa.
 
-## Resultado e escopo
+## Verificações executadas
 
-A implementação amplia o ciclo anterior com motores, dois aliens e FSM, explosões, asteroides/fragmentos, drops/itens/upgrades, gravidade, novos rounds e configuração central. O mapa padrão permanece livre de paredes e as classes acadêmicas são preservadas.
-
-Os testes distinguem regras isoladas, integração de sistemas e execução gráfica. A prévia gráfica das mecânicas raras prepara um cenário por driver temporário dentro de `build/`, para não depender de esperar sorteios de minutos durante a inspeção; não altera o fluxo normal de produção.
-
-## Execuções
-
-Configuração, compilação, linkedição e execução das três variantes foram concluídas. Os alvos da aplicação foram compilados com `-Wall -Wextra -Wpedantic`, sem avisos; os sanitizadores não emitiram diagnósticos. A suíte foi executada com `DISPLAY` removido, confirmando que a lógica não exige janela.
-
-| Verificação | Resultado registrado |
+| Verificação | Evidência |
 | --- | --- |
-| Compilação/linkedição e CTest Debug sem display | **8/8 passaram**. |
-| Compilação/linkedição e CTest Release sem display | **8/8 passaram**. |
-| AddressSanitizer + UndefinedBehaviorSanitizer | **8/8 passaram**, sem diagnósticos. |
-| Arena padrão `--smoke-test` | Três quadros e saída 0. |
-| Procedural `--seed 42 --game-seed 9 --smoke-test` | Três quadros e saída 0. |
-| CSV `assets/maps/maze.csv --game-seed 9 --smoke-test` | Três quadros e saída 0. |
-| Entrada real X11 | WASD, mouse, botão de tiro e Esc exercitados na arena padrão. |
-| Prévia integrada de mecânicas | Captura inspecionada com 3/4 motores, arma 3/3, ambos aliens/antena, raio gravitacional, itens distintos, tiros espalhados, asteroide, quatro fragmentos e explosão por colisão real entre avançado e rocha. |
+| Configuração, compilação e linkedição Debug | Aplicação, núcleo, simulador, bibliotecas e testes concluídos com avisos habilitados. |
+| CTest Debug, `DISPLAY` removido | **15/15 passaram**. |
+| CTest Release, `DISPLAY` removido | **15/15 passaram**. |
+| ASan + UBSan em Debug, `DISPLAY` removido | **15/15 passaram**, sem diagnósticos dos sanitizadores. |
+| Estatística Python | Oito casos de `AnalysisTests.py`, incluídos em `balancing_analysis_contracts`, passaram. |
+| CLI do simulador | Rótulos, TTL, filtros inválidos e proteção de resultados contra aliases `..`, symlink e hardlink passaram. |
+| Mapa padrão, procedural e CSV com `--game-seed 42 --smoke-test` | Cada modo desenhou três quadros e encerrou com código 0. |
+| Semente variável no jogo normal | Duas inicializações sem `--game-seed` exibiram sementes distintas e encerraram normalmente. |
+| HUD e arma após progressão real | Agente avançado levou o `Game` até round 6 e cinco aquisições; desenho SFML capturado e inspecionado em `build/procedural-window.png`. |
+| Experimentos principais | **696 execuções**, 588 condições distintas; 108 repetições de calibração ao ampliar sementes. |
+| Reprodução integral independente | Outras **696 execuções** em `build/balancing-reproduction`; todas as linhas de gameplay dos seis CSVs canônicos corresponderam exatamente ao arquivo entregue, excluindo somente `wall_seconds`. |
 
-A captura atual é `build/mechanics-window.png`; o driver temporário `build/MechanicsPreview.cpp` e scripts X11 ficam ignorados dentro de `build/`. A aplicação não depende de Python, Pillow ou Xlib Python. As inspeções visuais não constituem comparação automática de pixels.
+A captura visual é produzida por um driver temporário em `build/`: ele usa `SimulatedAgent`/`GameInput`, regras reais de combate, coleta e portal, depois o mesmo `DungeonVisualizer`. Não injeta vida, inimigos, upgrades ou rounds. A captura do framebuffer SFML evita depender da janela estar em primeiro plano. Não é comparação automatizada de pixels. A aplicação de produção mantém seu único Game Loop.
 
-## Cobertura automatizada
+## Cobertura
 
-A configuração CTest contém oito casos: `mechanics_contracts`, `gameplay_contracts`, `map_contracts`, ajuda e quatro erros de CLI (semente procedural, semente de partida, modos conflitantes e CSV ausente).
+- `procedural_weapon_contracts`: catálogo aleatório, sementes, ausência de aquisição no desbloqueio, primeiros doze tipos sem repetição, variantes relevantes em 600 rounds, modificadores, compensações, geometria circular/triangular/quadrada, espalhamento, paralelos, rajadas temporizadas, coleta, persistência e tiros contra asteroides em `RoundCompleted`.
+- `simulation_contracts`: diferenças de habilidade, comandos retidos entre reações, replay determinístico usando `Game`, contadores reais, limites, horizonte por rounds concluídos e equivalência exata entre `GameConfig::recommended()` e o candidato experimental selecionado.
+- `balancing_analysis_contracts`: média, desvio padrão, IC t, Wilson, pontuação, limite de projéteis, rejeição de duplicatas, horizontes diferentes e mistura indevida entre calibração e avaliação reservada.
+- `simulation_cli_contracts`: exportação, rótulos e parâmetros válidos, rejeições e preservação de resultados já existentes.
+- `mechanics_contracts`: motores, percepção, explosões, asteroides, fragmentos, gravidade, drops, coleta, ambiente, reinício, distribuição e limites. Expectativas específicas da arma antiga usam o modo histórico explícito.
+- `gameplay_contracts`: mira, movimento, tiros, AABBs, primeiro impacto, paredes, spawns, derrota, reinício, mapas opcionais e portal. As fixtures de tiro a 12.000 px/s configuram explicitamente o teto de velocidade da arma nova.
+- `map_contracts`: suíte preservada de CSV, coordenadas, A*, conectividade e 601 arenas procedurais.
+- Oito casos CTest restantes: ajuda e validação dos argumentos da aplicação e do simulador, conforme listagem `ctest -N`.
 
-### Mecânicas novas
+A suíte de 15 casos é composta de cinco executáveis de contratos C++, duas suítes Python e oito casos de CLI. Os testes Python são registrados quando o interpretador é encontrado; C++ e o simulador não precisam de dependências Python em runtime.
 
-`tests/MechanicsTests.cpp` organiza os cenários em grupos:
-
-- Motores e arma: velocidades por cada quantidade, invulnerabilidade, reparação limitada, zero motores, valores configuráveis, cooldown/espalhamento e nível máximo.
-- Percepção: normal navega sem conhecer alvo distante; detecção e perda mudam estado; avançado persegue desde o nascimento e tem maior caixa.
-- Asteroides: trajetória, três/quatro filhos, tamanho/vida/profundidade, velocidade limitada, uso único, proteção inicial e expiração sem fragmentos.
-- Gravidade: fórmula e conversão de unidades, centro/borda, aplicação gradual em corpo/jogador/alien/rocha/tiro, limites de deriva/velocidade e expiração.
-- Drops: 20 mil decisões em dois jogos com a mesma semente, igualdade da sequência, frequência de 75% e seleção condicional 80/20, extremos 0/100%.
-- Combate integrado: tiro em normal não gera item; tiro em avançado gera o único drop elegível sem explosão; contatos causam explosão uma vez, sem drops/dano entre aliens; rocha atingida produz filhos protegidos.
-- Coleta: motor restaura um, upgrades param em três, itens são removidos uma vez e expiram.
-- Rounds e distribuição: cinco/sete/nove até 25, intervalo mínimo, máximo ativo e quatro mil surgimentos posteriores reproduzíveis com distribuição 75/25.
-- Ambiente: espera do intervalo completo, probabilidades extremas, máximo de rochas e uma área ativa, envelhecimento após round e ausência de geração com probabilidade zero.
-- Regressões de integração: campo distante não freia projéteis, ambiente não impede portal, expiração não fragmenta, reinício restaura relógio/RNG, avançado nunca nasce com vida zero e caixa grande do avançado não bloqueia um normal válido no round introdutório.
-
-O acesso de arranjo `GameTestAccess` é um amigo restrito aos testes, evitando acrescentar comandos de manipulação de entidades à API pública do jogo. Configura cenários e usa as regras reais de atualização/colisão para as asserções. Os testes não dependem de `assert`, mantendo suas verificações em Release.
-
-### Regressões existentes
-
-`GameplayTests.cpp` mantém mira, direção nula, integração fixa, diagonais, cadência, duração de projéteis, limites, AABBs, varredura contínua, consumo único de tiro rápido, parede antes do inimigo, spawn, portal, transição, derrota, reinício e navegação em mapas opcionais. As expectativas foram atualizadas para motores e novos valores de round; testes de perseguição universal usam explicitamente o alien avançado. O ciclo até o segundo round continua usando mira, tiro e movimento, sem reduzir vidas de inimigos artificialmente, e agora verifica a preservação de motores/upgrades.
-
-`MapTests.cpp` foi preservado: CSV válido/inválido e transacional, dimensões, exterior, coordenadas, foco/fallback, A* e 601 arenas procedurais com conectividade, centro livre e reprodução por semente.
-
-## Comandos reproduzíveis
+## Reproduzir testes e experimentos
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON
 cmake --build build --parallel
-ctest --test-dir build --output-on-failure
-./build/space_arena --game-seed 42
-
-# Linux, logica sem display
 env -u DISPLAY ctest --test-dir build --output-on-failure
 
 cmake -S . -B build/release -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
 cmake --build build/release --parallel
 env -u DISPLAY ctest --test-dir build/release --output-on-failure
 
-# GCC/Clang, Linux
 cmake -S . -B build/sanitize -DCMAKE_BUILD_TYPE=Debug -DBUILD_TESTING=ON \
   '-DCMAKE_CXX_FLAGS=-fsanitize=address,undefined -fno-omit-frame-pointer' \
   '-DCMAKE_EXE_LINKER_FLAGS=-fsanitize=address,undefined'
 cmake --build build/sanitize --parallel
 env -u DISPLAY ctest --test-dir build/sanitize --output-on-failure
 
-# Display/OpenGL necessarios
-./build/space_arena --smoke-test
-./build/space_arena --procedural --seed 42 --game-seed 9 --smoke-test
-./build/space_arena --csv assets/maps/maze.csv --game-seed 9 --smoke-test
+env -u DISPLAY python3 tools/reproduce_balancing.py \
+  --simulator build/release/space_arena_sim \
+  --output-dir build/balancing-reproduction \
+  --verify-against experiments/balancing
 ```
 
-## Inventário desta etapa
+A reprodução executa novamente a seleção com as sementes de calibração antes de abrir a avaliação. Não inclui tempo computacional no teste de igualdade, pois esse custo depende da máquina e da carga do sistema. Os resultados originais e as cópias de verificação permanecem separados.
 
-| Arquivos criados | Finalidade |
-| --- | --- |
-| `source/Asteroid.hpp`, `source/Asteroid.cpp` | Corpo dinâmico, resistência, duração e fragmentos limitados. |
-| `source/GravityField.hpp`, `source/GravityField.cpp` | Campo radial, unidades, suavização e duração. |
-| `source/Pickup.hpp`, `source/Pickup.cpp` | Tipos de itens e tempo de coleta. |
-| `source/GameConfig.hpp`, `source/GameConfig.cpp` | Agregação e validação central do balanceamento. |
-| `source/Random.hpp` | Helpers de sorteio com RNG explícito e semente controlável. |
-| `tests/MechanicsTests.cpp` | Testes novos de regras, probabilidades e integração. |
+## Artefatos e inventário desta etapa
 
-| Arquivos modificados | Mudanças |
-| --- | --- |
-| `source/Player.hpp/.cpp` | Motores configuráveis, reparação, dano e deriva. |
-| `source/Weapon.hpp/.cpp` | Níveis limitados, maior cadência e rajada espalhada. |
-| `source/Enemy.hpp/.cpp` | Tipos, FSM, percepção, destinos locais e deriva. |
-| `source/WaveManager.hpp/.cpp` | Quantidade/cadência/atributos/limites e configuração por tipo. |
-| `source/Game.hpp/.cpp` | Ambiente, aleatoriedade, explosões, autoria das mortes, drops, coleta e transições integradas. |
-| `source/DungeonVisualizer.cpp` | Formas distintas/antena, motores e nível no HUD, itens, rochas, campo e explosão. |
-| `source/Main.cpp` | `--game-seed` independente da semente do mapa e ajuda. |
-| `CMakeLists.txt` | Novas implementações, suíte de mecânicas e teste de argumento da semente de partida. |
-| `tests/GameplayTests.cpp` | Expectativas atualizadas e preservação de motores/upgrades ao atravessar portal. |
-| `README.md`, `doc/ARCHITECTURE.md`, `doc/DEVELOPMENT_PLAN.md`, `doc/VALIDATION.md` | Mecânicas, fórmulas, conceitos acadêmicos, execução, cobertura e limites atuais. |
+Criados: `WeaponUpgrade.hpp/.cpp`, `UpgradeManager.hpp/.cpp`, `ProjectilePattern.hpp/.cpp`, `GameStats.hpp`, `Simulation.hpp/.cpp`, `SimulationMain.cpp`, `ProceduralWeaponTests.cpp`, `SimulationTests.cpp`, `AnalysisTests.py`, `SimulationCLITests.py`, os scripts em `tools/`, `EXPERIMENT_PROTOCOL.md`, `BALANCING_REPORT.md` e os resultados/configurações em `experiments/balancing/`.
 
-Matemática, integração de `RigidBody2D`, `Entity`, `NPC`, colisão contínua, mapas, árvore de comportamento, A*, o CSV do professor, fontes/licença e documentos de contratos não foram substituídos. `Projectile` continua reutilizado pelo fluxo de física e impacto, sem segundo sistema de integração.
+Ampliados: `Weapon`, `Game`, `GameConfig`, `Pickup`, metadado de origem em `Projectile`, `Main`, HUD no visualizador, CMake, `.gitignore`, testes existentes, README, arquitetura e plano de desenvolvimento. `Player`, `WaveManager`, aliens, asteroides, gravidade, portal, matemática, física e geração de mapas continuam reutilizados em seus próprios componentes.
 
-## Correções e limites
+O manifesto `experiment_source.sha256` preserva o estado dos fontes no início dos experimentos. O manifesto final registra os fontes entregues. Após o início dos experimentos houve adição da factory recomendada, HUD, metadados de CSV e validação da CLI; a reprodução integral verifica que esses ajustes não mudaram os resultados de gameplay arquivados.
 
-As regressões novas protegem contra dano/drop/explosão repetidos, crescimento ilimitado de upgrades ou fragmentos, resistência gravitacional fora da região, perda de deriva ao aplicar WASD, descarte prematuro de pendentes e morte avançada com vida arredondada para zero. Uma caixa avançada maior não impede spawns normais válidos no round 1.
+## Limites observados
 
-A apresentação é geométrica, sem áudio ou sprites finais. Corpos usam AABBs, aliens podem se sobrepor durante perseguição e fragmentos podem ser descartados quando não há capacidade ou espaço local seguro. A dispersão é física simplificada, sem conservação exata de momento/energia. CSVs muito pequenos ou isolados podem não comportar combate completo. Fonte e build não têm instalação relocável. A validação local usa Linux/GCC/SFML 2.6.1; outras plataformas precisam de execução própria.
+A recomendação é baseada em proxies e agentes artificiais. Iniciantes simulados continuam coletando poucos motores; a sobrevivência desse perfil não melhorou. A avaliação intermediária tem risco de derrota alto no horizonte de dez minutos. Não há prova de Flow humano nem mecanismo DDA online. Resultados, intervalos, alternativas e necessidade de avaliação com jogadores são detalhados no [relatório de balanceamento](BALANCING_REPORT.md).
 
-Não há pendências de implementação para as mecânicas desta etapa na arena padrão. Os limites acima descrevem as aproximações e plataformas ainda não validadas.
+Permanece a apresentação geométrica, colisão AABB, eventual sobreposição entre aliens e descarte de fragmentos sem espaço/capacidade. Mapas arbitrários muito pequenos podem não suportar combate. A fonte exige reconfigurar CMake se o build for movido. Outras plataformas ainda precisam de validação própria.
+
+## Etapa posterior: menu, save e ranking (21/11/2026)
+
+Foi acrescentado `persistence_contracts`, mantendo todos os casos anteriores. A suíte atual tem **16 testes CTest**, executados sem display em Debug, Release e ASan/UBSan. O novo caso verifica estados de tela, nova partida, pausa, restauração exata e continuidade por 300 passos, RNG/rajada/entidades, arquivos inválidos, autosave/manual, pontuação sem duplicação e top 10. Os números experimentais anteriores permanecem históricos e o balanceamento não foi modificado.
+
+A validação gráfica abriu uma janela SFML e exercitou o mesmo tratador de eventos com mouse e teclado de teste: menu, Scores, Controles, páginas de Mecânicas, Novo jogo, pausa, salvar, retorno ao menu, Continuar fiel, confirmação de substituição e resize para 800 × 600. Capturas de framebuffer foram inspecionadas. O driver local está em `build/InterfaceGraphics.cpp`; imagens em `build/menu-*.png`. Não é uma comparação automatizada de pixels nem uma segunda implementação das regras.
+
+Arquivos novos desta etapa: `Menu.hpp/.cpp`, `Button.hpp/.cpp`, `SaveManager.hpp/.cpp`, `ScoreManager.hpp/.cpp`, `LocalStorage.hpp/.cpp`, `tests/PersistenceTests.cpp` e `doc/PERSISTENCE.md`. Alterados: `Game` e `GameConfig` para score/nova partida; amigos `StateCodec` nos componentes com estado privado; visualizador e `Main` para menus/diretório de dados; CMake e documentação. Os recursos gráficos e fontes existentes foram reutilizados.
+
+## Etapa posterior: cenários integrados ao Novo jogo (21/11/2026)
+
+A suíte passou a **17 testes CTest**, todos aprovados em Debug, Release e ASan/UBSan, sem `DISPLAY`. O novo `scenario_integration` usa o `Game` real e somente entradas públicas `GameInput`. Para cada modo — arena livre, procedural com seed 77 e CSV do professor — um controlador de teste navega por A*, atira, elimina pelo menos cinco aliens e cruza dois portais até o round 3. Verifica drops, asteroides, gravidade, portal, corpos do jogador/inimigos em pisos livres e matriz preservada entre rounds.
+
+Esse teste acelera spawns, força probabilidades ambientais/drops e usa arma mais forte para tornar a integração curta e determinística; não avalia dificuldade nem altera o balanceamento de produção. A matriz procedural é comparada diretamente à saída do `Dungeon2D` existente, e outra semente produz outro mapa. O CSV é comparado à carga direta de `TileMap`.
+
+Cada modo é salvo em v2 e restaurado com tipo, semente, caminho e matriz idênticos. A partida personalizada é carregada depois de remover seu arquivo CSV de origem. Mais 120 passos após a carga produzem snapshots idênticos ao original. Payloads no esquema v1 também são restaurados. O menu cobre seleção procedural, confirmação/cancelamento de substituição, caminho vazio, arquivo ausente e piso inicial isolado, preservando a partida anterior nos erros.
+
+A validação gráfica SFML exercitou seleção, início procedural, pausa/save, campo UTF-8 com espaços/acentos, erro de CSV sem perda do save, confirmação do mapa do professor e Continuar restaurando o tipo Custom. O driver temporário `build/ScenarioGraphics.cpp` terminou com código 0. Capturas inspecionadas: `build/scenario-menu.png`, `scenario-procedural.png`, `scenario-csv-menu.png` e `scenario-custom.png`. O teste usa eventos SFML sintéticos e não faz comparação automática de pixels.
+
+Arquivos específicos novos: `source/Scenario.hpp/.cpp` e `tests/ScenarioTests.cpp`. Foram integrados `Menu`, `DungeonVisualizer`, `Main`, `Game`, `SaveManager`, `LocalStorage` e CMake. `Dungeon2D`, `TileMap`, A* e o `maze.csv` fornecido não foram alterados. O novo formato e a migração estão em [PERSISTENCE.md](PERSISTENCE.md).
+
+A escrita atômica foi validada no Linux. Adaptador Windows, importação de versões futuras, múltiplas instâncias concorrentes e entrada de nomes Unicode completa continuam fora da validação atual. O formato e as regras estão em [PERSISTENCE.md](PERSISTENCE.md).

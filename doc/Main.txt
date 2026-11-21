@@ -1,0 +1,31 @@
+Main.cpp — Entrada do jogo interativo
+====================================
+Implementação: source/Main.cpp
+Executável: space_arena
+
+Responsabilidade
+----------------
+Interpreta argumentos, prepara cenário e configuração, compõe Game e
+DungeonVisualizer e transforma exceções em mensagens no terminal.
+
+Argumentos
+----------
+--procedural e --seed N selecionam o mapa procedural inicial; a semente
+padrão desse mapa é 1234. --csv ARQUIVO seleciona uma matriz externa e não
+pode ser combinado com os argumentos de mapa procedural. Sem essas opções,
+usa a arena livre 31 x 23. Scenario realiza a criação efetiva dos três modos.
+
+--game-seed N define a semente inicial das regras, independente da geração do
+mapa. Sem ela, usa random_device. readSeed() aceita inteiros sem sinal de
+32 bits e rejeita entrada parcial ou fora do intervalo. --data-dir PASTA
+substitui o diretório de saves/ranking. --help mostra a ajuda.
+
+Execução
+--------
+Aplica GameConfig::recommended(), cria Game com matriz e metadados e inicializa
+a janela em 1024 x 768. A aplicação abre no menu; Novo jogo permite escolher
+outro cenário e sorteia novas sementes. Main não processa eventos diretamente.
+
+--smoke-test limita DungeonVisualizer::run() a três quadros e verifica o total
+renderizado. Falhas imprimem ERRO e ajuda, com código de saída 1; conclusão
+normal retorna 0. O loop continua pertencendo a DungeonVisualizer.

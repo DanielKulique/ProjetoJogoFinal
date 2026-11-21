@@ -11,5 +11,6 @@ public:
     [[nodiscard]] bool waitingForExit() const noexcept { return m_waitingForExit; }
 
 private:
+    friend struct StateCodec;
     bool m_waitingForExit{false};
 };

@@ -1,0 +1,29 @@
+NCP.cpp — Carregamento de sprite de NPC
+=====================================
+Implementação: source/NCP.cpp
+Interface: source/NPC.hpp
+
+Responsabilidade
+----------------
+Implementa NPC::loadSprite(path). O nome histórico NCP.cpp foi preservado,
+embora a classe e o cabeçalho sejam NPC. NPC deriva de Entity; Enemy deriva
+de NPC para aproveitar o contrato de entidade e a opção de apresentação.
+
+Funcionamento
+-------------
+Cria uma textura candidata por unique_ptr e tenta carregar o arquivo. Em
+falha, retorna false antes de substituir a textura atual. Em sucesso, associa
+a textura ao sprite, transfere sua propriedade para o NPC e centraliza a origem
+visual. A escala é calculada para que o sprite ocupe a largura e altura da
+caixa de colisão da entidade.
+
+Integração e limites
+-------------------
+A textura só é criada ao carregar um sprite. Assim, entidades lógicas podem
+ser construídas em testes e simulações sem criar contexto gráfico. A classe
+ainda depende dos tipos da SFML. O carregamento visual requer o ambiente
+gráfico apropriado.
+
+DungeonVisualizer pode desenhar NPCs externos registrados quando possuem
+textura. Este arquivo não atualiza comportamento, corpo ou dano e não gerencia
+o registro desses objetos no visualizador.

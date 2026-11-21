@@ -1,0 +1,31 @@
+Scenario.cpp — Criação dos três modos de cenário
+==============================================
+Implementação: source/Scenario.cpp
+Interface: source/Scenario.hpp
+
+Responsabilidade
+----------------
+Reúne a criação dos mapas utilizados no início da partida. Scenario contém
+TileMap e ScenarioInfo; os metadados identificam tipo, semente procedural e
+caminho de origem do CSV.
+
+Modos de create()
+----------------
+Classic cria 23 linhas com 31 pisos livres, preservando a arena original.
+Procedural instancia Dungeon2D(31, 23), chama generate(seed) e carrega pelo
+TileMap::loadFromDungeon(). Custom chama TileMap::loadCSV() com o caminho
+recebido ou com o mapa do professor quando o caminho não é informado.
+
+professorCSVPath() retorna o caminho da cópia de assets/maps/maze.csv definida
+pelo CMake no build. Assim, o botão do professor independe do diretório atual.
+name() fornece a descrição textual do tipo.
+
+Validação e integração
+----------------------
+Limita o mapa a 256 x 256 células para compatibilidade com saves. Usa a mesma
+regra de piso inicial de Game e rejeita mapa sem piso ou com esse piso isolado
+dos quatro vizinhos. Isso não garante espaço abundante em qualquer CSV mínimo.
+
+Menu sorteia as sementes e valida uma candidata antes de substituir progresso;
+Main usa a mesma fábrica para os argumentos CLI. Este arquivo não reimplementa
+geração, leitura de CSV, A*, combate ou renderização.

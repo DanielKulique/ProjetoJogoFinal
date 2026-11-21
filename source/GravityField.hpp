@@ -26,6 +26,7 @@ public:
     [[nodiscard]] const GravityFieldConfig& config() const noexcept { return m_config; }
 
 private:
+    friend struct StateCodec;
     GravityFieldConfig m_config;
     float m_remainingLife;
 };

@@ -1,0 +1,29 @@
+ScoreManager.cpp — Ranking local de resultados
+=============================================
+Implementação: source/ScoreManager.cpp
+Interface: source/ScoreManager.hpp
+
+Responsabilidade
+----------------
+Mantém até dez resultados em scores.dat. Cada entrada contém nome do piloto,
+pontuação, round atingido e tempo de partida. Não calcula os pontos de combate.
+
+Leitura
+-------
+load(error) devolve lista vazia sem erro quando o arquivo não existe. Quando
+existe, usa LocalStorage com assinatura SPACE_ARENA_SCORES e versão 1. Valida
+contagem, nome não vazio de até 32 bytes sem caracteres de controle, pontuação
+inteira sem sinal, round positivo e tempo finito não negativo.
+
+Rejeita conteúdo extra e devolve erro em arquivo inválido. Ordena por score
+decrescente com stable_sort, preservando a ordem de registro nos empates.
+
+Registro
+--------
+record(entry, error) valida a entrada e carrega o ranking anterior. Não sobrescreve
+um arquivo corrompido como se fosse vazio. Acrescenta o resultado, ordena,
+retém dez entradas e grava via LocalStorage com escrita atômica.
+
+Menu permite registrar explicitamente após GameOver e bloqueia duplicação
+da mesma derrota após sucesso. Nomes repetidos em partidas diferentes são
+permitidos. Game atribui a pontuação nos eventos reais de combate e round.

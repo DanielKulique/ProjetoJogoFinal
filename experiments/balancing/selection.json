@@ -1,0 +1,49 @@
+{
+  "selected_preset": "growth18",
+  "selection_stage": "calibration_only",
+  "score": 61.39601518794338,
+  "score_components": {
+    "progress": 0.5505555555555556,
+    "risk": 0.7333333333333334,
+    "skill": 0.4214285714285714,
+    "recovery": 0.6292098234642695,
+    "diversity": 0.8,
+    "tempo": 0.8187198985966423
+  },
+  "calibration_seeds": [
+    1001,
+    1020
+  ],
+  "heldout_seeds_not_used_for_selection": [
+    9001,
+    9020
+  ],
+  "max_seconds": 600,
+  "max_completed_rounds": 20,
+  "profiles": [
+    "beginner",
+    "intermediate",
+    "advanced"
+  ],
+  "base_preset": "pressure",
+  "overrides": {
+    "drop": 0.9,
+    "engine_chance": 0.6,
+    "advanced_chance": 0.3,
+    "health_growth": 18,
+    "spawn_interval": 1.6,
+    "pickup_lifetime": 35
+  },
+  "inherited": {
+    "progression_strength": 1.2,
+    "asteroid_chance": 0.15,
+    "gravity_strength": 12
+  },
+  "data_sha256": {
+    "experiments/balancing/calibration.csv": "5f628d84ba31d10db11d932af8e1f817f93736f79ba644774966ed57f51cb8bc",
+    "experiments/balancing/refinement_calibration/runs.csv": "f2f458246bc935849f3019fb80d71c978b9bf42f40af834bbd43fdec373ccf04"
+  },
+  "frozen_before_heldout": true,
+  "dda_implemented": false,
+  "limitation": "Engineering proxies, not psychological Flow; beginner item collection remains weak."
+}

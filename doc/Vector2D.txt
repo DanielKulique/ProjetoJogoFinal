@@ -5,6 +5,9 @@ Representa um ponto ou uma direção em duas dimensões por dois componentes
 float, x e y. O construtor sem argumentos cria (0, 0). Os componentes devem
 ser valores finitos.
 
+Implementação: source/Vector2D.cpp
+Interface e operações inline: source/Vector2D.hpp
+
 Comprimento e normalização
 --------------------------
 length_squared() retorna x*x + y*y; length() retorna a raiz quadrada desse
@@ -27,3 +30,10 @@ Multiplicação e divisão por escalar atuam em cada componente; a multiplicaç�
 aceita tanto vetor * escalar quanto escalar * vetor. +=, -=, *= e /= alteram
 o próprio vetor. Na divisão, abs(escalar) deve ser maior que EPSILON;
 essa condição é verificada por assert em depuração.
+
+Integração
+----------
+É a representação matemática usada em corpos físicos, movimento, mira,
+gravidade, caminhos e padrões de tiro. Um Vector2D não impõe unidade: os
+chamadores usam pixels no mundo e índices inteiros nas entradas de A*.
+O tipo não consulta mapa, não aplica colisões e não cria recursos gráficos.

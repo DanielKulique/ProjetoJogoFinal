@@ -43,6 +43,7 @@ public:
     [[nodiscard]] const EnemyConfig& config() const noexcept { return m_config; }
 
 private:
+    friend struct StateCodec;
     EnemyConfig m_config;
     EnemyKind m_kind;
     EnemyState m_state;

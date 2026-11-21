@@ -1,0 +1,71 @@
+ÍNDICE DOS DOCUMENTOS DE IMPLEMENTAÇÃO
+=====================================
+
+Escopo: os 34 arquivos .cpp de source/, incluindo o jogo, os componentes
+matemáticos e físicos e o simulador. Cada implementação tem um documento
+doc/<nome>.txt. Os cabeçalhos correspondentes são explicados junto com o
+respectivo .cpp; os textos não constituem uma documentação linha a linha.
+
+As explicações descrevem o código atual em português: finalidade, principais
+operações, integração e limites relevantes. Os nomes históricos NCP.cpp e
+BeheviorTree.cpp são mantidos também nos nomes dos documentos.
+
+ARQUIVO DE IMPLEMENTAÇÃO -> DOCUMENTO (caminhos relativos à raiz do projeto)
+-------------------------------------------------------------------------
+source/AStar.cpp                    -> doc/AStar.txt
+source/Asteroid.cpp                 -> doc/Asteroid.txt
+source/BeheviorTree.cpp             -> doc/BeheviorTree.txt
+source/Button.cpp                   -> doc/Button.txt
+source/Collision2D.cpp              -> doc/Collision2D.txt
+source/Dungeon2D.cpp                -> doc/Dungeon2D.txt
+source/DungeonVisualizer.cpp        -> doc/DungeonVisualizer.txt
+source/Enemy.cpp                    -> doc/Enemy.txt
+source/Entity.cpp                   -> doc/Entity.txt
+source/Game.cpp                     -> doc/Game.txt
+source/GameConfig.cpp               -> doc/GameConfig.txt
+source/GravityField.cpp             -> doc/GravityField.txt
+source/LocalStorage.cpp             -> doc/LocalStorage.txt
+source/Main.cpp                     -> doc/Main.txt
+source/Menu.cpp                     -> doc/Menu.txt
+source/NCP.cpp                      -> doc/NCP.txt
+source/Pickup.cpp                   -> doc/Pickup.txt
+source/Player.cpp                   -> doc/Player.txt
+source/Portal.cpp                   -> doc/Portal.txt
+source/Projectile.cpp               -> doc/Projectile.txt
+source/ProjectilePattern.cpp        -> doc/ProjectilePattern.txt
+source/RigidBody2D.cpp              -> doc/RigidBody2D.txt
+source/SaveManager.cpp              -> doc/SaveManager.txt
+source/Scenario.cpp                 -> doc/Scenario.txt
+source/ScoreManager.cpp             -> doc/ScoreManager.txt
+source/Simulation.cpp               -> doc/Simulation.txt
+source/SimulationMain.cpp           -> doc/SimulationMain.txt
+source/TileMap.cpp                  -> doc/TileMap.txt
+source/Transform2D.cpp              -> doc/Transform2D.txt
+source/UpgradeManager.cpp           -> doc/UpgradeManager.txt
+source/Vector2D.cpp                 -> doc/Vector2D.txt
+source/WaveManager.cpp              -> doc/WaveManager.txt
+source/Weapon.cpp                   -> doc/Weapon.txt
+source/WeaponUpgrade.cpp            -> doc/WeaponUpgrade.txt
+
+SUGESTÃO DE LEITURA
+------------------
+1. Main.txt, Scenario.txt e Menu.txt: inicialização e escolha da partida.
+2. DungeonVisualizer.txt e Game.txt: entrada, loop, apresentação e regras.
+3. Player.txt, Enemy.txt, Weapon.txt e WaveManager.txt: ciclo de combate.
+4. TileMap.txt, Dungeon2D.txt e AStar.txt: cenários e navegação.
+5. SaveManager.txt, LocalStorage.txt e ScoreManager.txt: persistência.
+6. Simulation.txt e SimulationMain.txt: experimentos sem janela.
+
+Os demais documentos detalham componentes de matemática, física, ambiente,
+itens e progressão. Entity.txt também descreve as definições inline da base.
+Os cabeçalhos sem .cpp próprio têm papéis de apoio: Global.hpp define tipos
+e constantes; Random.hpp contém amostragem inline; GameStats.hpp reúne
+contadores observacionais usados por Game, SaveManager e Simulation.
+
+DOCUMENTAÇÃO COMPLEMENTAR
+-------------------------
+README.md: compilação, execução e controles.
+doc/ARCHITECTURE.md: organização e mecânicas integradas.
+doc/PERSISTENCE.md: esquema de save, versões e ciclo de vida dos arquivos.
+doc/VALIDATION.md: testes executados e resultados.
+doc/EXPERIMENT_PROTOCOL.md e doc/BALANCING_REPORT.md: balanceamento offline.

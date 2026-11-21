@@ -1,0 +1,37 @@
+Menu.cpp — Estados da aplicação e navegação
+=========================================
+Implementação: source/Menu.cpp
+Interface: source/Menu.hpp
+
+Responsabilidade
+----------------
+Controla MainMenu, ScenarioSelection, CustomScenario, Playing, Paused, Scores,
+Controls, Mechanics, GameOver e ConfirmNewGame. Esses estados de interface
+são distintos dos estados de combate definidos em Game.
+
+Navegação e nova partida
+-----------------------
+choices() fornece os rótulos da tela. enabled(), select() e navigate() controlam
+seleção e opções desabilitadas, como Continuar sem save válido. activate()
+executa a ação selecionada; escape() aplica os retornos de cada tela.
+
+prepareGame() chama Scenario, sorteia sementes e constrói uma candidata em
+unique_ptr<Game>. O mapa é validado antes de substituir a partida anterior.
+Um save válido exige confirmação; cancelar descarta somente a candidata.
+newGame() invalida o save e move a candidata para o Game observado pela janela.
+Erro de CSV ou de invalidação impede a substituição. O campo vazio de caminho
+informa que deve ser preenchido. O botão do professor usa o CSV distribuído.
+
+Persistência, pausa e resultados
+-------------------------------
+Continuar carrega SaveManager e substitui Game somente após carga válida.
+update() chama Game::update() apenas em Playing. Ao concluir um round, salva
+automaticamente; na derrota, invalida o save e abre GameOver. A pausa permite
+salvar manualmente, consultar ajuda, retornar ao menu ou sair.
+
+Scores usa ScoreManager. Registrar uma derrota com sucesso bloqueia outro
+registro da mesma tela. R após derrota abre a seleção de cenário. Mensagens
+de erro e sucesso ficam disponíveis ao visualizador.
+
+Menu não desenha nem consulta teclado/mouse. DungeonVisualizer converte os
+eventos em chamadas a essa interface e congela o tempo nos menus.

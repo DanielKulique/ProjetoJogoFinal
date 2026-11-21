@@ -1,0 +1,29 @@
+Asteroid.cpp — Asteroides e fragmentos
+====================================
+Implementação: source/Asteroid.cpp
+Interface: source/Asteroid.hpp
+
+Responsabilidade
+----------------
+Representa uma rocha destrutível, derivada de Entity, com resistência, velocidade,
+tempo de vida e profundidade de fragmentação. O construtor valida os parâmetros,
+normaliza a direção inicial e define a caixa de colisão pelo raio configurado.
+
+Principais operações
+--------------------
+update(dt) aplica amortecimento exponencial, integra o corpo, limita a velocidade,
+limpa a aceleração consumida e reduz vida útil e proteção inicial. Expiração
+desativa a rocha, mas não equivale a destruição por dano.
+
+takeDamage(amount) reduz a resistência e desativa a rocha ao chegar a zero.
+fragment() só produz filhos após destruição, uma única vez, respeitando o limite
+de profundidade. Cria três ou quatro filhos radiais, menores, com resistência
+reduzida e velocidade parcialmente herdada. Fragmentos recebem um intervalo
+inicial de proteção contra colisões.
+
+Integração e limites
+-------------------
+Game controla surgimento, gravidade, impactos, pontuação e remoção. Também valida
+a colocação local dos filhos, descartando aqueles sem espaço ou acima do limite
+de entidades. Asteroid não procura posições no mapa e não decide quem recebe
+pontos. Suas caixas AABB não giram com a representação visual.

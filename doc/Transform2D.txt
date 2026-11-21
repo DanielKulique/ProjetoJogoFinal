@@ -7,6 +7,9 @@ e usa vetores-linha: um ponto é [x, y, 1] e uma direção é [x, y, 0].
 A translação fica na terceira linha, m[2][0] e m[2][1]. A terceira coluna
 permanece [0, 0, 1]. Os elementos da matriz devem ser finitos.
 
+Implementação: source/Transform2D.cpp
+Interface: source/Transform2D.hpp
+
 Criação
 -------
 translation(tx, ty) desloca um ponto por (tx, ty).
@@ -30,3 +33,10 @@ a transformação inversa: aplicar uma transformação e depois sua inversa
 recupera o ponto original, dentro da precisão de float. Para chamar inverse(),
 abs(determinant()) deve ser maior que EPSILON (1e-6); essa condição é
 verificada por assert em depuração.
+
+Integração
+----------
+ProjectilePattern combina rotação e translação para levar formações locais
+de disparo ao referencial da mira no mundo. As operações são matemáticas:
+não alteram automaticamente posição de Entity, sprite SFML ou caixa de colisão.
+O chamador distingue ponto de direção para evitar transladar vetores de mira.

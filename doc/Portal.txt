@@ -1,0 +1,29 @@
+Portal.cpp — Passagem entre rounds
+=================================
+Implementação: source/Portal.cpp
+Interface: source/Portal.hpp
+
+Responsabilidade
+----------------
+Representa a área de entrada para a próxima onda. Começa inativo, com caixa
+de colisão de 48 x 48 pixels. A posição é escolhida por Game entre os pisos
+alcançáveis próximos ao centro do mapa.
+
+Principais operações
+--------------------
+activate(player) ativa o portal e verifica se a nave já está sobre ele. Se
+estiver, marca waitingForExit para impedir avanço imediato de round.
+
+tryEnter(player) rejeita portal ou jogador inativos. Enquanto aguarda a saída,
+observa a interseção e só libera a entrada depois que a nave se afasta; essa
+chamada ainda retorna false. Uma chamada posterior com contato retorna true.
+Quando não há espera, a interseção já representa uma entrada válida.
+
+deactivate() desliga o portal e limpa a exigência de saída.
+
+Integração
+----------
+Game ativa após eliminar todos os inimigos vivos e pendentes e interpreta a
+entrada para iniciar a próxima onda, mantendo a matriz. O portal não aumenta
+dificuldade nem salva arquivos. Menu detecta a conclusão do round para autosave,
+e DungeonVisualizer apresenta sua região violeta.

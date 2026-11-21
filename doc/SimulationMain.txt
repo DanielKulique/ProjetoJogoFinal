@@ -1,0 +1,32 @@
+SimulationMain.cpp — Linha de comando do simulador
+=================================================
+Implementação: source/SimulationMain.cpp
+Executável: space_arena_sim
+
+Responsabilidade
+----------------
+Seleciona presets, perfis e sementes para execuções sem janela; aplica alterações
+explícitas de configuração e organiza arquivos de saída. A simulação das regras
+é delegada a runSimulation(), em Simulation.cpp.
+
+Opções principais
+-----------------
+--preset aceita nomes separados por vírgula ou all; --profile aceita beginner,
+intermediate, advanced ou all. --seed-start e --runs definem a faixa de sementes;
+--seconds e --max-rounds definem o horizonte. --label renomeia um único preset
+selecionado usando letras ASCII, números, '_' e '-'. --help apresenta a ajuda.
+
+Os overrides incluem probabilidades de drops, motores, avançados e asteroides;
+crescimento de resistência; intervalo de spawn; força das melhorias; gravidade
+e duração dos itens. Cada configuração final é validada antes de executar.
+
+Saídas e validação
+------------------
+--output grava métricas em CSV; sem ele, usa stdout. --configs-output registra
+os parâmetros por preset/perfil, e --configs-only exporta apenas configurações.
+Os arquivos de resultados e configurações não podem ser o mesmo destino.
+
+Valida listas vazias, números parciais/não finitos, faixa de sementes e horizonte
+de execução. Cria diretórios necessários, verifica escrita e mostra progresso
+em stderr. Uma falha imprime a mensagem e a ajuda e retorna 1; sucesso retorna 0.
+Não cria janela, não carrega saves e não altera o ranking do jogo interativo.

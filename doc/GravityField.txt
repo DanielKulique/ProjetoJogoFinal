@@ -1,0 +1,28 @@
+GravityField.cpp — Campo gravitacional temporário
+================================================
+Implementação: source/GravityField.cpp
+Interface: source/GravityField.hpp
+
+Responsabilidade
+----------------
+Representa uma região de atração com centro, raio e duração. O construtor
+valida parâmetros finitos e positivos, posição e probabilidade de surgimento.
+
+Funcionamento
+-------------
+update(dt) reduz o tempo restante e desativa o campo quando ele termina.
+accelerationAt(position) retorna aceleração vetorial em pixels/s² apontando
+para o centro. Fora do raio, no próprio centro, para posições não finitas
+ou com o campo inativo, retorna zero.
+
+A magnitude parte de accelerationMeters * pixelsPerMeter e recebe atenuação
+linear até a borda e suavização junto ao centro. Não é uma simulação de força
+inversamente proporcional ao quadrado da distância. apply(body) atribui a
+aceleração calculada ao corpo; não integra nem teletransporta o objeto.
+
+Integração
+----------
+Game controla surgimento, duração e aplicação a nave, aliens, projéteis e
+asteroides. Amortecimento e limites de deriva são aplicados pelos componentes
+e pelas regras correspondentes. Existe no máximo um campo no Game atual.
+DungeonVisualizer desenha seu alcance, e SaveManager conserva o tempo restante.

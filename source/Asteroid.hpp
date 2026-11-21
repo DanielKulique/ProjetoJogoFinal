@@ -38,6 +38,7 @@ public:
     [[nodiscard]] const AsteroidConfig& config() const noexcept { return m_config; }
 
 private:
+    friend struct StateCodec;
     AsteroidConfig m_config;
     int m_health;
     int m_depth;

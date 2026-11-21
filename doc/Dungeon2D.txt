@@ -1,0 +1,30 @@
+Dungeon2D.cpp — Geração procedural de masmorras
+=============================================
+Implementação: source/Dungeon2D.cpp
+Interface: source/Dungeon2D.hpp
+
+Responsabilidade
+----------------
+Gera uma matriz de paredes e pisos conectados. O construtor exige dimensões
+de pelo menos 7 x 7 células. A geração só ocorre ao chamar generate(seed).
+
+Algoritmo existente
+------------------
+generate() começa com todas as células como parede. Escava uma sala central
+e inclui as paredes vizinhas em uma lista de fronteira. Depois sorteia células
+da fronteira e abre novos pisos, sempre ligados à região já escavada.
+
+A meta de pisos corresponde à soma de metade e um décimo da área interior,
+com divisões inteiras. As bordas externas permanecem fechadas. Entradas repetidas
+na fronteira são ignoradas quando já viraram piso. O sorteio usa mt19937
+inicializado pela semente fornecida.
+
+Saída e integração
+------------------
+rows() disponibiliza a matriz resultante por referência constante; não desenha
+nem cria entidades. TileMap::loadFromDungeon() valida e carrega essa matriz.
+Scenario reutiliza diretamente este gerador no modo procedural do Novo jogo,
+com dimensões 31 x 23 e semente aleatória selecionada pelo menu.
+
+Chamar generate() novamente substitui a matriz anterior. Carregar uma partida
+salva restaura a matriz armazenada, sem gerar outra masmorra.

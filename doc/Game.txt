@@ -1,0 +1,54 @@
+Game.cpp — Regras integradas da partida
+======================================
+Implementação: source/Game.cpp
+Interface: source/Game.hpp
+
+Responsabilidade
+----------------
+Centraliza as regras sem acessar janela, teclado ou renderização. Possui mapa,
+metadados do cenário, jogador, arma por composição, ondas, portal, entidades,
+RNG, relógios, métricas e pontuação. Recebe comandos pelo GameInput.
+
+Preparação do cenário
+---------------------
+O construtor valida GameConfig e posiciona a nave no piso central ou no primeiro
+piso disponível. prepareArena() identifica paredes e percorre por BFS a região
+alcançável. Dessa região obtém pisos para eventos, candidatos próximos à borda
+para inimigos e posição livre do portal próxima ao centro do mapa.
+
+Atualização
+-----------
+update(dt, input) ignora passos inválidos e GameOver. Atualiza o ambiente,
+movimenta a nave, aplica gravidade e mira, controla spawns e atualiza aliens
+durante combate. Processa disparos e rajadas pendentes, impactos, contatos,
+coletas, fragmentação e remoção de objetos inativos.
+
+constrainMovement() testa deslocamentos por eixos em subpassos de até 8 pixels,
+respeitando limites e paredes. resolveProjectiles() compara a primeira interseção
+do percurso com paredes, aliens e asteroides. Cada projétil é consumido uma vez.
+Mortes por tiro recebem a pontuação correspondente; mortes ambientais não
+recebem pontos de combate. Somente avançados mortos por tiro tentam gerar drops.
+
+spawnEnemy() respeita pendentes, intervalo, limite ativo e ocupação; conserva
+o tipo sorteado enquanto aguarda espaço. findFreePosition() e positionAvailable()
+evitam criar entidades em paredes ou sobre corpos incompatíveis. tryDrop()
+combina probabilidades, disponibilidade de upgrades e necessidade de motores.
+
+Ambiente e progressão
+---------------------
+Asteroides recebem gravidade, refletem ao bloquear movimento e podem fragmentar
+localmente. Avançados explodem ao tocar nave ou rocha, sem dano a outros aliens.
+A gravidade atrai corpos gradualmente. Ao terminar os inimigos vivos e pendentes,
+o estado muda para RoundCompleted, contabiliza o round e ativa o portal. A nave
+continua podendo atirar e o ambiente continua ativo nessa espera.
+
+Entrar no portal inicia a próxima onda na mesma matriz, preserva nave/arma
+e desbloqueia uma oferta de melhoria. Zero motores muda para GameOver.
+restart() limpa o estado da partida mantendo o cenário; newGame() sorteia a
+semente antes do reinício. O menu atual constrói outro Game quando troca o modo.
+
+Integração
+----------
+DungeonVisualizer/Menu controlam quando atualizar. SaveManager registra o estado
+completo. GameStats observa eventos reais, e Simulation usa a mesma lógica por
+GameInput. O arquivo não salva dados nem executa um segundo loop de jogo.

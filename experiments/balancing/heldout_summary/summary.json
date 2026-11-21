@@ -1,0 +1,3833 @@
+{
+  "groups": {
+    "baseline/advanced": {
+      "n": 20,
+      "metrics": {
+        "round_reached": {
+          "n": 20,
+          "mean": 19.05,
+          "sd": 0.22360679774997896,
+          "ci95_low": 18.94535,
+          "ci95_high": 19.15465,
+          "minimum": 19.0,
+          "maximum": 20.0
+        },
+        "rounds_completed": {
+          "n": 20,
+          "mean": 18.15,
+          "sd": 0.36634754853252327,
+          "ci95_low": 17.978546040014418,
+          "ci95_high": 18.32145395998558,
+          "minimum": 18.0,
+          "maximum": 19.0
+        },
+        "survival_seconds": {
+          "n": 20,
+          "mean": 600.0000313,
+          "sd": 0.0,
+          "ci95_low": 600.0000313,
+          "ci95_high": 600.0000313,
+          "minimum": 600.0000313,
+          "maximum": 600.0000313
+        },
+        "mean_round_seconds": {
+          "n": 20,
+          "mean": 29.7650356655,
+          "sd": 0.4471852402087969,
+          "ci95_low": 29.55574893603225,
+          "ci95_high": 29.974322394967754,
+          "minimum": 29.1990756,
+          "maximum": 30.7500016
+        },
+        "enemy_kills": {
+          "n": 20,
+          "mean": 356.8,
+          "sd": 6.403946151849613,
+          "ci95_low": 353.8028953880892,
+          "ci95_high": 359.7971046119108,
+          "minimum": 342.0,
+          "maximum": 365.0
+        },
+        "player_kills": {
+          "n": 20,
+          "mean": 350.05,
+          "sd": 6.1769946703793375,
+          "ci95_low": 347.1591107302651,
+          "ci95_high": 352.9408892697349,
+          "minimum": 340.0,
+          "maximum": 360.0
+        },
+        "shots_fired": {
+          "n": 20,
+          "mean": 12042.5,
+          "sd": 173.48851016103268,
+          "ci95_low": 11961.305811044025,
+          "ci95_high": 12123.694188955975,
+          "minimum": 11702.0,
+          "maximum": 12289.0
+        },
+        "projectile_hits": {
+          "n": 20,
+          "mean": 2687.4,
+          "sd": 76.49520108787011,
+          "ci95_low": 2651.599555315861,
+          "ci95_high": 2723.2004446841393,
+          "minimum": 2499.0,
+          "maximum": 2802.0
+        },
+        "accuracy": {
+          "n": 20,
+          "mean": 0.223183515015,
+          "sd": 0.006432217481328064,
+          "ci95_low": 0.2201731791656685,
+          "ci95_high": 0.2261938508643315,
+          "minimum": 0.2107803043,
+          "maximum": 0.2336141533
+        },
+        "damage_dealt": {
+          "n": 20,
+          "mean": 62002.0,
+          "sd": 1742.7061533265169,
+          "ci95_low": 61186.397787631046,
+          "ci95_high": 62817.602212368954,
+          "minimum": 58215.0,
+          "maximum": 64815.0
+        },
+        "asteroid_damage_dealt": {
+          "n": 20,
+          "mean": 1677.5,
+          "sd": 427.4234311238496,
+          "ci95_low": 1477.4619755875017,
+          "ci95_high": 1877.5380244124983,
+          "minimum": 900.0,
+          "maximum": 2625.0
+        },
+        "damage_received": {
+          "n": 20,
+          "mean": 0.15,
+          "sd": 0.36634754853252327,
+          "ci95_low": -0.021453959985579946,
+          "ci95_high": 0.3214539599855799,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "engines_lost": {
+          "n": 20,
+          "mean": 0.15,
+          "sd": 0.36634754853252327,
+          "ci95_low": -0.021453959985579946,
+          "ci95_high": 0.3214539599855799,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "engines_recovered": {
+          "n": 20,
+          "mean": 0.15,
+          "sd": 0.36634754853252327,
+          "ci95_low": -0.021453959985579946,
+          "ci95_high": 0.3214539599855799,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "upgrades_collected": {
+          "n": 20,
+          "mean": 2.0,
+          "sd": 0.0,
+          "ci95_low": 2.0,
+          "ci95_high": 2.0,
+          "minimum": 2.0,
+          "maximum": 2.0
+        },
+        "upgrade_rate_per_minute": {
+          "n": 20,
+          "mean": 0.1999999896,
+          "sd": 0.0,
+          "ci95_low": 0.1999999896,
+          "ci95_high": 0.1999999896,
+          "minimum": 0.1999999896,
+          "maximum": 0.1999999896
+        },
+        "weapon_diversity": {
+          "n": 20,
+          "mean": 2.0,
+          "sd": 0.0,
+          "ci95_low": 2.0,
+          "ci95_high": 2.0,
+          "minimum": 2.0,
+          "maximum": 2.0
+        },
+        "peak_projectiles": {
+          "n": 20,
+          "mean": 56.95,
+          "sd": 0.22360679774997896,
+          "ci95_low": 56.84535,
+          "ci95_high": 57.05465,
+          "minimum": 56.0,
+          "maximum": 57.0
+        },
+        "mean_projectiles": {
+          "n": 20,
+          "mean": 23.8445819445,
+          "sd": 0.7034694462458727,
+          "ci95_low": 23.51535189295235,
+          "ci95_high": 24.17381199604765,
+          "minimum": 22.04011111,
+          "maximum": 25.04361111
+        },
+        "wall_seconds": {
+          "n": 20,
+          "mean": 0.1054853353,
+          "sd": 0.004586477547191906,
+          "ci95_low": 0.10333882240261345,
+          "ci95_high": 0.10763184819738654,
+          "minimum": 0.096739139,
+          "maximum": 0.115108372
+        },
+        "standard_shots": {
+          "n": 20,
+          "mean": 186.35,
+          "sd": 69.69125520918374,
+          "ci95_low": 153.73386341100507,
+          "ci95_high": 218.9661365889949,
+          "minimum": 79.0,
+          "maximum": 323.0
+        },
+        "standard_hits": {
+          "n": 20,
+          "mean": 61.2,
+          "sd": 23.621132376260924,
+          "ci95_low": 50.145096803632676,
+          "ci95_high": 72.25490319636734,
+          "minimum": 28.0,
+          "maximum": 112.0
+        },
+        "standard_damage": {
+          "n": 20,
+          "mean": 1301.75,
+          "sd": 480.39806684829506,
+          "ci95_low": 1076.9193678298348,
+          "ci95_high": 1526.5806321701652,
+          "minimum": 550.0,
+          "maximum": 2220.0
+        },
+        "standard_accuracy": {
+          "n": 20,
+          "mean": 0.328506521155,
+          "sd": 0.025184031615636468,
+          "ci95_low": 0.316720167005234,
+          "ci95_high": 0.34029287530476604,
+          "minimum": 0.2830188679,
+          "maximum": 0.3677419355
+        },
+        "standard_damage_per_shot": {
+          "n": 20,
+          "mean": 7.02373799605,
+          "sd": 0.5520112920133379,
+          "ci95_low": 6.765391728000548,
+          "ci95_high": 7.282084264099453,
+          "minimum": 5.964912281,
+          "maximum": 7.97979798
+        },
+        "burst_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_shots": {
+          "n": 20,
+          "mean": 11856.15,
+          "sd": 235.65502775299143,
+          "ci95_low": 11745.861319590897,
+          "ci95_high": 11966.438680409103,
+          "minimum": 11379.0,
+          "maximum": 12183.0
+        },
+        "spread_hits": {
+          "n": 20,
+          "mean": 2626.2,
+          "sd": 83.1983046385973,
+          "ci95_low": 2587.2624423405746,
+          "ci95_high": 2665.137557659425,
+          "minimum": 2405.0,
+          "maximum": 2753.0
+        },
+        "spread_damage": {
+          "n": 20,
+          "mean": 60700.25,
+          "sd": 1853.9215016312116,
+          "ci95_low": 59832.59800060668,
+          "ci95_high": 61567.90199939332,
+          "minimum": 56145.0,
+          "maximum": 63735.0
+        },
+        "spread_accuracy": {
+          "n": 20,
+          "mean": 0.221527741445,
+          "sd": 0.00637370532422947,
+          "ci95_low": 0.2185447898134203,
+          "ci95_high": 0.22451069307657973,
+          "minimum": 0.2095860566,
+          "maximum": 0.2317648067
+        },
+        "spread_damage_per_shot": {
+          "n": 20,
+          "mean": 5.12058930485,
+          "sd": 0.15327954170287492,
+          "ci95_low": 5.048853095572761,
+          "ci95_high": 5.19232551412724,
+          "minimum": 4.843191082,
+          "maximum": 5.395560127
+        },
+        "parallel_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "pooled_accuracy": 0.22315964293128504,
+        "pooled_repair_fraction": 1.0
+      },
+      "outcomes": {
+        "defeat": {
+          "n": 20,
+          "successes": 0,
+          "rate": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.16112515805281938
+        },
+        "round2": {
+          "n": 20,
+          "successes": 20,
+          "rate": 1.0,
+          "ci95_low": 0.8388748419471806,
+          "ci95_high": 1.0
+        },
+        "early_defeat60": {
+          "n": 20,
+          "successes": 0,
+          "rate": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.16112515805281938
+        }
+      }
+    },
+    "baseline/beginner": {
+      "n": 20,
+      "metrics": {
+        "round_reached": {
+          "n": 20,
+          "mean": 4.5,
+          "sd": 0.8885233166386385,
+          "ci95_low": 4.084163066499429,
+          "ci95_high": 4.915836933500571,
+          "minimum": 3.0,
+          "maximum": 6.0
+        },
+        "rounds_completed": {
+          "n": 20,
+          "mean": 3.55,
+          "sd": 0.8255779474818965,
+          "ci95_low": 3.163622067516109,
+          "ci95_high": 3.936377932483891,
+          "minimum": 2.0,
+          "maximum": 5.0
+        },
+        "survival_seconds": {
+          "n": 20,
+          "mean": 163.0083418365,
+          "sd": 48.55269245398015,
+          "ci95_low": 140.28524344934686,
+          "ci95_high": 185.73144022365312,
+          "minimum": 78.63333743,
+          "maximum": 242.783346
+        },
+        "mean_round_seconds": {
+          "n": 20,
+          "mean": 30.4761127005,
+          "sd": 5.720205304251744,
+          "ci95_low": 27.799004977865923,
+          "ci95_high": 33.15322042313408,
+          "minimum": 22.30000116,
+          "maximum": 40.88333547
+        },
+        "enemy_kills": {
+          "n": 20,
+          "mean": 31.4,
+          "sd": 9.104076588337545,
+          "ci95_low": 27.139209967870425,
+          "ci95_high": 35.66079003212957,
+          "minimum": 18.0,
+          "maximum": 49.0
+        },
+        "player_kills": {
+          "n": 20,
+          "mean": 28.6,
+          "sd": 9.063518545303067,
+          "ci95_low": 24.35819149815603,
+          "ci95_high": 32.84180850184397,
+          "minimum": 14.0,
+          "maximum": 48.0
+        },
+        "shots_fired": {
+          "n": 20,
+          "mean": 642.0,
+          "sd": 209.1723036914279,
+          "ci95_low": 544.1054735295497,
+          "ci95_high": 739.8945264704503,
+          "minimum": 313.0,
+          "maximum": 951.0
+        },
+        "projectile_hits": {
+          "n": 20,
+          "mean": 111.5,
+          "sd": 38.98245219258748,
+          "ci95_low": 93.2558604523477,
+          "ci95_high": 129.7441395476523,
+          "minimum": 56.0,
+          "maximum": 191.0
+        },
+        "accuracy": {
+          "n": 20,
+          "mean": 0.175252097455,
+          "sd": 0.02592807691139393,
+          "ci95_low": 0.1631175233898087,
+          "ci95_high": 0.1873866715201913,
+          "minimum": 0.1416490486,
+          "maximum": 0.2326139089
+        },
+        "damage_dealt": {
+          "n": 20,
+          "mean": 2303.5,
+          "sd": 853.8397791278248,
+          "ci95_low": 1903.8952751667396,
+          "ci95_high": 2703.1047248332607,
+          "minimum": 1185.0,
+          "maximum": 4220.0
+        },
+        "asteroid_damage_dealt": {
+          "n": 20,
+          "mean": 195.0,
+          "sd": 129.92913048030616,
+          "ci95_low": 134.19199397521305,
+          "ci95_high": 255.80800602478695,
+          "minimum": 0.0,
+          "maximum": 375.0
+        },
+        "damage_received": {
+          "n": 20,
+          "mean": 4.05,
+          "sd": 0.22360679774997896,
+          "ci95_low": 3.94535,
+          "ci95_high": 4.15465,
+          "minimum": 4.0,
+          "maximum": 5.0
+        },
+        "engines_lost": {
+          "n": 20,
+          "mean": 4.05,
+          "sd": 0.22360679774997896,
+          "ci95_low": 3.94535,
+          "ci95_high": 4.15465,
+          "minimum": 4.0,
+          "maximum": 5.0
+        },
+        "engines_recovered": {
+          "n": 20,
+          "mean": 0.05,
+          "sd": 0.22360679774997896,
+          "ci95_low": -0.05464999999999999,
+          "ci95_high": 0.15465,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "upgrades_collected": {
+          "n": 20,
+          "mean": 0.1,
+          "sd": 0.30779350562554625,
+          "ci95_low": -0.044050139297325736,
+          "ci95_high": 0.24405013929732575,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "upgrade_rate_per_minute": {
+          "n": 20,
+          "mean": 0.03088977665,
+          "sd": 0.09576161952909718,
+          "ci95_low": -0.013927525795900092,
+          "ci95_high": 0.07570707909590009,
+          "minimum": 0.0,
+          "maximum": 0.344135342
+        },
+        "weapon_diversity": {
+          "n": 20,
+          "mean": 1.0,
+          "sd": 0.0,
+          "ci95_low": 1.0,
+          "ci95_high": 1.0,
+          "minimum": 1.0,
+          "maximum": 1.0
+        },
+        "peak_projectiles": {
+          "n": 20,
+          "mean": 13.25,
+          "sd": 1.6181535936466536,
+          "ci95_low": 12.492689509983208,
+          "ci95_high": 14.007310490016792,
+          "minimum": 12.0,
+          "maximum": 19.0
+        },
+        "mean_projectiles": {
+          "n": 20,
+          "mean": 4.42894495085,
+          "sd": 0.575942472000419,
+          "ci95_low": 4.1593986745233025,
+          "ci95_high": 4.698491227176698,
+          "minimum": 3.628410915,
+          "maximum": 5.876373626
+        },
+        "wall_seconds": {
+          "n": 20,
+          "mean": 0.00904019545,
+          "sd": 0.00350412737959183,
+          "ci95_low": 0.007400232202172846,
+          "ci95_high": 0.010680158697827154,
+          "minimum": 0.003575509,
+          "maximum": 0.017422875
+        },
+        "standard_shots": {
+          "n": 20,
+          "mean": 642.0,
+          "sd": 209.1723036914279,
+          "ci95_low": 544.1054735295497,
+          "ci95_high": 739.8945264704503,
+          "minimum": 313.0,
+          "maximum": 951.0
+        },
+        "standard_hits": {
+          "n": 20,
+          "mean": 111.5,
+          "sd": 38.98245219258748,
+          "ci95_low": 93.2558604523477,
+          "ci95_high": 129.7441395476523,
+          "minimum": 56.0,
+          "maximum": 191.0
+        },
+        "standard_damage": {
+          "n": 20,
+          "mean": 2303.5,
+          "sd": 853.8397791278248,
+          "ci95_low": 1903.8952751667396,
+          "ci95_high": 2703.1047248332607,
+          "minimum": 1185.0,
+          "maximum": 4220.0
+        },
+        "standard_accuracy": {
+          "n": 20,
+          "mean": 0.175252097455,
+          "sd": 0.02592807691139393,
+          "ci95_low": 0.1631175233898087,
+          "ci95_high": 0.1873866715201913,
+          "minimum": 0.1416490486,
+          "maximum": 0.2326139089
+        },
+        "standard_damage_per_shot": {
+          "n": 20,
+          "mean": 3.6176114761,
+          "sd": 0.616847661024473,
+          "ci95_low": 3.3289212020306502,
+          "ci95_high": 3.9063017501693498,
+          "minimum": 2.774841438,
+          "maximum": 4.758522727
+        },
+        "burst_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "pooled_accuracy": 0.17367601246105918,
+        "pooled_repair_fraction": 0.012345679012345678
+      },
+      "outcomes": {
+        "defeat": {
+          "n": 20,
+          "successes": 20,
+          "rate": 1.0,
+          "ci95_low": 0.8388748419471806,
+          "ci95_high": 1.0
+        },
+        "round2": {
+          "n": 20,
+          "successes": 20,
+          "rate": 1.0,
+          "ci95_low": 0.8388748419471806,
+          "ci95_high": 1.0
+        },
+        "early_defeat60": {
+          "n": 20,
+          "successes": 0,
+          "rate": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.16112515805281938
+        }
+      }
+    },
+    "baseline/intermediate": {
+      "n": 20,
+      "metrics": {
+        "round_reached": {
+          "n": 20,
+          "mean": 17.1,
+          "sd": 0.4472135954999579,
+          "ci95_low": 16.890700000000002,
+          "ci95_high": 17.3093,
+          "minimum": 16.0,
+          "maximum": 18.0
+        },
+        "rounds_completed": {
+          "n": 20,
+          "mean": 16.1,
+          "sd": 0.4472135954999579,
+          "ci95_low": 15.8907,
+          "ci95_high": 16.3093,
+          "minimum": 15.0,
+          "maximum": 17.0
+        },
+        "survival_seconds": {
+          "n": 20,
+          "mean": 600.0000313,
+          "sd": 0.0,
+          "ci95_low": 600.0000313,
+          "ci95_high": 600.0000313,
+          "minimum": 600.0000313,
+          "maximum": 600.0000313
+        },
+        "mean_round_seconds": {
+          "n": 20,
+          "mean": 33.0121741075,
+          "sd": 0.7340509155598102,
+          "ci95_low": 32.66863165223338,
+          "ci95_high": 33.355716562766624,
+          "minimum": 31.68431538,
+          "maximum": 34.22555734
+        },
+        "enemy_kills": {
+          "n": 20,
+          "mean": 305.15,
+          "sd": 9.143735272679438,
+          "ci95_low": 300.8706493455721,
+          "ci95_high": 309.4293506544279,
+          "minimum": 287.0,
+          "maximum": 324.0
+        },
+        "player_kills": {
+          "n": 20,
+          "mean": 298.1,
+          "sd": 8.978922687693604,
+          "ci95_low": 293.8977831232225,
+          "ci95_high": 302.30221687677755,
+          "minimum": 283.0,
+          "maximum": 317.0
+        },
+        "shots_fired": {
+          "n": 20,
+          "mean": 10617.9,
+          "sd": 923.7189080302685,
+          "ci95_low": 10185.591211993233,
+          "ci95_high": 11050.208788006767,
+          "minimum": 7953.0,
+          "maximum": 11471.0
+        },
+        "projectile_hits": {
+          "n": 20,
+          "mean": 2141.5,
+          "sd": 100.5162987569154,
+          "ci95_low": 2094.4574647517074,
+          "ci95_high": 2188.5425352482926,
+          "minimum": 1979.0,
+          "maximum": 2379.0
+        },
+        "accuracy": {
+          "n": 20,
+          "mean": 0.20288228371,
+          "sd": 0.016514279837576345,
+          "ci95_low": 0.19515345166020368,
+          "ci95_high": 0.21061111575979632,
+          "minimum": 0.1829365431,
+          "maximum": 0.2504715202
+        },
+        "damage_dealt": {
+          "n": 20,
+          "mean": 49200.75,
+          "sd": 2376.4852834872718,
+          "ci95_low": 48088.53343315385,
+          "ci95_high": 50312.96656684615,
+          "minimum": 45015.0,
+          "maximum": 54760.0
+        },
+        "asteroid_damage_dealt": {
+          "n": 20,
+          "mean": 1443.75,
+          "sd": 408.0501613901486,
+          "ci95_low": 1252.7788407187609,
+          "ci95_high": 1634.7211592812391,
+          "minimum": 700.0,
+          "maximum": 2400.0
+        },
+        "damage_received": {
+          "n": 20,
+          "mean": 1.3,
+          "sd": 1.0809352675491621,
+          "ci95_low": 0.7941125364377235,
+          "ci95_high": 1.8058874635622766,
+          "minimum": 0.0,
+          "maximum": 3.0
+        },
+        "engines_lost": {
+          "n": 20,
+          "mean": 1.3,
+          "sd": 1.0809352675491621,
+          "ci95_low": 0.7941125364377235,
+          "ci95_high": 1.8058874635622766,
+          "minimum": 0.0,
+          "maximum": 3.0
+        },
+        "engines_recovered": {
+          "n": 20,
+          "mean": 1.1,
+          "sd": 1.0208355710680808,
+          "ci95_low": 0.6222397369523411,
+          "ci95_high": 1.577760263047659,
+          "minimum": 0.0,
+          "maximum": 3.0
+        },
+        "upgrades_collected": {
+          "n": 20,
+          "mean": 2.0,
+          "sd": 0.0,
+          "ci95_low": 2.0,
+          "ci95_high": 2.0,
+          "minimum": 2.0,
+          "maximum": 2.0
+        },
+        "upgrade_rate_per_minute": {
+          "n": 20,
+          "mean": 0.1999999896,
+          "sd": 0.0,
+          "ci95_low": 0.1999999896,
+          "ci95_high": 0.1999999896,
+          "minimum": 0.1999999896,
+          "maximum": 0.1999999896
+        },
+        "weapon_diversity": {
+          "n": 20,
+          "mean": 2.0,
+          "sd": 0.0,
+          "ci95_low": 2.0,
+          "ci95_high": 2.0,
+          "minimum": 2.0,
+          "maximum": 2.0
+        },
+        "peak_projectiles": {
+          "n": 20,
+          "mean": 56.65,
+          "sd": 0.8750939799154206,
+          "ci95_low": 56.24044811732179,
+          "ci95_high": 57.05955188267821,
+          "minimum": 54.0,
+          "maximum": 57.0
+        },
+        "mean_projectiles": {
+          "n": 20,
+          "mean": 20.776941666,
+          "sd": 2.0147343168560967,
+          "ci95_low": 19.83402781731308,
+          "ci95_high": 21.71985551468692,
+          "minimum": 14.81169444,
+          "maximum": 22.94080556
+        },
+        "wall_seconds": {
+          "n": 20,
+          "mean": 0.0974002364,
+          "sd": 0.006396294786815265,
+          "ci95_low": 0.09440671269599946,
+          "ci95_high": 0.10039376010400056,
+          "minimum": 0.077057674,
+          "maximum": 0.105274212
+        },
+        "standard_shots": {
+          "n": 20,
+          "mean": 555.15,
+          "sd": 422.43296260440763,
+          "ci95_low": 357.44755990700685,
+          "ci95_high": 752.8524400929931,
+          "minimum": 167.0,
+          "maximum": 1791.0
+        },
+        "standard_hits": {
+          "n": 20,
+          "mean": 167.0,
+          "sd": 157.06652965174376,
+          "ci95_low": 93.49144617493397,
+          "ci95_high": 240.50855382506603,
+          "minimum": 46.0,
+          "maximum": 662.0
+        },
+        "standard_damage": {
+          "n": 20,
+          "mean": 3595.0,
+          "sd": 3448.9403406965757,
+          "ci95_low": 1980.8647845873434,
+          "ci95_high": 5209.135215412656,
+          "minimum": 1010.0,
+          "maximum": 14530.0
+        },
+        "standard_accuracy": {
+          "n": 20,
+          "mean": 0.282037414365,
+          "sd": 0.042625018641764954,
+          "ci95_low": 0.26208852083516937,
+          "ci95_high": 0.30198630789483066,
+          "minimum": 0.2142857143,
+          "maximum": 0.3696259073
+        },
+        "standard_damage_per_shot": {
+          "n": 20,
+          "mean": 6.0677778331,
+          "sd": 0.9348042960937077,
+          "ci95_low": 5.630280983404089,
+          "ci95_high": 6.505274682795911,
+          "minimum": 4.668874172,
+          "maximum": 8.112786153
+        },
+        "burst_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_shots": {
+          "n": 20,
+          "mean": 10062.75,
+          "sd": 1343.7465250873063,
+          "ci95_low": 9433.864495331125,
+          "ci95_high": 10691.635504668875,
+          "minimum": 6162.0,
+          "maximum": 11304.0
+        },
+        "spread_hits": {
+          "n": 20,
+          "mean": 1974.5,
+          "sd": 230.4692010477299,
+          "ci95_low": 1866.638333304998,
+          "ci95_high": 2082.361666695002,
+          "minimum": 1330.0,
+          "maximum": 2319.0
+        },
+        "spread_damage": {
+          "n": 20,
+          "mean": 45605.75,
+          "sd": 5128.5114478816,
+          "ci95_low": 43205.56034377628,
+          "ci95_high": 48005.93965622372,
+          "minimum": 31470.0,
+          "maximum": 53430.0
+        },
+        "spread_accuracy": {
+          "n": 20,
+          "mean": 0.1970516002,
+          "sd": 0.009981245833271032,
+          "ci95_low": 0.19238028704242893,
+          "ci95_high": 0.2017229133575711,
+          "minimum": 0.181472426,
+          "maximum": 0.2209737828
+        },
+        "spread_damage_per_shot": {
+          "n": 20,
+          "mean": 4.55569785445,
+          "sd": 0.2619989970420476,
+          "ci95_low": 4.4330799585884115,
+          "ci95_high": 4.678315750311588,
+          "minimum": 4.137462646,
+          "maximum": 5.182944396
+        },
+        "parallel_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "pooled_accuracy": 0.20168771602670962,
+        "pooled_repair_fraction": 0.8461538461538461
+      },
+      "outcomes": {
+        "defeat": {
+          "n": 20,
+          "successes": 0,
+          "rate": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.16112515805281938
+        },
+        "round2": {
+          "n": 20,
+          "successes": 20,
+          "rate": 1.0,
+          "ci95_low": 0.8388748419471806,
+          "ci95_high": 1.0
+        },
+        "early_defeat60": {
+          "n": 20,
+          "successes": 0,
+          "rate": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.16112515805281938
+        }
+      }
+    },
+    "growth18/advanced": {
+      "n": 20,
+      "metrics": {
+        "round_reached": {
+          "n": 20,
+          "mean": 13.8,
+          "sd": 2.745330964613039,
+          "ci95_low": 12.515160324562265,
+          "ci95_high": 15.084839675437737,
+          "minimum": 9.0,
+          "maximum": 17.0
+        },
+        "rounds_completed": {
+          "n": 20,
+          "mean": 12.9,
+          "sd": 2.80788363831477,
+          "ci95_low": 11.585885108563662,
+          "ci95_high": 14.214114891436338,
+          "minimum": 8.0,
+          "maximum": 16.0
+        },
+        "survival_seconds": {
+          "n": 20,
+          "mean": 501.75585951000005,
+          "sd": 145.65150458432223,
+          "ci95_low": 433.589640467803,
+          "ci95_high": 569.922078552197,
+          "minimum": 251.1166798,
+          "maximum": 600.0000313
+        },
+        "mean_round_seconds": {
+          "n": 20,
+          "mean": 33.5735781955,
+          "sd": 5.0637755654896806,
+          "ci95_low": 31.203685516651216,
+          "ci95_high": 35.943470874348776,
+          "minimum": 24.45000128,
+          "maximum": 41.99230988
+        },
+        "enemy_kills": {
+          "n": 20,
+          "mean": 223.85,
+          "sd": 70.1729255032467,
+          "ci95_low": 191.00843736501315,
+          "ci95_high": 256.69156263498684,
+          "minimum": 100.0,
+          "maximum": 291.0
+        },
+        "player_kills": {
+          "n": 20,
+          "mean": 209.35,
+          "sd": 67.71323045718147,
+          "ci95_low": 177.6595968519378,
+          "ci95_high": 241.04040314806218,
+          "minimum": 90.0,
+          "maximum": 277.0
+        },
+        "shots_fired": {
+          "n": 20,
+          "mean": 5673.55,
+          "sd": 1991.5063982348956,
+          "ci95_low": 4741.507026922267,
+          "ci95_high": 6605.592973077733,
+          "minimum": 1836.0,
+          "maximum": 9185.0
+        },
+        "projectile_hits": {
+          "n": 20,
+          "mean": 2638.7,
+          "sd": 1150.5523204553817,
+          "ci95_low": 2100.231127196391,
+          "ci95_high": 3177.168872803609,
+          "minimum": 718.0,
+          "maximum": 4099.0
+        },
+        "accuracy": {
+          "n": 20,
+          "mean": 0.45446978887,
+          "sd": 0.11824791438705147,
+          "ci95_low": 0.3991286974312622,
+          "ci95_high": 0.5098108803087378,
+          "minimum": 0.2135792569,
+          "maximum": 0.6198807922
+        },
+        "damage_dealt": {
+          "n": 20,
+          "mean": 47881.75,
+          "sd": 20243.958841239266,
+          "ci95_low": 38407.39450610094,
+          "ci95_high": 57356.10549389906,
+          "minimum": 14087.0,
+          "maximum": 69709.0
+        },
+        "asteroid_damage_dealt": {
+          "n": 20,
+          "mean": 1391.1,
+          "sd": 500.22436018882144,
+          "ci95_low": 1156.990483560824,
+          "ci95_high": 1625.2095164391758,
+          "minimum": 450.0,
+          "maximum": 2300.0
+        },
+        "damage_received": {
+          "n": 20,
+          "mean": 3.7,
+          "sd": 2.2501461940809184,
+          "ci95_low": 2.6469112675462467,
+          "ci95_high": 4.753088732453754,
+          "minimum": 0.0,
+          "maximum": 7.0
+        },
+        "engines_lost": {
+          "n": 20,
+          "mean": 3.7,
+          "sd": 2.2501461940809184,
+          "ci95_low": 2.6469112675462467,
+          "ci95_high": 4.753088732453754,
+          "minimum": 0.0,
+          "maximum": 7.0
+        },
+        "engines_recovered": {
+          "n": 20,
+          "mean": 2.2,
+          "sd": 1.8524521444205841,
+          "ci95_low": 1.3330356730461594,
+          "ci95_high": 3.066964326953841,
+          "minimum": 0.0,
+          "maximum": 5.0
+        },
+        "upgrades_collected": {
+          "n": 20,
+          "mean": 13.5,
+          "sd": 3.0864730339780526,
+          "ci95_low": 12.055502756374349,
+          "ci95_high": 14.944497243625651,
+          "minimum": 7.0,
+          "maximum": 16.0
+        },
+        "upgrade_rate_per_minute": {
+          "n": 20,
+          "mean": 1.6632864588,
+          "sd": 0.24720367409123878,
+          "ci95_low": 1.5475929076469892,
+          "ci95_high": 1.7789800099530109,
+          "minimum": 1.399999927,
+          "maximum": 2.288223618
+        },
+        "weapon_diversity": {
+          "n": 20,
+          "mean": 7.55,
+          "sd": 0.8870412083230169,
+          "ci95_low": 7.1348567065711554,
+          "ci95_high": 7.965143293428844,
+          "minimum": 5.0,
+          "maximum": 8.0
+        },
+        "peak_projectiles": {
+          "n": 20,
+          "mean": 39.1,
+          "sd": 6.927443517215462,
+          "ci95_low": 35.857893895125706,
+          "ci95_high": 42.3421061048743,
+          "minimum": 31.0,
+          "maximum": 53.0
+        },
+        "mean_projectiles": {
+          "n": 20,
+          "mean": 9.4208629254,
+          "sd": 1.9126348024359547,
+          "ci95_low": 8.525732571184543,
+          "ci95_high": 10.315993279615457,
+          "minimum": 6.513046697,
+          "maximum": 13.25863889
+        },
+        "wall_seconds": {
+          "n": 20,
+          "mean": 0.0651795105,
+          "sd": 0.02138338274432804,
+          "ci95_low": 0.055171894333088806,
+          "ci95_high": 0.07518712666691119,
+          "minimum": 0.02383736,
+          "maximum": 0.091129565
+        },
+        "standard_shots": {
+          "n": 20,
+          "mean": 457.6,
+          "sd": 349.94531903683105,
+          "ci95_low": 293.8224314926588,
+          "ci95_high": 621.3775685073413,
+          "minimum": 82.0,
+          "maximum": 1540.0
+        },
+        "standard_hits": {
+          "n": 20,
+          "mean": 302.55,
+          "sd": 266.28881728402774,
+          "ci95_low": 177.92442953799414,
+          "ci95_high": 427.1755704620059,
+          "minimum": 27.0,
+          "maximum": 1093.0
+        },
+        "standard_damage": {
+          "n": 20,
+          "mean": 8165.6,
+          "sd": 7587.1511635756515,
+          "ci95_low": 4614.744760992551,
+          "ci95_high": 11716.45523900745,
+          "minimum": 624.0,
+          "maximum": 30039.0
+        },
+        "standard_accuracy": {
+          "n": 20,
+          "mean": 0.59718889576,
+          "sd": 0.12702394510284074,
+          "ci95_low": 0.5377405427189819,
+          "ci95_high": 0.6566372488010181,
+          "minimum": 0.3292682927,
+          "maximum": 0.7520858164
+        },
+        "standard_damage_per_shot": {
+          "n": 20,
+          "mean": 15.59653130255,
+          "sd": 4.528631331108687,
+          "ci95_low": 13.477090956508157,
+          "ci95_high": 17.715971648591843,
+          "minimum": 7.609756098,
+          "maximum": 22.24910608
+        },
+        "burst_shots": {
+          "n": 20,
+          "mean": 280.5,
+          "sd": 307.31220196029346,
+          "ci95_low": 136.6751151630732,
+          "ci95_high": 424.3248848369268,
+          "minimum": 0.0,
+          "maximum": 996.0
+        },
+        "burst_hits": {
+          "n": 20,
+          "mean": 201.45,
+          "sd": 239.48024311434392,
+          "ci95_low": 89.37108426892202,
+          "ci95_high": 313.528915731078,
+          "minimum": 0.0,
+          "maximum": 814.0
+        },
+        "burst_damage": {
+          "n": 20,
+          "mean": 4803.05,
+          "sd": 6071.995548807397,
+          "ci95_low": 1961.3012670603557,
+          "ci95_high": 7644.798732939645,
+          "minimum": 0.0,
+          "maximum": 21262.0
+        },
+        "burst_accuracy": {
+          "n": 20,
+          "mean": 0.50267013973,
+          "sd": 0.29375156868940006,
+          "ci95_low": 0.3651917536850542,
+          "ci95_high": 0.6401485257749457,
+          "minimum": 0.0,
+          "maximum": 0.8209876543
+        },
+        "burst_damage_per_shot": {
+          "n": 20,
+          "mean": 11.3287426661,
+          "sd": 7.217870612298936,
+          "ci95_low": 7.950714058840655,
+          "ci95_high": 14.706771273359346,
+          "minimum": 0.0,
+          "maximum": 21.34738956
+        },
+        "heavy_shots": {
+          "n": 20,
+          "mean": 120.45,
+          "sd": 83.92444910688862,
+          "ci95_low": 81.17260017400693,
+          "ci95_high": 159.72739982599307,
+          "minimum": 11.0,
+          "maximum": 359.0
+        },
+        "heavy_hits": {
+          "n": 20,
+          "mean": 91.45,
+          "sd": 71.52215335861072,
+          "ci95_low": 57.976986548291045,
+          "ci95_high": 124.92301345170895,
+          "minimum": 7.0,
+          "maximum": 301.0
+        },
+        "heavy_damage": {
+          "n": 20,
+          "mean": 5197.0,
+          "sd": 4071.3513856289974,
+          "ci95_low": 3291.5707966245645,
+          "ci95_high": 7102.4292033754355,
+          "minimum": 293.0,
+          "maximum": 16293.0
+        },
+        "heavy_accuracy": {
+          "n": 20,
+          "mean": 0.70121279998,
+          "sd": 0.14871711934510135,
+          "ci95_low": 0.6316118455543364,
+          "ci95_high": 0.7708137544056636,
+          "minimum": 0.380952381,
+          "maximum": 0.9115044248
+        },
+        "heavy_damage_per_shot": {
+          "n": 20,
+          "mean": 38.760873581,
+          "sd": 11.67896034791384,
+          "ci95_low": 33.29501470413453,
+          "ci95_high": 44.22673245786547,
+          "minimum": 20.92857143,
+          "maximum": 58.88495575
+        },
+        "circle_shots": {
+          "n": 20,
+          "mean": 1582.35,
+          "sd": 1273.9586573065533,
+          "ci95_low": 986.1258474758026,
+          "ci95_high": 2178.5741525241974,
+          "minimum": 128.0,
+          "maximum": 5320.0
+        },
+        "circle_hits": {
+          "n": 20,
+          "mean": 293.95,
+          "sd": 237.9041104930171,
+          "ci95_low": 182.6087285645408,
+          "ci95_high": 405.2912714354592,
+          "minimum": 12.0,
+          "maximum": 974.0
+        },
+        "circle_damage": {
+          "n": 20,
+          "mean": 4162.6,
+          "sd": 3589.174577443736,
+          "ci95_low": 2482.833895798357,
+          "ci95_high": 5842.366104201644,
+          "minimum": 170.0,
+          "maximum": 14558.0
+        },
+        "circle_accuracy": {
+          "n": 20,
+          "mean": 0.18192652586,
+          "sd": 0.03509852992597306,
+          "ci95_low": 0.1655000969959722,
+          "ci95_high": 0.19835295472402778,
+          "minimum": 0.09375,
+          "maximum": 0.2625
+        },
+        "circle_damage_per_shot": {
+          "n": 20,
+          "mean": 2.54723869495,
+          "sd": 0.6501085041748368,
+          "ci95_low": 2.2429820460176755,
+          "ci95_high": 2.8514953438823243,
+          "minimum": 1.328125,
+          "maximum": 4.190625
+        },
+        "triangle_shots": {
+          "n": 20,
+          "mean": 1020.9,
+          "sd": 953.3185749072331,
+          "ci95_low": 574.7383006781763,
+          "ci95_high": 1467.0616993218237,
+          "minimum": 21.0,
+          "maximum": 3321.0
+        },
+        "triangle_hits": {
+          "n": 20,
+          "mean": 634.9,
+          "sd": 669.2758773480484,
+          "ci95_low": 321.67284738549563,
+          "ci95_high": 948.1271526145043,
+          "minimum": 9.0,
+          "maximum": 2281.0
+        },
+        "triangle_damage": {
+          "n": 20,
+          "mean": 9802.6,
+          "sd": 10581.123452440646,
+          "ci95_low": 4850.538701147928,
+          "ci95_high": 14754.661298852072,
+          "minimum": 129.0,
+          "maximum": 35037.0
+        },
+        "triangle_accuracy": {
+          "n": 20,
+          "mean": 0.541902978575,
+          "sd": 0.12961505596919054,
+          "ci95_low": 0.48124196225678273,
+          "ci95_high": 0.6025639948932173,
+          "minimum": 0.3081761006,
+          "maximum": 0.7259062776
+        },
+        "triangle_damage_per_shot": {
+          "n": 20,
+          "mean": 8.1670126201,
+          "sd": 2.3506122062043056,
+          "ci95_low": 7.066904886996417,
+          "ci95_high": 9.267120353203582,
+          "minimum": 4.125786164,
+          "maximum": 11.4712774
+        },
+        "square_shots": {
+          "n": 20,
+          "mean": 621.6,
+          "sd": 583.6717173927572,
+          "ci95_low": 348.43636705245126,
+          "ci95_high": 894.7636329475488,
+          "minimum": 0.0,
+          "maximum": 1960.0
+        },
+        "square_hits": {
+          "n": 20,
+          "mean": 388.55,
+          "sd": 397.15375187901594,
+          "ci95_low": 202.67845873938586,
+          "ci95_high": 574.4215412606142,
+          "minimum": 0.0,
+          "maximum": 1357.0
+        },
+        "square_damage": {
+          "n": 20,
+          "mean": 4974.75,
+          "sd": 5272.516585534544,
+          "ci95_low": 2507.1646393208575,
+          "ci95_high": 7442.3353606791425,
+          "minimum": 0.0,
+          "maximum": 18013.0
+        },
+        "square_accuracy": {
+          "n": 20,
+          "mean": 0.502350779625,
+          "sd": 0.21631726559204612,
+          "ci95_low": 0.4011123464825543,
+          "ci95_high": 0.6035892127674457,
+          "minimum": 0.0,
+          "maximum": 0.7953020134
+        },
+        "square_damage_per_shot": {
+          "n": 20,
+          "mean": 6.1666120084,
+          "sd": 2.914691527893323,
+          "ci95_low": 4.802510060412307,
+          "ci95_high": 7.530713956387692,
+          "minimum": 0.0,
+          "maximum": 9.190306122
+        },
+        "spread_shots": {
+          "n": 20,
+          "mean": 1076.7,
+          "sd": 1001.6940440547387,
+          "ci95_low": 607.8981443983706,
+          "ci95_high": 1545.5018556016294,
+          "minimum": 0.0,
+          "maximum": 3687.0
+        },
+        "spread_hits": {
+          "n": 20,
+          "mean": 419.35,
+          "sd": 422.18919119027044,
+          "ci95_low": 221.761647129516,
+          "ci95_high": 616.9383528704841,
+          "minimum": 0.0,
+          "maximum": 1544.0
+        },
+        "spread_damage": {
+          "n": 20,
+          "mean": 6112.6,
+          "sd": 6173.686925381913,
+          "ci95_low": 3223.2587847851873,
+          "ci95_high": 9001.941215214814,
+          "minimum": 0.0,
+          "maximum": 21634.0
+        },
+        "spread_accuracy": {
+          "n": 20,
+          "mean": 0.34439695638,
+          "sd": 0.09474396609397388,
+          "ci95_low": 0.30005592492879807,
+          "ci95_high": 0.38873798783120195,
+          "minimum": 0.0,
+          "maximum": 0.4187686466
+        },
+        "spread_damage_per_shot": {
+          "n": 20,
+          "mean": 4.93097201535,
+          "sd": 1.490044062476993,
+          "ci95_low": 4.233617942453833,
+          "ci95_high": 5.628326088246167,
+          "minimum": 0.0,
+          "maximum": 6.473603083
+        },
+        "parallel_shots": {
+          "n": 20,
+          "mean": 513.45,
+          "sd": 454.99259392468775,
+          "ci95_low": 300.5093585108348,
+          "ci95_high": 726.3906414891653,
+          "minimum": 0.0,
+          "maximum": 1557.0
+        },
+        "parallel_hits": {
+          "n": 20,
+          "mean": 306.5,
+          "sd": 304.8783191269661,
+          "ci95_low": 163.81419430141182,
+          "ci95_high": 449.1858056985882,
+          "minimum": 0.0,
+          "maximum": 1022.0
+        },
+        "parallel_damage": {
+          "n": 20,
+          "mean": 4663.55,
+          "sd": 4798.303938015905,
+          "ci95_low": 2417.900439404691,
+          "ci95_high": 6909.199560595309,
+          "minimum": 0.0,
+          "maximum": 16051.0
+        },
+        "parallel_accuracy": {
+          "n": 20,
+          "mean": 0.48303744381,
+          "sd": 0.21192513017588457,
+          "ci95_low": 0.383854569693158,
+          "ci95_high": 0.582220317926842,
+          "minimum": 0.0,
+          "maximum": 0.7247191011
+        },
+        "parallel_damage_per_shot": {
+          "n": 20,
+          "mean": 7.11299172795,
+          "sd": 3.411656590945197,
+          "ci95_low": 5.51630564400715,
+          "ci95_high": 8.709677811892849,
+          "minimum": 0.0,
+          "maximum": 11.13670412
+        },
+        "pooled_accuracy": 0.46508799605185464,
+        "pooled_repair_fraction": 0.5945945945945946
+      },
+      "outcomes": {
+        "defeat": {
+          "n": 20,
+          "successes": 7,
+          "rate": 0.35,
+          "ci95_low": 0.18119182410108206,
+          "ci95_high": 0.5671457233147638
+        },
+        "round2": {
+          "n": 20,
+          "successes": 20,
+          "rate": 1.0,
+          "ci95_low": 0.8388748419471806,
+          "ci95_high": 1.0
+        },
+        "early_defeat60": {
+          "n": 20,
+          "successes": 0,
+          "rate": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.16112515805281938
+        }
+      }
+    },
+    "growth18/beginner": {
+      "n": 20,
+      "metrics": {
+        "round_reached": {
+          "n": 20,
+          "mean": 3.7,
+          "sd": 0.7326950970650465,
+          "ci95_low": 3.35709208002884,
+          "ci95_high": 4.04290791997116,
+          "minimum": 3.0,
+          "maximum": 5.0
+        },
+        "rounds_completed": {
+          "n": 20,
+          "mean": 2.7,
+          "sd": 0.7326950970650465,
+          "ci95_low": 2.35709208002884,
+          "ci95_high": 3.04290791997116,
+          "minimum": 2.0,
+          "maximum": 4.0
+        },
+        "survival_seconds": {
+          "n": 20,
+          "mean": 109.4308390425,
+          "sd": 43.68059309036519,
+          "ci95_low": 88.98792714132482,
+          "ci95_high": 129.8737509436752,
+          "minimum": 54.08333615,
+          "maximum": 216.3000113
+        },
+        "mean_round_seconds": {
+          "n": 20,
+          "mean": 25.8428485705,
+          "sd": 6.63310535099364,
+          "ci95_low": 22.738495384611447,
+          "ci95_high": 28.94720175638855,
+          "minimum": 17.82777871,
+          "maximum": 42.68333556
+        },
+        "enemy_kills": {
+          "n": 20,
+          "mean": 22.95,
+          "sd": 7.584436973864726,
+          "ci95_low": 19.40041502628013,
+          "ci95_high": 26.49958497371987,
+          "minimum": 14.0,
+          "maximum": 39.0
+        },
+        "player_kills": {
+          "n": 20,
+          "mean": 19.9,
+          "sd": 6.439189226504905,
+          "ci95_low": 16.88640131098697,
+          "ci95_high": 22.91359868901303,
+          "minimum": 12.0,
+          "maximum": 32.0
+        },
+        "shots_fired": {
+          "n": 20,
+          "mean": 491.85,
+          "sd": 282.9709442030363,
+          "ci95_low": 359.41704353881596,
+          "ci95_high": 624.2829564611841,
+          "minimum": 207.0,
+          "maximum": 1287.0
+        },
+        "projectile_hits": {
+          "n": 20,
+          "mean": 97.7,
+          "sd": 54.3285327768403,
+          "ci95_low": 72.27375619924833,
+          "ci95_high": 123.12624380075168,
+          "minimum": 50.0,
+          "maximum": 235.0
+        },
+        "accuracy": {
+          "n": 20,
+          "mean": 0.20363833781,
+          "sd": 0.0325253838319642,
+          "ci95_low": 0.1884161645475354,
+          "ci95_high": 0.21886051107246457,
+          "minimum": 0.1432360743,
+          "maximum": 0.2689486553
+        },
+        "damage_dealt": {
+          "n": 20,
+          "mean": 1881.5,
+          "sd": 810.4357177664241,
+          "ci95_low": 1502.2087677223165,
+          "ci95_high": 2260.791232277684,
+          "minimum": 1169.0,
+          "maximum": 3758.0
+        },
+        "asteroid_damage_dealt": {
+          "n": 20,
+          "mean": 188.6,
+          "sd": 197.71521252336123,
+          "ci95_low": 96.06749562728042,
+          "ci95_high": 281.13250437271955,
+          "minimum": 0.0,
+          "maximum": 872.0
+        },
+        "damage_received": {
+          "n": 20,
+          "mean": 4.3,
+          "sd": 0.8013147091860318,
+          "ci95_low": 3.9249774820795844,
+          "ci95_high": 4.675022517920415,
+          "minimum": 4.0,
+          "maximum": 7.0
+        },
+        "engines_lost": {
+          "n": 20,
+          "mean": 4.3,
+          "sd": 0.8013147091860318,
+          "ci95_low": 3.9249774820795844,
+          "ci95_high": 4.675022517920415,
+          "minimum": 4.0,
+          "maximum": 7.0
+        },
+        "engines_recovered": {
+          "n": 20,
+          "mean": 0.3,
+          "sd": 0.8013147091860318,
+          "ci95_low": -0.07502251792041553,
+          "ci95_high": 0.6750225179204155,
+          "minimum": 0.0,
+          "maximum": 3.0
+        },
+        "upgrades_collected": {
+          "n": 20,
+          "mean": 0.15,
+          "sd": 0.36634754853252327,
+          "ci95_low": -0.021453959985579946,
+          "ci95_high": 0.3214539599855799,
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "upgrade_rate_per_minute": {
+          "n": 20,
+          "mean": 0.057381745139999996,
+          "sd": 0.14442589341913747,
+          "ci95_low": -0.010210876812452058,
+          "ci95_high": 0.12497436709245205,
+          "minimum": 0.0,
+          "maximum": 0.4924086735
+        },
+        "weapon_diversity": {
+          "n": 20,
+          "mean": 1.1,
+          "sd": 0.30779350562554625,
+          "ci95_low": 0.9559498607026744,
+          "ci95_high": 1.2440501392973258,
+          "minimum": 1.0,
+          "maximum": 2.0
+        },
+        "peak_projectiles": {
+          "n": 20,
+          "mean": 14.15,
+          "sd": 4.344082484435459,
+          "ci95_low": 12.116930180251135,
+          "ci95_high": 16.183069819748866,
+          "minimum": 11.0,
+          "maximum": 30.0
+        },
+        "mean_projectiles": {
+          "n": 20,
+          "mean": 4.7930184561499996,
+          "sd": 1.3018315459107057,
+          "ci95_low": 4.183749540131242,
+          "ci95_high": 5.402287372168757,
+          "minimum": 3.380305132,
+          "maximum": 9.665722082
+        },
+        "wall_seconds": {
+          "n": 20,
+          "mean": 0.00686790615,
+          "sd": 0.003907089795649406,
+          "ci95_low": 0.005039352853637843,
+          "ci95_high": 0.008696459446362157,
+          "minimum": 0.002404075,
+          "maximum": 0.017151262
+        },
+        "standard_shots": {
+          "n": 20,
+          "mean": 423.95,
+          "sd": 213.8835086283136,
+          "ci95_low": 323.85058708778627,
+          "ci95_high": 524.0494129122137,
+          "minimum": 207.0,
+          "maximum": 1034.0
+        },
+        "standard_hits": {
+          "n": 20,
+          "mean": 84.95,
+          "sd": 44.83827664653916,
+          "ci95_low": 63.96528174332633,
+          "ci95_high": 105.93471825667368,
+          "minimum": 36.0,
+          "maximum": 226.0
+        },
+        "standard_damage": {
+          "n": 20,
+          "mean": 1719.0,
+          "sd": 778.184121089469,
+          "ci95_low": 1354.802806124571,
+          "ci95_high": 2083.197193875429,
+          "minimum": 742.0,
+          "maximum": 3758.0
+        },
+        "standard_accuracy": {
+          "n": 20,
+          "mean": 0.202650890015,
+          "sd": 0.033301188012984845,
+          "ci95_low": 0.18706563339209759,
+          "ci95_high": 0.21823614663790242,
+          "minimum": 0.1432360743,
+          "maximum": 0.2689486553
+        },
+        "standard_damage_per_shot": {
+          "n": 20,
+          "mean": 4.21117898965,
+          "sd": 0.8203967089264137,
+          "ci95_low": 3.8272259235846935,
+          "ci95_high": 4.595132055715306,
+          "minimum": 3.041114058,
+          "maximum": 5.647342995
+        },
+        "burst_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "burst_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "heavy_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "circle_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "triangle_shots": {
+          "n": 20,
+          "mean": 53.65,
+          "sd": 239.93009398572744,
+          "ci95_low": -58.63944999999999,
+          "ci95_high": 165.93945,
+          "minimum": 0.0,
+          "maximum": 1073.0
+        },
+        "triangle_hits": {
+          "n": 20,
+          "mean": 9.95,
+          "sd": 44.497752752245816,
+          "ci95_low": -10.875350000000001,
+          "ci95_high": 30.77535,
+          "minimum": 0.0,
+          "maximum": 199.0
+        },
+        "triangle_damage": {
+          "n": 20,
+          "mean": 127.5,
+          "sd": 570.1973342624464,
+          "ci95_low": -139.35749999999996,
+          "ci95_high": 394.35749999999996,
+          "minimum": 0.0,
+          "maximum": 2550.0
+        },
+        "triangle_accuracy": {
+          "n": 20,
+          "mean": 0.00927306617,
+          "sd": 0.04147041263194724,
+          "ci95_low": -0.010135461323810002,
+          "ci95_high": 0.028681593663810002,
+          "minimum": 0.0,
+          "maximum": 0.1854613234
+        },
+        "triangle_damage_per_shot": {
+          "n": 20,
+          "mean": 0.11882572225000002,
+          "sd": 0.5314047848530186,
+          "ci95_low": -0.12987651441925002,
+          "ci95_high": 0.36752795891925005,
+          "minimum": 0.0,
+          "maximum": 2.376514445
+        },
+        "square_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "square_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_shots": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_hits": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_damage": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_accuracy": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "spread_damage_per_shot": {
+          "n": 20,
+          "mean": 0.0,
+          "sd": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "parallel_shots": {
+          "n": 20,
+          "mean": 14.25,
+          "sd": 63.72793735874401,
+          "ci95_low": -15.575249999999997,
+          "ci95_high": 44.07525,
+          "minimum": 0.0,
+          "maximum": 285.0
+        },
+        "parallel_hits": {
+          "n": 20,
+          "mean": 2.8,
+          "sd": 12.521980673998822,
+          "ci95_low": -3.0603999999999996,
+          "ci95_high": 8.6604,
+          "minimum": 0.0,
+          "maximum": 56.0
+        },
+        "parallel_damage": {
+          "n": 20,
+          "mean": 35.0,
+          "sd": 156.52475842498527,
+          "ci95_low": -38.254999999999995,
+          "ci95_high": 108.255,
+          "minimum": 0.0,
+          "maximum": 700.0
+        },
+        "parallel_accuracy": {
+          "n": 20,
+          "mean": 0.009824561405,
+          "sd": 0.043936774301401686,
+          "ci95_low": -0.010738245615665,
+          "ci95_high": 0.030387368425665,
+          "minimum": 0.0,
+          "maximum": 0.1964912281
+        },
+        "parallel_damage_per_shot": {
+          "n": 20,
+          "mean": 0.12280701755000001,
+          "sd": 0.5492096787116194,
+          "ci95_low": -0.13422807018215,
+          "ci95_high": 0.37984210528215,
+          "minimum": 0.0,
+          "maximum": 2.456140351
+        },
+        "pooled_accuracy": 0.19863779607603943,
+        "pooled_repair_fraction": 0.06976744186046512
+      },
+      "outcomes": {
+        "defeat": {
+          "n": 20,
+          "successes": 20,
+          "rate": 1.0,
+          "ci95_low": 0.8388748419471806,
+          "ci95_high": 1.0
+        },
+        "round2": {
+          "n": 20,
+          "successes": 20,
+          "rate": 1.0,
+          "ci95_low": 0.8388748419471806,
+          "ci95_high": 1.0
+        },
+        "early_defeat60": {
+          "n": 20,
+          "successes": 1,
+          "rate": 0.05,
+          "ci95_low": 0.008881448800795402,
+          "ci95_high": 0.23613119344674205
+        }
+      }
+    },
+    "growth18/intermediate": {
+      "n": 20,
+      "metrics": {
+        "round_reached": {
+          "n": 20,
+          "mean": 9.25,
+          "sd": 2.6332889181242134,
+          "ci95_low": 8.017597013799977,
+          "ci95_high": 10.482402986200023,
+          "minimum": 6.0,
+          "maximum": 15.0
+        },
+        "rounds_completed": {
+          "n": 20,
+          "mean": 8.25,
+          "sd": 2.6332889181242134,
+          "ci95_low": 7.017597013799976,
+          "ci95_high": 9.482402986200023,
+          "minimum": 5.0,
+          "maximum": 14.0
+        },
+        "survival_seconds": {
+          "n": 20,
+          "mean": 311.8158496,
+          "sd": 129.7432287046577,
+          "ci95_low": 251.09484728448024,
+          "ci95_high": 372.5368519155197,
+          "minimum": 156.5500082,
+          "maximum": 600.0000313
+        },
+        "mean_round_seconds": {
+          "n": 20,
+          "mean": 30.687530219499997,
+          "sd": 4.585834222007107,
+          "ci95_low": 28.541318404107685,
+          "ci95_high": 32.83374203489231,
+          "minimum": 23.41666789,
+          "maximum": 39.41904967
+        },
+        "enemy_kills": {
+          "n": 20,
+          "mean": 113.3,
+          "sd": 56.08367808345331,
+          "ci95_low": 87.05233235084447,
+          "ci95_high": 139.54766764915553,
+          "minimum": 46.0,
+          "maximum": 242.0
+        },
+        "player_kills": {
+          "n": 20,
+          "mean": 102.8,
+          "sd": 51.8769799875781,
+          "ci95_low": 78.52110503648336,
+          "ci95_high": 127.07889496351663,
+          "minimum": 39.0,
+          "maximum": 216.0
+        },
+        "shots_fired": {
+          "n": 20,
+          "mean": 3431.75,
+          "sd": 1401.6853342729207,
+          "ci95_low": 2775.748609578608,
+          "ci95_high": 4087.751390421392,
+          "minimum": 1626.0,
+          "maximum": 6945.0
+        },
+        "projectile_hits": {
+          "n": 20,
+          "mean": 1137.65,
+          "sd": 715.2402080861771,
+          "ci95_low": 802.9111256482902,
+          "ci95_high": 1472.38887435171,
+          "minimum": 348.0,
+          "maximum": 2898.0
+        },
+        "accuracy": {
+          "n": 20,
+          "mean": 0.314061346075,
+          "sd": 0.11484325050337868,
+          "ci95_low": 0.2603136680700736,
+          "ci95_high": 0.36780902407992644,
+          "minimum": 0.1455923414,
+          "maximum": 0.4943862275
+        },
+        "damage_dealt": {
+          "n": 20,
+          "mean": 18216.15,
+          "sd": 12690.77395207367,
+          "ci95_low": 12276.753222047466,
+          "ci95_high": 24155.546777952535,
+          "minimum": 4747.0,
+          "maximum": 49692.0
+        },
+        "asteroid_damage_dealt": {
+          "n": 20,
+          "mean": 884.4,
+          "sd": 351.5877370473909,
+          "ci95_low": 719.853765036475,
+          "ci95_high": 1048.946234963525,
+          "minimum": 306.0,
+          "maximum": 1715.0
+        },
+        "damage_received": {
+          "n": 20,
+          "mean": 6.15,
+          "sd": 2.1830688201896455,
+          "ci95_low": 5.128304084081147,
+          "ci95_high": 7.171695915918853,
+          "minimum": 4.0,
+          "maximum": 11.0
+        },
+        "engines_lost": {
+          "n": 20,
+          "mean": 6.15,
+          "sd": 2.1830688201896455,
+          "ci95_low": 5.128304084081147,
+          "ci95_high": 7.171695915918853,
+          "minimum": 4.0,
+          "maximum": 11.0
+        },
+        "engines_recovered": {
+          "n": 20,
+          "mean": 2.3,
+          "sd": 2.341839133312916,
+          "ci95_low": 1.2039981442101766,
+          "ci95_high": 3.396001855789823,
+          "minimum": 0.0,
+          "maximum": 7.0
+        },
+        "upgrades_collected": {
+          "n": 20,
+          "mean": 7.9,
+          "sd": 3.0932864485255127,
+          "ci95_low": 6.452314016856738,
+          "ci95_high": 9.347685983143263,
+          "minimum": 3.0,
+          "maximum": 14.0
+        },
+        "upgrade_rate_per_minute": {
+          "n": 20,
+          "mean": 1.5356792117,
+          "sd": 0.23432088665856535,
+          "ci95_low": 1.4260149213673008,
+          "ci95_high": 1.6453435020326992,
+          "minimum": 1.052221301,
+          "maximum": 1.982014945
+        },
+        "weapon_diversity": {
+          "n": 20,
+          "mean": 5.7,
+          "sd": 2.0545200489600846,
+          "ci95_low": 4.7384660695151295,
+          "ci95_high": 6.661533930484871,
+          "minimum": 2.0,
+          "maximum": 8.0
+        },
+        "peak_projectiles": {
+          "n": 20,
+          "mean": 36.6,
+          "sd": 7.422582895603474,
+          "ci95_low": 33.12616419607495,
+          "ci95_high": 40.07383580392505,
+          "minimum": 25.0,
+          "maximum": 56.0
+        },
+        "mean_projectiles": {
+          "n": 20,
+          "mean": 10.25283497875,
+          "sd": 2.517031189317449,
+          "ci95_low": 9.07484165917036,
+          "ci95_high": 11.43082829832964,
+          "minimum": 5.658152089,
+          "maximum": 15.69318607
+        },
+        "wall_seconds": {
+          "n": 20,
+          "mean": 0.0368373752,
+          "sd": 0.01618496917926157,
+          "ci95_low": 0.02926266351120975,
+          "ci95_high": 0.04441208688879025,
+          "minimum": 0.01636263,
+          "maximum": 0.077953928
+        },
+        "standard_shots": {
+          "n": 20,
+          "mean": 284.4,
+          "sd": 169.79566667336547,
+          "ci95_low": 204.934095134103,
+          "ci95_high": 363.86590486589694,
+          "minimum": 75.0,
+          "maximum": 673.0
+        },
+        "standard_hits": {
+          "n": 20,
+          "mean": 111.65,
+          "sd": 94.44813391486356,
+          "ci95_low": 67.44742067930312,
+          "ci95_high": 155.8525793206969,
+          "minimum": 21.0,
+          "maximum": 368.0
+        },
+        "standard_damage": {
+          "n": 20,
+          "mean": 2626.4,
+          "sd": 2637.2147269021293,
+          "ci95_low": 1392.159699850924,
+          "ci95_high": 3860.640300149076,
+          "minimum": 495.0,
+          "maximum": 10179.0
+        },
+        "standard_accuracy": {
+          "n": 20,
+          "mean": 0.355973543165,
+          "sd": 0.07830860174946566,
+          "ci95_low": 0.3193244106004139,
+          "ci95_high": 0.39262267572958615,
+          "minimum": 0.2755905512,
+          "maximum": 0.5590277778
+        },
+        "standard_damage_per_shot": {
+          "n": 20,
+          "mean": 8.05551651145,
+          "sd": 2.6671953721756734,
+          "ci95_low": 6.807244998656913,
+          "ci95_high": 9.303788024243087,
+          "minimum": 6.251968504,
+          "maximum": 15.66319444
+        },
+        "burst_shots": {
+          "n": 20,
+          "mean": 194.25,
+          "sd": 254.42605688304144,
+          "ci95_low": 75.17630849898752,
+          "ci95_high": 313.3236915010125,
+          "minimum": 0.0,
+          "maximum": 705.0
+        },
+        "burst_hits": {
+          "n": 20,
+          "mean": 97.3,
+          "sd": 127.38094544773129,
+          "ci95_low": 37.68456757468442,
+          "ci95_high": 156.91543242531557,
+          "minimum": 0.0,
+          "maximum": 334.0
+        },
+        "burst_damage": {
+          "n": 20,
+          "mean": 2140.85,
+          "sd": 2836.967195977534,
+          "ci95_low": 813.1237410201256,
+          "ci95_high": 3468.576258979874,
+          "minimum": 0.0,
+          "maximum": 8093.0
+        },
+        "burst_accuracy": {
+          "n": 20,
+          "mean": 0.259546220825,
+          "sd": 0.2787493283583518,
+          "ci95_low": 0.12908901869057046,
+          "ci95_high": 0.3900034229594296,
+          "minimum": 0.0,
+          "maximum": 0.8
+        },
+        "burst_damage_per_shot": {
+          "n": 20,
+          "mean": 5.63803629395,
+          "sd": 6.093096576482103,
+          "ci95_low": 2.786412089565042,
+          "ci95_high": 8.489660498334958,
+          "minimum": 0.0,
+          "maximum": 15.8
+        },
+        "heavy_shots": {
+          "n": 20,
+          "mean": 56.25,
+          "sd": 79.39566142196675,
+          "ci95_low": 19.09211369504485,
+          "ci95_high": 93.40788630495516,
+          "minimum": 0.0,
+          "maximum": 307.0
+        },
+        "heavy_hits": {
+          "n": 20,
+          "mean": 30.9,
+          "sd": 43.80086516809553,
+          "ci95_low": 10.400799680667902,
+          "ci95_high": 51.399200319332095,
+          "minimum": 0.0,
+          "maximum": 152.0
+        },
+        "heavy_damage": {
+          "n": 20,
+          "mean": 1560.95,
+          "sd": 2241.686476857617,
+          "ci95_low": 511.82049157846245,
+          "ci95_high": 2610.079508421538,
+          "minimum": 0.0,
+          "maximum": 7890.0
+        },
+        "heavy_accuracy": {
+          "n": 20,
+          "mean": 0.356418392605,
+          "sd": 0.27653335942307083,
+          "ci95_low": 0.22699828393736413,
+          "ci95_high": 0.48583850127263595,
+          "minimum": 0.0,
+          "maximum": 0.6956521739
+        },
+        "heavy_damage_per_shot": {
+          "n": 20,
+          "mean": 18.08752182,
+          "sd": 14.908425113112619,
+          "ci95_low": 11.110244278412459,
+          "ci95_high": 25.06479936158754,
+          "minimum": 0.0,
+          "maximum": 43.39130435
+        },
+        "circle_shots": {
+          "n": 20,
+          "mean": 1181.15,
+          "sd": 902.5265282586026,
+          "ci95_low": 758.759437044623,
+          "ci95_high": 1603.540562955377,
+          "minimum": 0.0,
+          "maximum": 3463.0
+        },
+        "circle_hits": {
+          "n": 20,
+          "mean": 180.5,
+          "sd": 120.61312663134753,
+          "ci95_low": 124.05196787852705,
+          "ci95_high": 236.94803212147295,
+          "minimum": 0.0,
+          "maximum": 469.0
+        },
+        "circle_damage": {
+          "n": 20,
+          "mean": 2376.0,
+          "sd": 1660.011350627015,
+          "ci95_low": 1599.099701837515,
+          "ci95_high": 3152.900298162485,
+          "minimum": 0.0,
+          "maximum": 6632.0
+        },
+        "circle_accuracy": {
+          "n": 20,
+          "mean": 0.152805879285,
+          "sd": 0.06545477826349629,
+          "ci95_low": 0.12217245215219034,
+          "ci95_high": 0.18343930641780964,
+          "minimum": 0.0,
+          "maximum": 0.2729591837
+        },
+        "circle_damage_per_shot": {
+          "n": 20,
+          "mean": 2.0181073268,
+          "sd": 0.9634656260439731,
+          "ci95_low": 1.5671967159417428,
+          "ci95_high": 2.4690179376582573,
+          "minimum": 0.0,
+          "maximum": 3.585365854
+        },
+        "triangle_shots": {
+          "n": 20,
+          "mean": 370.3,
+          "sd": 498.23563438238847,
+          "ci95_low": 137.1212251918363,
+          "ci95_high": 603.4787748081637,
+          "minimum": 0.0,
+          "maximum": 1626.0
+        },
+        "triangle_hits": {
+          "n": 20,
+          "mean": 169.05,
+          "sd": 240.69493139657095,
+          "ci95_low": 56.40259918700967,
+          "ci95_high": 281.69740081299034,
+          "minimum": 0.0,
+          "maximum": 850.0
+        },
+        "triangle_damage": {
+          "n": 20,
+          "mean": 2426.1,
+          "sd": 3594.510857580369,
+          "ci95_low": 743.8364685201259,
+          "ci95_high": 4108.363531479874,
+          "minimum": 0.0,
+          "maximum": 13303.0
+        },
+        "triangle_accuracy": {
+          "n": 20,
+          "mean": 0.256823640415,
+          "sd": 0.24221787506311554,
+          "ci95_low": 0.1434634882174024,
+          "ci95_high": 0.3701837926125976,
+          "minimum": 0.0,
+          "maximum": 0.7313432836
+        },
+        "triangle_damage_per_shot": {
+          "n": 20,
+          "mean": 3.60218888995,
+          "sd": 3.607654417432451,
+          "ci95_low": 1.913774053803358,
+          "ci95_high": 5.290603726096641,
+          "minimum": 0.0,
+          "maximum": 11.70149254
+        },
+        "square_shots": {
+          "n": 20,
+          "mean": 580.15,
+          "sd": 580.4323501993102,
+          "ci95_low": 308.5024201429895,
+          "ci95_high": 851.7975798570105,
+          "minimum": 0.0,
+          "maximum": 1774.0
+        },
+        "square_hits": {
+          "n": 20,
+          "mean": 253.3,
+          "sd": 269.7498061069495,
+          "ci95_low": 127.05465552413011,
+          "ci95_high": 379.5453444758699,
+          "minimum": 0.0,
+          "maximum": 791.0
+        },
+        "square_damage": {
+          "n": 20,
+          "mean": 3001.15,
+          "sd": 3236.3965711558703,
+          "ci95_low": 1486.4871875118065,
+          "ci95_high": 4515.812812488193,
+          "minimum": 0.0,
+          "maximum": 9779.0
+        },
+        "square_accuracy": {
+          "n": 20,
+          "mean": 0.28450708025,
+          "sd": 0.20276546606517584,
+          "ci95_low": 0.1896110116275842,
+          "ci95_high": 0.3794031488724158,
+          "minimum": 0.0,
+          "maximum": 0.4989795918
+        },
+        "square_damage_per_shot": {
+          "n": 20,
+          "mean": 3.3451809833,
+          "sd": 2.4441962592208273,
+          "ci95_low": 2.2012750685368,
+          "ci95_high": 4.4890868980632,
+          "minimum": 0.0,
+          "maximum": 6.329988852
+        },
+        "spread_shots": {
+          "n": 20,
+          "mean": 505.8,
+          "sd": 683.5285078565719,
+          "ci95_low": 185.90248763916674,
+          "ci95_high": 825.6975123608333,
+          "minimum": 0.0,
+          "maximum": 2433.0
+        },
+        "spread_hits": {
+          "n": 20,
+          "mean": 175.65,
+          "sd": 244.0412551404502,
+          "ci95_low": 61.43648946529841,
+          "ci95_high": 289.8635105347016,
+          "minimum": 0.0,
+          "maximum": 755.0
+        },
+        "spread_damage": {
+          "n": 20,
+          "mean": 2354.55,
+          "sd": 3225.6225262077623,
+          "ci95_low": 844.9295378122667,
+          "ci95_high": 3864.1704621877334,
+          "minimum": 0.0,
+          "maximum": 9740.0
+        },
+        "spread_accuracy": {
+          "n": 20,
+          "mean": 0.215080588015,
+          "sd": 0.16587929397178713,
+          "ci95_low": 0.1374475809292431,
+          "ci95_high": 0.2927135951007569,
+          "minimum": 0.0,
+          "maximum": 0.4936386768
+        },
+        "spread_damage_per_shot": {
+          "n": 20,
+          "mean": 2.91348514335,
+          "sd": 2.3597496771119713,
+          "ci95_low": 1.809100991371369,
+          "ci95_high": 4.017869295328631,
+          "minimum": 0.0,
+          "maximum": 8.06870229
+        },
+        "parallel_shots": {
+          "n": 20,
+          "mean": 259.45,
+          "sd": 494.5118246683714,
+          "ci95_low": 28.014001755398624,
+          "ci95_high": 490.88599824460135,
+          "minimum": 0.0,
+          "maximum": 2218.0
+        },
+        "parallel_hits": {
+          "n": 20,
+          "mean": 119.3,
+          "sd": 238.01793386655817,
+          "ci95_low": 7.905458198161369,
+          "ci95_high": 230.69454180183862,
+          "minimum": 0.0,
+          "maximum": 1058.0
+        },
+        "parallel_damage": {
+          "n": 20,
+          "mean": 1730.15,
+          "sd": 3703.2806121201866,
+          "ci95_low": -3.0187585442108684,
+          "ci95_high": 3463.318758544211,
+          "minimum": 0.0,
+          "maximum": 16477.0
+        },
+        "parallel_accuracy": {
+          "n": 20,
+          "mean": 0.24860841969,
+          "sd": 0.22328391041900256,
+          "ci95_low": 0.14410953387582393,
+          "ci95_high": 0.35310730550417607,
+          "minimum": 0.0,
+          "maximum": 0.5555555556
+        },
+        "parallel_damage_per_shot": {
+          "n": 20,
+          "mean": 3.4086609801,
+          "sd": 3.2320451525242464,
+          "ci95_low": 1.896034670814668,
+          "ci95_high": 4.921287289385332,
+          "minimum": 0.0,
+          "maximum": 8.707602339
+        },
+        "pooled_accuracy": 0.3315072484883806,
+        "pooled_repair_fraction": 0.37398373983739835
+      },
+      "outcomes": {
+        "defeat": {
+          "n": 20,
+          "successes": 19,
+          "rate": 0.95,
+          "ci95_low": 0.763868806553258,
+          "ci95_high": 0.9911185511992047
+        },
+        "round2": {
+          "n": 20,
+          "successes": 20,
+          "rate": 1.0,
+          "ci95_low": 0.8388748419471806,
+          "ci95_high": 1.0
+        },
+        "early_defeat60": {
+          "n": 20,
+          "successes": 0,
+          "rate": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.16112515805281938
+        }
+      }
+    }
+  },
+  "ranking": [
+    {
+      "preset": "growth18",
+      "score": 65.50433187259206,
+      "components": {
+        "progress": 0.615,
+        "risk": 0.6833333333333333,
+        "skill": 0.5571428571428569,
+        "recovery": 0.6939758817240382,
+        "diversity": 0.7888888888888889,
+        "tempo": 0.8103749285306541
+      },
+      "integrity_pass": true,
+      "eligible_for_recommendation": false,
+      "skill_ordered": true,
+      "round_means": {
+        "beginner": 3.7,
+        "intermediate": 9.25,
+        "advanced": 13.8
+      },
+      "peak_projectiles": 56.0
+    },
+    {
+      "preset": "baseline",
+      "score": 32.59060427554482,
+      "components": {
+        "progress": 0.19833333333333333,
+        "risk": 0.65,
+        "skill": 0.0,
+        "recovery": 0.20343990714361082,
+        "diversity": 0.5555555555555556,
+        "tempo": 0.8134632630439644
+      },
+      "integrity_pass": true,
+      "eligible_for_recommendation": false,
+      "skill_ordered": true,
+      "round_means": {
+        "beginner": 4.5,
+        "intermediate": 17.1,
+        "advanced": 19.05
+      },
+      "peak_projectiles": 57.0
+    }
+  ],
+  "paired_baseline": [
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "round_reached",
+      "n": 20,
+      "mean": -0.8,
+      "sd": 1.105012502906165,
+      "ci95_low": -1.3171558270711876,
+      "ci95_high": -0.28284417292881237,
+      "minimum": -3.0,
+      "maximum": 1.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "survival_seconds",
+      "n": 20,
+      "mean": -53.577502794000004,
+      "sd": 64.24618313334283,
+      "ci95_low": -83.6452964950748,
+      "ci95_high": -23.5097090929252,
+      "minimum": -188.70000985,
+      "maximum": 108.5166723
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "enemy_kills",
+      "n": 20,
+      "mean": -8.45,
+      "sd": 11.390092647837234,
+      "ci95_low": -13.78066618542136,
+      "ci95_high": -3.1193338145786376,
+      "minimum": -30.0,
+      "maximum": 14.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "accuracy",
+      "n": 20,
+      "mean": 0.028386240355,
+      "sd": 0.02708939068191324,
+      "ci95_low": 0.01570816096122412,
+      "ci95_high": 0.041064319748775883,
+      "minimum": -0.014045243499999999,
+      "maximum": 0.0753163677
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "damage_dealt",
+      "n": 20,
+      "mean": -422.0,
+      "sd": 1062.9029266960117,
+      "ci95_low": -919.448165252606,
+      "ci95_high": 75.44816525260609,
+      "minimum": -2409.0,
+      "maximum": 1938.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "engines_lost",
+      "n": 20,
+      "mean": 0.25,
+      "sd": 0.8506963092234007,
+      "ci95_low": -0.14813355253971583,
+      "ci95_high": 0.6481335525397158,
+      "minimum": -1.0,
+      "maximum": 3.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "engines_recovered",
+      "n": 20,
+      "mean": 0.25,
+      "sd": 0.8506963092234007,
+      "ci95_low": -0.14813355253971583,
+      "ci95_high": 0.6481335525397158,
+      "minimum": -1.0,
+      "maximum": 3.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "upgrades_collected",
+      "n": 20,
+      "mean": 0.05,
+      "sd": 0.5104177855340404,
+      "ci95_low": -0.1888801315238295,
+      "ci95_high": 0.2888801315238295,
+      "minimum": -1.0,
+      "maximum": 1.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "beginner",
+      "metric": "weapon_diversity",
+      "n": 20,
+      "mean": 0.1,
+      "sd": 0.30779350562554625,
+      "ci95_low": -0.044050139297325736,
+      "ci95_high": 0.24405013929732575,
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "round_reached",
+      "n": 20,
+      "mean": -7.85,
+      "sd": 2.680828622881955,
+      "ci95_low": -9.104651997200397,
+      "ci95_high": -6.595348002799602,
+      "minimum": -11.0,
+      "maximum": -3.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "survival_seconds",
+      "n": 20,
+      "mean": -288.18418170000007,
+      "sd": 129.7432287046577,
+      "ci95_low": -348.9051840155198,
+      "ci95_high": -227.46317938448033,
+      "minimum": -443.45002310000007,
+      "maximum": 0.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "enemy_kills",
+      "n": 20,
+      "mean": -191.85,
+      "sd": 59.360872280440226,
+      "ci95_low": -219.631424118841,
+      "ci95_high": -164.06857588115898,
+      "minimum": -267.0,
+      "maximum": -76.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "accuracy",
+      "n": 20,
+      "mean": 0.111179062365,
+      "sd": 0.11737833961972696,
+      "ci95_low": 0.05624493976762211,
+      "ci95_high": 0.16611318496237787,
+      "minimum": -0.051882941099999996,
+      "maximum": 0.3114496844
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "damage_dealt",
+      "n": 20,
+      "mean": -30984.6,
+      "sd": 13163.157905385215,
+      "ci95_low": -37145.07673263856,
+      "ci95_high": -24824.123267361436,
+      "minimum": -45863.0,
+      "maximum": -3468.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "engines_lost",
+      "n": 20,
+      "mean": 4.85,
+      "sd": 1.9808291724745766,
+      "ci95_low": 3.9229540649687875,
+      "ci95_high": 5.777045935031212,
+      "minimum": 2.0,
+      "maximum": 8.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "engines_recovered",
+      "n": 20,
+      "mean": 1.2,
+      "sd": 2.1667341419992585,
+      "ci95_low": 0.18594886093867102,
+      "ci95_high": 2.214051139061329,
+      "minimum": -2.0,
+      "maximum": 6.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "upgrades_collected",
+      "n": 20,
+      "mean": 5.9,
+      "sd": 3.0932864485255127,
+      "ci95_low": 4.452314016856738,
+      "ci95_high": 7.347685983143263,
+      "minimum": 1.0,
+      "maximum": 12.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "intermediate",
+      "metric": "weapon_diversity",
+      "n": 20,
+      "mean": 3.7,
+      "sd": 2.0545200489600846,
+      "ci95_low": 2.7384660695151295,
+      "ci95_high": 4.661533930484871,
+      "minimum": 0.0,
+      "maximum": 6.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "round_reached",
+      "n": 20,
+      "mean": -5.25,
+      "sd": 2.7505980211009042,
+      "ci95_low": -6.537304705423415,
+      "ci95_high": -3.962695294576586,
+      "minimum": -10.0,
+      "maximum": -2.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "survival_seconds",
+      "n": 20,
+      "mean": -98.24417179000001,
+      "sd": 145.65150458432223,
+      "ci95_low": -166.41039083219704,
+      "ci95_high": -30.077952747802968,
+      "minimum": -348.88335150000006,
+      "maximum": 0.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "enemy_kills",
+      "n": 20,
+      "mean": -132.95,
+      "sd": 73.14691417026134,
+      "ci95_low": -167.18341617939953,
+      "ci95_high": -98.71658382060045,
+      "minimum": -263.0,
+      "maximum": -58.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "accuracy",
+      "n": 20,
+      "mean": 0.231286273855,
+      "sd": 0.12027476923226181,
+      "ci95_low": 0.17499659605088513,
+      "ci95_high": 0.28757595165911487,
+      "minimum": -0.014665272900000026,
+      "maximum": 0.3969604605
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "damage_dealt",
+      "n": 20,
+      "mean": -14120.25,
+      "sd": 20893.033038929258,
+      "ci95_low": -23898.378078059075,
+      "ci95_high": -4342.121921940923,
+      "minimum": -50728.0,
+      "maximum": 8962.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "engines_lost",
+      "n": 20,
+      "mean": 3.55,
+      "sd": 2.163695668842645,
+      "ci95_low": 2.537370893806362,
+      "ci95_high": 4.562629106193638,
+      "minimum": 0.0,
+      "maximum": 7.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "engines_recovered",
+      "n": 20,
+      "mean": 2.05,
+      "sd": 1.9594574974238472,
+      "ci95_low": 1.1329562018294013,
+      "ci95_high": 2.9670437981705984,
+      "minimum": -1.0,
+      "maximum": 5.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "upgrades_collected",
+      "n": 20,
+      "mean": 11.5,
+      "sd": 3.0864730339780526,
+      "ci95_low": 10.055502756374349,
+      "ci95_high": 12.944497243625651,
+      "minimum": 5.0,
+      "maximum": 14.0
+    },
+    {
+      "preset": "growth18",
+      "baseline": "baseline",
+      "profile": "advanced",
+      "metric": "weapon_diversity",
+      "n": 20,
+      "mean": 5.55,
+      "sd": 0.8870412083230169,
+      "ci95_low": 5.1348567065711554,
+      "ci95_high": 5.965143293428844,
+      "minimum": 3.0,
+      "maximum": 6.0
+    }
+  ],
+  "selection_allowed": false,
+  "stage": "heldout_evaluation_only",
+  "inputs": [
+    "experiments/balancing/heldout_baseline.csv",
+    "experiments/balancing/heldout_selected.csv"
+  ],
+  "run_count": 120,
+  "seed_range": [
+    9001,
+    9020
+  ],
+  "interpretation": "Offline engineering proxies only; no psychological Flow proof. Survival is right-censored at the horizon."
+}

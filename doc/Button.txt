@@ -1,0 +1,26 @@
+Button.cpp — Apresentação dos botões
+==================================
+Implementação: source/Button.cpp
+Interface: source/Button.hpp
+
+Responsabilidade
+----------------
+Desenha um botão dos menus usando um retângulo de referência, um rótulo e a
+indicação de habilitado. É um componente de apresentação baseado em SFML.
+
+Funcionamento
+-------------
+Button::draw(target, font, selected) constrói uma forma convexa com cantos
+arredondados. As cores de preenchimento, contorno e texto distinguem os estados
+normal, selecionado e desabilitado.
+
+O rótulo é convertido de UTF-8 para sf::String, desenhado em negrito e centralizado
+pela caixa real do texto. Quando não cabe na largura disponível, o tamanho da
+fonte diminui proporcionalmente.
+
+Integração e limites
+-------------------
+DungeonVisualizer calcula as posições, identifica cliques e chama draw(). Menu
+decide quais opções estão habilitadas e executa a ação selecionada. Button não
+recebe eventos, não armazena callbacks e não altera a partida. A fonte e o alvo
+de desenho são fornecidos pelo chamador.

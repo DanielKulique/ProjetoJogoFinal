@@ -1,0 +1,35 @@
+TileMap.cpp — Matriz, CSV e consultas do cenário
+==============================================
+Implementação: source/TileMap.cpp
+Interface: source/TileMap.hpp
+
+Responsabilidade
+----------------
+Mantém uma matriz retangular com '.' para piso e '#' para parede, dimensões,
+conversões entre células e mundo e consultas de ocupação. O construtor com
+matriz rejeita dados vazios, caracteres desconhecidos e linhas irregulares.
+
+Carregamento
+------------
+loadCSV(path, error) lê 0 como piso e 1 como parede, separados por vírgulas.
+Aceita espaços, tabulações e retorno de carro ao redor dos valores; rejeita
+células ausentes, outros tokens e largura inconsistente. Monta uma candidata
+e só substitui o mapa após validação completa, preservando o anterior em erro.
+Retorna bool e pode informar mensagem com arquivo e linha problemática.
+
+loadFromDungeon() recebe a matriz produzida por Dungeon2D e passa pela mesma
+validação estrutural. Não executa generate() por conta própria.
+
+Consultas
+---------
+width()/height() informam dimensões; contains() verifica índices; at() consulta
+uma célula ou lança exceção fora do mapa. isFree() retorna false fora da matriz,
+portanto isWall() trata o exterior como bloqueado. rows() expõe acesso constante.
+
+cellCenter(col, row) retorna ((col + 0,5)*64, (row + 0,5)*64) em pixels.
+isFreeAtWorld() valida posição e converte por floor. isAreaFree() testa toda
+uma AABB contra pisos e limites; pode tocar a borda de parede sem penetrar.
+
+Game usa essas consultas para movimento, spawns, portal e tiros; Enemy usa
+a matriz no A*. A classe não controla entidades, rounds ou conectividade:
+Game calcula a região alcançável a partir da posição inicial.

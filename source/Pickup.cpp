@@ -4,8 +4,8 @@
 #include <cmath>
 #include <stdexcept>
 
-Pickup::Pickup(Vector2D position, PickupKind kind, PickupConfig config)
-    : m_kind(kind), m_config(config), m_remainingLife(config.lifetime) {
+Pickup::Pickup(Vector2D position, PickupKind kind, PickupConfig config, std::optional<WeaponUpgrade> upgrade)
+    : m_kind(kind), m_upgrade(upgrade), m_config(config), m_remainingLife(config.lifetime) {
     if (!std::isfinite(config.lifetime) || config.lifetime <= 0 ||
         !std::isfinite(config.halfExtent) || config.halfExtent <= 0 || config.maxActive == 0 ||
         !std::isfinite(position.x) || !std::isfinite(position.y) ||

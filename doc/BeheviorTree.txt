@@ -1,0 +1,31 @@
+BeheviorTree.cpp — Árvore de comportamento
+=========================================
+Implementação: source/BeheviorTree.cpp
+Interface: source/BehaviorTree.hpp
+
+Responsabilidade
+----------------
+Implementa os nós de uma árvore de comportamento acadêmica. O nome histórico
+do arquivo de implementação é BeheviorTree.cpp, enquanto o cabeçalho usa
+BehaviorTree.hpp.
+
+Nós disponíveis
+---------------
+ActionNode retorna sucesso e o comando textual recebido no construtor.
+ConditionNode procura uma condição pelo nome no BTContext e retorna sucesso
+quando encontra um valor diferente de zero.
+
+SequenceNode executa filhos em ordem. Para imediatamente se algum falhar;
+se todos tiverem sucesso, devolve o último comando não vazio encontrado.
+SelectorNode devolve o resultado do primeiro filho bem-sucedido; se nenhum
+funcionar, devolve falha.
+
+BehaviorTree::tick(context) avalia a raiz e retorna o comando quando o resultado
+é bem-sucedido. Raiz ausente ou falha produz uma string vazia.
+
+Integração
+----------
+Os nós recebem contexto e produzem decisões; não movimentam corpos nem executam
+comandos sobre Game. O comportamento atual de Enemy utiliza uma máquina de
+estados própria, e não esta árvore. O componente permanece disponível para
+extensões sem duplicar o loop do jogo.

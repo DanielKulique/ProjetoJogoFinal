@@ -1,0 +1,30 @@
+ProjectilePattern.cpp — Geometria dos padrões de tiro
+===================================================
+Implementação: source/ProjectilePattern.cpp
+Interface: source/ProjectilePattern.hpp
+
+Responsabilidade
+----------------
+Calcula posições e direções dos raios de uma emissão, sem criar entidades ou
+controlar dano e tempo. patternName() fornece nomes para os oito padrões.
+
+Padrões
+-------
+projectilePatternRays() recebe padrão, boca da arma, direção, quantidade,
+abertura e raio de formação. Normaliza a direção e cria um referencial com
+Transform2D para posicionar as formações em relação à mira.
+
+Circular distribui origens e direções radialmente em 360°. Triangular e quadrado
+distribuem origens em vértices, mas mantêm a direção frontal. Espalhado varia
+a direção dentro de um cone. Paralelo desloca lateralmente as origens sem
+alterar a direção. Padrão, pesado e rajada usam origem e direção recebidas;
+suas diferenças de potência e tempo são tratadas por Weapon.
+
+Contratos e integração
+----------------------
+Rejeita padrão desconhecido, quantidade fora de 1 a 64, direção nula, abertura
+não finita e raio negativo ou não finito. Retorna um vetor de ProjectileRay.
+Weapon usa esses raios para construir projéteis com atributos calculados.
+
+A função é geometria pura: não usa RNG, não aplica melhorias, não verifica
+paredes e não produz uma rajada temporal por conta própria.

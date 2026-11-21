@@ -7,11 +7,16 @@ A organização do professor André Koscianski permanece: `Dungeon2D`, `TileMap`
 | Componente | Responsabilidade |
 | --- | --- |
 | `Main` | Selecionar mapa e sementes e compor jogo/visualizador. |
+| `Scenario` / `ScenarioInfo` | Criar os três cenários reutilizando os carregadores existentes; identificar tipo, semente de geração e origem CSV. |
 | `DungeonVisualizer` | Possuir janela, câmera e fonte; eventos, input, único Game Loop e apresentação. |
 | `Game` | Regras, relógio, spawns, danos, atribuição de mortes, remoções, estados e portal. |
 | `GameConfig` | Agregar os parâmetros de balanceamento e validar configurações. |
 | `Player : Entity` | Motores, direção, mira, invulnerabilidade, deriva e arma por composição. |
-| `Weapon` / `Projectile : Entity` | Nível, cadência, espalhamento; movimento, dano, vida e posição anterior. |
+| `Weapon` / `Projectile : Entity` | Configuração adquirida, modificadores, cadência e fila de rajada; corpo, dano, vida e origem do padrão. |
+| `WeaponUpgrade` / `UpgradeManager` | Definições parametrizadas e catálogo desbloqueado por sorteio, sem aquisição automática. |
+| `ProjectilePattern` | Geometria pura de posições/direções por vetores e `Transform2D`. |
+| `GameStats` | Contadores de eventos reais, somente observação, sem alterar regras. |
+| `Simulation` / `SimulatedAgent` | Execução sem janela do `Game` e controle por `GameInput`, com perfis parametrizados. |
 | `Enemy : NPC` | Tipo normal/avançado, FSM, vida, perseguição, deriva e cooldown de contato. |
 | `Asteroid : Entity` | Movimento, resistência, expiração e fragmentação com profundidade limitada. |
 | `GravityField : Entity` | Região e fórmula de aceleração, sem integrar ou teleportar objetos. |
@@ -28,7 +33,7 @@ A organização do professor André Koscianski permanece: `Dungeon2D`, `TileMap`
 
 `DungeonVisualizer::run()` é o único loop. Eventos são processados por quadro e `Game::update(1/60, GameInput)` avança a simulação por acumulador. O tempo acumulado por quadro é limitado a 0,25 s; sem foco, o acumulador é descartado e o tempo do jogo pausa. Em `GameOver` regras e temporizadores ficam congelados. O callback de extensão permanece posterior à atualização normal, sem integrar novamente a partida.
 
-`GameInput` contém direção WASD, alvo em pixels de mundo e gatilho contínuo. Mouse usa `mapPixelToCoords(pixel, view)`, incluindo câmera, viewport, deslocamento e redimensionamento. O HUD é desenhado em coordenadas da janela, fora da viewport reservada ao mundo. R após derrota chama `restart()` sem repetição automática.
+`GameInput` contém direção WASD, alvo em pixels de mundo e gatilho contínuo. Mouse usa `mapPixelToCoords(pixel, view)`, incluindo câmera, viewport, deslocamento e redimensionamento. O HUD é desenhado em coordenadas da janela, fora da viewport reservada ao mundo. R após derrota passa por `Menu::restartAfterDefeat()` e abre a escolha de cenário, sem repetição automática.
 
 Todas as posições físicas são centros em **pixels**, x à direita e y para baixo. Velocidade usa pixels/s e aceleração pixels/s². Células usam `(coluna, linha)`, com `TILE_SIZE=64`. `cellCenter()` converte para `((col+0.5)*64,(row+0.5)*64)`; a conversão inversa usa `floor` após validar o ponto.
 
@@ -38,7 +43,51 @@ Mira usa `atan2(dy,dx)` em graus, com direita 0°, baixo 90°, cima −90°. Cur
 
 `PlayerConfig::engineSpeeds[0..4] = {0,130,170,210,250}` define velocidades por motores. Direção não nula é normalizada. Dano positivo remove motores sem passar de zero e inicia invulnerabilidade de 1,25 s. `restoreEngine()` recupera um até quatro; não ressuscita nave inativa. `health()`/`maxHealth()` são aliases de compatibilidade para motores/4, sem segunda barra de vida independente.
 
-`WeaponConfig` mantém dano 25, velocidade 700 pixels/s e vida 2,5 s dos tiros. Nível 1 usa intervalo 0,18 s; nível 2 usa 0,12 s; nível 3 usa a cadência melhorada e direções central/±12°. Nível máximo padrão 3 impede crescimento ilimitado. `fireVolley()` compartilha um cooldown entre todos os tiros da rajada; `tryFire()` continua disponível para consumidores do tiro simples. Intervalos são quantizados pelo passo fixo.
+### Definição, desbloqueio e aquisição
+
+`WeaponUpgrade` contém `UpgradeKind`, nível da variante e intensidade. Os doze tipos são padrão, rajada, pesado, circular, triangular, quadrado, espalhado, paralelo, cadência, velocidade, dano e duração. O padrão inicial é simples, mas sua melhoria de precisão também possui variantes relevantes.
+
+`UpgradeManager` recebe explicitamente o `mt19937` da partida. Em cada round, incluindo o primeiro, uma definição nova entra no catálogo. Uma sacola evita repetir tipos antes de percorrer os básicos; sacolas seguintes geram níveis maiores, com escolha aleatória e sem repetir imediatamente um tipo quando há alternativa. Chamar o desbloqueio duas vezes no mesmo round não acrescenta outro item. Se os únicos tipos restantes já estiverem saturados, uma variante útil de outro tipo é escolhida. Não existe teto global de três aquisições.
+
+Desbloqueio não altera `Weapon`. O drop carrega uma definição elegível do catálogo; a coleta chama `applyUpgrade()`. Uma definição cujo nível já foi adquirido não volta a aplicar o mesmo efeito. Se um item ficar obsoleto antes de ser coletado, a regra de coleta procura uma alternativa relevante. O portal preserva arma, níveis por tipo e catálogo. Reinício restaura a arma inicial e libera o catálogo do round 1 usando a semente escolhida.
+
+A arma mantém um padrão ativo e modificadores passivos independentes. Adquirir outro padrão substitui a geometria ativa, sem apagar passivos. Isso permite combinações sem produto cartesiano de padrões, que multiplicaria a quantidade de tiros. `WeaponConfig::legacyProgression` existe somente para reproduzir o baseline histórico: nível 1 simples, nível 2 com maior cadência e nível 3 espalhado. Esse teto não se aplica à progressão procedural.
+
+### Modificadores e compensações
+
+Para cada tipo `k`, defina `p(k) = sqrt(nivelAdquirido(k)) * intensidadeDaVariante(k) * progressionStrength`. O cálculo reavalia a configuração a partir dos maiores níveis adquiridos; não multiplica um fator exponencial a cada coleta.
+
+```text
+dano = danoBase * (1 + 0.18*p(Dano)) / (1 + 0.025*p(Cadencia)) / (1 + 0.015*p(Velocidade))
+intervalo = intervaloBase * (1 + 0.035*p(Dano)) / (1 + 0.18*p(Cadencia))
+velocidade = velocidadeBase * (1 + 0.16*p(Velocidade)) / (1 + 0.01*p(Duracao))
+duracao = duracaoBase * (1 + 0.12*p(Duracao))
+dano *= 1 + 0.045*p(PadraoAtivo)
+intervalo *= 1 + 0.015*p(PadraoAtivo)
+```
+
+Dano maior custa frequência; cadência e velocidade custam potência individual; duração custa velocidade. A intensidade permanece ajustável em `GameConfig::weapon`. O dano nominal é fracionário e `Projectile::damage()` continua inteiro: uma sobra determinística é acumulada entre emissões para realizar o dano médio sem sortear nem tornar níveis pequenos ineficazes por arredondamento.
+
+| Padrão | Geometria e compensação inicial |
+| --- | --- |
+| Padrão | Um projétil alinhado à mira. |
+| Pesado | Dano ×2,4; intervalo ×2,8; velocidade ×0,8. |
+| Rajada | Primeiro tiro imediato e outros separados por temporizador; 3 a 5 tiros, dano individual ×0,85 e intervalo proporcional ao tamanho. |
+| Circular | 8 a 16 direções radiais em 360°; dano ×0,55 e intervalo ×2,4. |
+| Triangular | Três vértices equidistantes, direções paralelas à mira; dano ×0,55 e intervalo ×1,3. |
+| Quadrado | Quatro vértices equidistantes, direções paralelas à mira; dano ×0,45 e intervalo ×1,4. |
+| Espalhado | Cone de direções; dano individual ×(1,6/quantidade), intervalo ×1,2. |
+| Paralelo | Deslocamentos laterais com a mesma direção; dano individual ×(1,6/quantidade), intervalo ×1,2. |
+
+As receitas variam quantidade, abertura, raio da formação e atributos pelos níveis. Os limites iniciais são 16 projéteis por emissão, 5 tiros por rajada, intervalo mínimo 0,06 s, velocidade máxima 1600 pixels/s e duração máxima 8 s. O número global de projéteis ainda é limitado por `GameConfig::maxProjectiles`. Esses valores são configuráveis. Não há teto prático de três níveis nem crescimento exponencial por empilhamento; modificadores saturados que só acrescentariam custo não são escolhidos como ofertas úteis.
+
+### Geometria e rajadas no tempo discreto
+
+`projectilePatternRays()` recebe centro, direção e parâmetros, retornando posições/direções sem criar entidades. `Transform2D::rotation(angulo) * Transform2D::translation(x,y)` respeita o contrato de vetores-linha existente: aplica rotação e depois translação. Vértices usam `cos(2*pi*i/n)`/`sin(2*pi*i/n)`; o paralelo usa o vetor lateral `(-dy,dx)` e o espalhado gira a direção por ângulos em torno da mira. As direções são normalizadas.
+
+`Weapon::update(dt)` é chamado uma vez por `Player::update()`. `fireVolley()` inicia a emissão quando há gatilho e cooldown disponível. `pollProjectiles()` é chamado em todo passo para drenar projéteis consecutivos já programados, inclusive após soltar o botão. Rajadas não são uma única emissão de vários tiros simultâneos. O estado programado conserva seus atributos e usa a posição/direção atual da nave em cada emissão. A próxima rajada aguarda o cooldown compartilhado e o término da anterior.
+
+`Game` valida as posições geométricas contra o mapa e aplica o limite global antes de inserir os projéteis. Cada tiro recebe o identificador do padrão que o originou, inclusive os tiros atrasados de rajada. Durante `RoundCompleted`, gatilho e fila de rajada continuam funcionando para enfrentar os asteroides sobreviventes; a limpeza dos tiros do combate na conclusão não impede novas emissões nesse estado.
 
 O comando de movimento e a deriva gravitacional são separados. Para jogador e aliens:
 
@@ -81,15 +130,13 @@ Remoções ocorrem após os percursos que usam referências; fragmentos são acu
 
 ## Drops e itens
 
-A sequência é:
+Somente a morte de um avançado por tiro abre a decisão de drop. O baseline nominal utiliza sorteio com probabilidade 0,75 de item e, se positivo, um segundo sorteio independente com 0,80 de upgrade/0,20 de motor. Isso corresponde a 60% upgrade, 15% motor e 25% nada antes das regras de utilidade e posicionamento. Os experimentos variam essas probabilidades explicitamente, sem alterar a elegibilidade dos tipos de alien.
 
-1. Sorteio independente com chance 0,75 de haver item.
-2. Somente em caso positivo, novo sorteio com chance 0,80 de upgrade; caso contrário, motor.
-3. Escolha de posição válida aleatória entre pisos alcançáveis, com caixa inteira livre e sem sobrepor jogador, portal ativo, aliens, rochas ou outros itens.
+Uma posição aleatória é escolhida entre pisos alcançáveis, com a caixa inteira livre e sem sobrepor jogador, portal ativo, aliens, rochas ou outros itens. A falta de capacidade/espaço não repete a morte ou o sorteio em passos futuros. Itens têm meia extensão 12 pixels, duração 20 s e limite inicial 12 simultâneos.
 
-As probabilidades incondicionais são **60% upgrade, 15% motor e 25% nenhum item**. Não se reutiliza o primeiro valor aleatório para escolher o tipo. Mesmo sem espaço/capacidade, a morte é processada uma única vez; não há repetição do sorteio em passos posteriores.
+O upgrade guarda a `WeaponUpgrade` escolhida entre definições desbloqueadas e ainda aplicáveis. A aquisição só ocorre na coleta. `avoidFullEngineDrops` evita produzir reparações inúteis com quatro motores, redirecionando para uma oferta útil quando possível. Sem oferta útil e sem motor perdido, o jogo não concede uma melhoria fictícia. No baseline histórico essa política pode ser desligada para conservar suas probabilidades efetivas. O sorteio nominal e o item efetivamente criado são conceitos distintos na leitura dos experimentos.
 
-Itens têm meia extensão 12 pixels, duração 20 s e limite de 12 simultâneos. Coleta aplica restauração/upgrade uma vez e marca o item como inativo. Um item motor no limite não ultrapassa quatro; upgrades não ultrapassam o nível máximo. Itens sobreviventes continuam entre rounds até coleta ou expiração.
+Coleta aplica restauração ou melhoria uma vez e marca o item como inativo. Motor recupera uma vida sem ultrapassar quatro e não ressuscita a nave. Itens sobreviventes persistem entre rounds até coleta ou expiração; melhorias já adquiridas persistem indefinidamente na partida.
 
 ## Asteroides e fragmentação
 
@@ -134,7 +181,7 @@ O passo fixo de 1/60 s mantém temporizadores e controles discretos reproduzíve
 
 ## Rounds, portal e configuração
 
-Para round `r`, com os padrões:
+Para round `r`, os parâmetros-base históricos de `GameConfig{}` produzem:
 
 ```text
 quantidade = min(25, 5 + 2*(r-1))
@@ -146,9 +193,23 @@ velocidade = min(220, (90 + 5*(r-1)) * multiplicadorDoTipo)
 
 Há no máximo oito aliens ativos simultaneamente; o restante fica pendente. No round 1 todos são normais; a partir do 2 cada surgimento escolhe 75/25 por sorteio. A onda só completa com vivos e pendentes zerados. Mortes ambientais também removem aliens dessa contagem; asteroides e campos não participam.
 
-O portal preserva o comportamento existente: centro geométrico quando livre/conectado; senão, piso alcançável mais próximo. Ativação sob a nave exige sair e voltar. Entrar avança a onda sem regenerar mapa, reparar motores ou zerar upgrades. `restart()` é diferente: repõe motores/arma iniciais, limpa entidades/efeitos, volta ao round 1 e reinicia relógios e RNG.
+O portal preserva o comportamento existente: centro geométrico quando livre/conectado; senão, piso alcançável mais próximo. Ativação sob a nave exige sair e voltar. Entrar avança a onda sem regenerar mapa, reparar motores ou zerar upgrades. `restart()` é diferente: repõe motores/arma iniciais, limpa entidades/efeitos, volta ao round 1 e reinicia relógios e catálogo. O reinício de baixo nível pode preservar uma semente fixa; o comando de interface Novo jogo chama `newGame()` e sorteia outra semente.
 
-`GameConfig` agrega `PlayerConfig`, `WeaponConfig`, `WaveConfig`/`EnemyConfig`, `AsteroidConfig`, `GravityFieldConfig`, `PickupConfig` e `DropConfig`. Probabilidades, intervalos, atributos, raios e limites ficam nessas estruturas. `--game-seed` fornece a semente de 32 bits; `--seed` continua exclusivo do mapa procedural. O RNG da partida é `mt19937`, com decisões em helpers locais, sem aleatoriedade global.
+`GameConfig` agrega `PlayerConfig`, `WeaponConfig`, `WaveConfig`/`EnemyConfig`, `AsteroidConfig`, `GravityFieldConfig`, `PickupConfig` e `DropConfig`. Probabilidades, intervalos, atributos, raios e limites ficam nessas estruturas. Sem `--game-seed`, `Main` escolhe uma semente variável, mostra-a no terminal/HUD e configura reinício com nova semente. Com `--game-seed`, define-se a semente inicial do núcleo e dos testes; a interface Novo jogo inicia outra jornada, enquanto Continuar restaura o RNG salvo; `--seed` continua exclusivo do mapa procedural. O RNG da partida é `mt19937`, com decisões em helpers locais, sem aleatoriedade global.
+
+## Telemetria, agentes e balanceamento offline
+
+`GameStats` conta os eventos reais de emissão, impacto, morte, dano, restauração e coleta. Não existe cálculo alternativo de combate para produzir os dados. A origem de cada projétil permite agregar disparos/acertos e dano a aliens por padrão. Dano a asteroides possui contador separado. Eliminações por ambiente contam no progresso da onda, mas somente eliminações por tiro pertencem ao contador do jogador. Precisão é a razão de impactos em alien/asteroide por projéteis emitidos; uma formação circular pode legitimamente trocar precisão por cobertura.
+
+`Simulation::runSimulation()` instancia a arena padrão e o `Game` real, cria um `SimulatedAgent` e chama `game.update(1/60, agent.input(...))`. O loop é um executor de experimentos, sem outra implementação de regras e sem janela; o único loop interativo permanece no visualizador. Não concede itens, cura, elimina adversários ou acelera cooldowns. Resultados no limite de tempo/rounds são marcados como censurados, em vez de tratados como derrota ou sobrevivência ilimitada.
+
+`AgentConfig` parametriza reação, erro de mira/movimento, eficiência, evasão, coleta, distância preferida, antecipação estimada e gatilho. Os perfis iniciante/intermediário/avançado diferem nesses valores, não nas regras do jogo. O agente observa posições/tipos visíveis, HUD e geometria; retém decisões entre observações e estima velocidade por observações anteriores. Não consulta vida privada dos aliens, seu estado de decisão, RNG, futuros spawns ou telemetria para ganhar vantagem.
+
+O CSV de configuração registra tanto parâmetros do jogo quanto do controlador. Cada partida registra semente, perfil, horizonte, rounds/tempos, precisão, mortes/dano, motores, melhorias, padrões efetivamente disparados, métricas por padrão, média/pico de projéteis e tempo computacional. O custo de CPU depende do ambiente e não participa da reprodução determinística dos eventos. Dados brutos e sínteses devem distinguir duração observada limitada pelo horizonte de expectativa completa de vida.
+
+As configurações experimentais incluem o modo histórico de três níveis e combinações procedurais com alterações de drops, mistura de aliens, vida, spawn, intensidade da arma e ambiente. `procedural_baseline` conserva as probabilidades nominais do baseline, mas muda a progressão e ativa a prevenção de reparos inúteis; portanto a comparação é do pacote, sem atribuir todo efeito somente à arma. As comparações usam múltiplas sementes e os três perfis; calibração e avaliação reservada são separadas. O [protocolo](EXPERIMENT_PROTOCOL.md) define critérios antes da seleção e o [relatório](BALANCING_REPORT.md) documenta resultados, parâmetros recomendados e limitações. A recomendação permanece em configuração, sem atalhos nos controles de simulação.
+
+Este trabalho implementa **balanceamento offline**, não DDA em tempo real. A teoria do fluxo motiva estudar equilíbrio entre capacidade e desafio, mas os proxies de agentes não comprovam concentração, prazer ou Flow psicológico. Validar esses aspectos exige jogadores humanos. Adaptação dinâmica só deve ser considerada após avaliar os parâmetros fixos; nenhum ajuste oculto de dificuldade muda durante uma partida nesta versão.
 
 ## Conceitos da disciplina
 
@@ -156,11 +217,26 @@ O portal preserva o comportamento existente: centro geométrico quando livre/con
 | --- | --- |
 | Matemática | Vetores, normalização, `atan2`, conversões entre células/pixels, teste círculo/caixa e varredura de segmento. |
 | Física | Corpo rígido 2D, integração semi-implícita, aceleração radial, amortecimento, colisão e dispersão simplificada. |
-| Controle discreto | Passo de 1/60 s, acumuladores, cooldowns, histerese perceptiva e limites de atuação. |
+| Controle discreto | Passo de 1/60 s, acumuladores, cooldowns, rajadas temporizadas, histerese perceptiva e limites de atuação. |
 | Inteligência artificial | FSM `Wandering`/`Chasing`, percepção local, aleatoriedade controlada e A* somente com paredes. |
-| Engenharia de Software | Separação de responsabilidades, configuração central, testes unitários/integrados, RNG reproduzível e documentação. |
+| Engenharia de Software | Definições separadas de aquisição e geometria, configuração central, testes unitários/integrados, experimentos reproduzíveis e documentação. |
 | Orientação a objetos em C++ | `Entity`/`NPC` como bases, composição de arma, RAII, `unique_ptr`, valores e referências observadoras. |
 
 ## Limites
 
-AABBs não giram com a nave; aliens podem se sobrepor durante perseguição. A física de fragmentos é aproximada e pode descartar filhos sem espaço. Mapas mínimos podem ser válidos para visualização e insuficientes para combate. O núcleo mantém dependência de SFML por NPC, embora funcione sem display. A fonte é localizada por caminho definido pelo CMake e exige reconfiguração ao mover o build. Áudio, sprites finais, instalação relocável, rede e salvamento ficam fora desta etapa.
+AABBs não giram com a nave; aliens podem se sobrepor durante perseguição. A física de fragmentos é aproximada e pode descartar filhos sem espaço. Mapas mínimos podem ser válidos para visualização e insuficientes para combate. O núcleo mantém dependência de SFML por NPC, embora funcione sem display. A fonte e o CSV do professor são localizados por caminhos definidos pelo CMake e exigem reconfiguração ao mover o build. Áudio, sprites finais, instalação relocável e rede ficam fora desta etapa.
+
+
+## Interface e persistência local
+
+`Menu` controla os estados de aplicação e chama regras somente em `Screen::Playing`. `Button` é reutilizado na apresentação. `DungeonVisualizer` mantém a única janela e loop, com viewport própria para menus, mouse convertido pelas coordenadas dessa viewport e descarte do acumulador ao trocar de tela. `SaveManager`/`StateCodec` gravam o estado privado explicitamente por uma amizade restrita ao codec; texturas e recursos gráficos não entram no arquivo. `ScoreManager` mantém o top 10. `LocalStorage` fornece envelope versionado, checksum e promoção atômica de arquivos. `Game` calcula pontos apenas nos eventos reais de eliminação por tiro e na conclusão de round.
+
+O esquema completo, invariantes, autoria de pontos e limites de plataforma estão em [PERSISTENCE.md](PERSISTENCE.md). Nenhum atributo de dano, probabilidade, progressão ou física foi ajustado nesta etapa. Saves guardam a configuração da própria partida, e a enciclopédia lê seus parâmetros em tempo de apresentação.
+
+## Seleção integrada de cenário
+
+`Scenario::create()` produz a arena livre 31 × 23, chama o gerador `Dungeon2D::generate(seed)` com as mesmas dimensões ou delega o CSV a `TileMap::loadCSV()`. Não existe outro gerador nem outra interpretação do CSV. CMake copia o `maze.csv` original para o build e fornece seu caminho ao núcleo. O menu permite usá-lo diretamente ou editar um caminho UTF-8. São rejeitados mapas maiores que o limite do save, sem piso ou com piso inicial isolado.
+
+`Menu` mantém uma candidata por `unique_ptr<Game>` enquanto aguarda confirmação. Apenas após validar o mapa e invalidar o save antigo move a candidata para o `Game` já observado pelo visualizador. Isso preserva a referência existente e evita descartar progresso por erro de CSV. Ao entrar na partida, a câmera é reenquadrada nas dimensões do mapa; retomar uma pausa conserva a câmera.
+
+Todos os modos usam as mesmas regras de `Game`, incluindo busca de pisos alcançáveis, seleção de spawns, colisões, navegação A* em mapas com paredes e eventos ambientais. O `DungeonVisualizer` continua responsável pela apresentação e único loop. `ScenarioInfo` e a matriz entram no save v2; a restauração usa a matriz armazenada sem depender do gerador ou do arquivo CSV externo.

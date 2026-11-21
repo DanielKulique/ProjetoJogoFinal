@@ -36,13 +36,6 @@ void Game::update(float dt, const GameInput& input) {
     if (m_state == GameState::Playing) {
         m_waves.update(dt);
         spawnEnemy();
-        if (input.fire) {
-            auto volley = m_player.weapon().fireVolley(m_player.body.position, m_player.aimDirection());
-            for (auto& shot : volley) {
-                if (m_projectiles.size() >= m_config.maxProjectiles) break;
-                if (m_map.isAreaFree(shot.bounds())) m_projectiles.push_back(std::move(shot));
-            }
-        }
         for (auto& enemy : m_enemies) {
             if (!enemy->active) continue;
             enemy->body.acceleration = m_gravityField
@@ -52,6 +45,9 @@ void Game::update(float dt, const GameInput& input) {
             constrainMovement(*enemy, oldPosition);
         }
     }
+    // Asteroides continuam ativos no portal; tiro e rajadas tambem permanecem disponiveis.
+    if (input.fire) emitProjectiles(m_player.weapon().fireVolley(m_player.body.position, m_player.aimDirection()));
+    emitProjectiles(m_player.weapon().pollProjectiles(m_player.body.position, m_player.aimDirection()));
     updateEnvironment(dt);
     resolveProjectiles(dt);
     resolveContacts();
@@ -59,6 +55,8 @@ void Game::update(float dt, const GameInput& input) {
         m_gravityField->update(dt);
         if (!m_gravityField->active) m_gravityField.reset();
     }
+    m_stats.enemyKills += static_cast<std::uint64_t>(std::count_if(m_enemies.begin(), m_enemies.end(),
+        [](const auto& enemy) { return !enemy->active; }));
     m_enemies.erase(std::remove_if(m_enemies.begin(), m_enemies.end(),
         [](const auto& enemy) { return !enemy->active; }), m_enemies.end());
     fragmentAsteroids();
@@ -71,16 +69,27 @@ void Game::update(float dt, const GameInput& input) {
         m_portal.deactivate();
     } else if (m_state == GameState::Playing && m_waves.completed(m_enemies.size())) {
         m_state = GameState::RoundCompleted;
+        m_score += m_config.scoring.round;
+        ++m_stats.roundsCompleted;
+        m_stats.roundDurations.push_back(m_gameplayTime - m_roundStartTime);
         m_projectiles.clear();
         m_portal.activate(m_player);
     } else if (m_state == GameState::RoundCompleted && m_portal.tryEnter(m_player)) {
         m_waves.startNextRound();
+        if (!m_config.weapon.legacyProgression) (void)m_upgrades.unlockForRound(m_waves.round(), m_random, &m_player.weapon());
+        m_roundStartTime = m_gameplayTime;
         m_portal.deactivate();
         m_state = GameState::Playing;
     }
 }
 
+void Game::newGame() {
+    m_config.seed = std::random_device{}();
+    restart();
+}
+
 void Game::restart() {
+    m_score = 0;
     m_enemies.clear();
     m_projectiles.clear();
     m_asteroids.clear();
@@ -94,16 +103,26 @@ void Game::restart() {
     m_spawnCursor = 0;
     m_pendingEnemyKind.reset();
     m_gameplayTime = m_asteroidTimer = m_gravityTimer = 0;
+    if (m_config.reseedOnRestart) m_config.seed = std::random_device{}();
     m_random.seed(m_config.seed);
+    m_stats = {};
+    m_roundStartTime = 0;
+    m_upgrades.reset();
+    if (!m_config.weapon.legacyProgression) (void)m_upgrades.unlockForRound(1, m_random, &m_player.weapon());
     m_state = GameState::Playing;
 }
 
 Game::Game(TileMap map, WaveConfig waves) : Game(std::move(map), withWaves(waves)) {}
 
-Game::Game(TileMap map, GameConfig config)
+Game::Game(TileMap map, GameConfig config, std::optional<ScenarioInfo> scenario)
     : m_config(std::move(config)), m_random(m_config.seed), m_map(std::move(map)),
       m_player(m_config.player, m_config.weapon), m_waves(m_config.waves) {
     m_config.validate();
+    if(scenario) m_scenario=*scenario;
+    else if(std::any_of(m_map.rows().begin(),m_map.rows().end(),[](const auto& row){return row.find(WALL_TILE)!=std::string::npos;}))
+        m_scenario.type=ScenarioType::Custom;
+    if(static_cast<unsigned>(m_scenario.type)>2)throw std::invalid_argument("Tipo de cenario invalido");
+    if (!m_config.weapon.legacyProgression) (void)m_upgrades.unlockForRound(1, m_random, &m_player.weapon());
     const int col = m_map.width() / 2;
     const int row = m_map.height() / 2;
     if (m_map.isFree(col, row)) {
@@ -161,7 +180,7 @@ void Game::resolveProjectiles(float dt) {
         if (inField) shot.body.acceleration -= shot.body.velocity * m_config.gravity.damping;
         shot.update(dt);
         if (inField) {
-            const float limit = m_player.weapon().config().projectileSpeed + m_config.gravity.maxDrift;
+            const float limit = m_player.weapon().effectiveStats().projectileSpeed + m_config.gravity.maxDrift;
             if (shot.body.velocity.length_squared() > limit * limit)
                 shot.body.velocity = shot.body.velocity.normalized() * limit;
         }
@@ -203,10 +222,25 @@ void Game::resolveProjectiles(float dt) {
         }
         if (firstHit <= 1) {
             if (victim) {
+                const auto damage = static_cast<std::uint64_t>(std::min(victim->health(), shot.damage()));
+                ++m_stats.projectileHits;
+                m_stats.damageDealt += damage;
+                ++m_stats.perPatternHits[std::min<std::size_t>(shot.patternId, 7)];
+                m_stats.perPatternDamage[std::min<std::size_t>(shot.patternId, 7)] += damage;
                 victim->takeDamage(shot.damage());
-                if (!victim->active && victim->kind() == EnemyKind::Advanced) tryDrop();
+                if (!victim->active) {
+                    m_score += victim->kind() == EnemyKind::Advanced ? m_config.scoring.advanced : m_config.scoring.normal;
+                    ++m_stats.playerKills;
+                    if (victim->kind() == EnemyKind::Advanced) tryDrop();
+                }
             }
-            if (rockVictim) rockVictim->takeDamage(shot.damage());
+            if (rockVictim) {
+                ++m_stats.projectileHits;
+                ++m_stats.perPatternHits[std::min<std::size_t>(shot.patternId, 7)];
+                m_stats.asteroidDamageDealt += static_cast<std::uint64_t>(std::min(rockVictim->health(), shot.damage()));
+                rockVictim->takeDamage(shot.damage());
+                if (!rockVictim->active) m_score += rockVictim->depth() == 0 ? m_config.scoring.asteroid : m_config.scoring.fragment;
+            }
             shot.active = false; // Consumo unico, mesmo com inimigos sobrepostos.
         }
     }
@@ -319,13 +353,59 @@ std::optional<PickupKind> Game::rollDrop() {
         ? PickupKind::WeaponUpgrade : PickupKind::Engine;
 }
 
+std::optional<WeaponUpgrade> Game::chooseAvailableUpgrade() {
+    std::vector<WeaponUpgrade> available;
+    for (const auto& upgrade : m_upgrades.unlocked()) {
+        if (!m_player.weapon().canApply(upgrade)) continue;
+        const bool reserved = std::any_of(m_pickups.begin(), m_pickups.end(), [&](const Pickup& item) {
+            return item.active && item.upgrade() && item.upgrade()->kind == upgrade.kind &&
+                   item.upgrade()->tier == upgrade.tier;
+        });
+        if (!reserved) available.push_back(upgrade);
+    }
+    if (available.empty()) return std::nullopt;
+    return available[static_cast<std::size_t>(m_random()) % available.size()];
+}
+
 void Game::tryDrop() {
-    const auto kind = rollDrop(); // Cada eliminacao elegivel faz uma unica decisao, mesmo sem espaco.
+    auto kind = rollDrop();
     if (!kind || m_pickups.size() >= m_config.pickup.maxActive) return;
+    std::optional<WeaponUpgrade> upgrade;
+    if (!m_config.weapon.legacyProgression) {
+        const bool injured = m_player.engines() < m_player.maxHealth();
+        if (*kind == PickupKind::WeaponUpgrade || (m_config.drops.avoidFullEngineDrops && !injured)) {
+            upgrade = chooseAvailableUpgrade();
+            if (upgrade) kind = PickupKind::WeaponUpgrade;
+            else if (injured) kind = PickupKind::Engine;
+            else return; // Nao oferece item ja adquirido ou reparo sem efeito.
+        }
+    }
     Collision2D shape;
     shape.halfExtents = {m_config.pickup.halfExtent, m_config.pickup.halfExtent};
     const auto position = findFreePosition(shape);
-    if (position) m_pickups.emplace_back(*position, *kind, m_config.pickup);
+    if (position) m_pickups.emplace_back(*position, *kind, m_config.pickup, upgrade);
+}
+
+void Game::emitProjectiles(std::vector<Projectile> volley) {
+    for (auto& shot : volley) {
+        if (m_projectiles.size() >= m_config.maxProjectiles) break;
+        if (!m_map.isAreaFree(shot.bounds())) continue;
+        const auto pattern = std::min<std::size_t>(shot.patternId, 7);
+        ++m_stats.shotsFired;
+        ++m_stats.perPatternShots[pattern];
+        m_stats.patternMask |= 1U << pattern;
+        m_projectiles.push_back(std::move(shot));
+    }
+    m_stats.peakProjectiles = std::max(m_stats.peakProjectiles, m_projectiles.size());
+}
+
+bool Game::damagePlayer(int amount) {
+    const int before = m_player.engines();
+    if (!m_player.takeDamage(amount)) return false;
+    const auto damage = static_cast<std::uint64_t>(before - m_player.engines());
+    m_stats.damageReceived += damage;
+    m_stats.enginesLost += damage;
+    return true;
 }
 
 void Game::spawnEnvironment(float dt) {
@@ -375,7 +455,7 @@ void Game::explode(Enemy& enemy) {
     enemy.takeDamage(enemy.health()); // Torna a detonacao idempotente; nao e morte por tiro.
     if (m_explosions.size() < m_config.maxExplosions)
         m_explosions.push_back({center, radius, m_config.explosionLifetime});
-    if (circleIntersects(center, radius, m_player.bounds())) m_player.takeDamage(enemy.config().damage);
+    if (circleIntersects(center, radius, m_player.bounds())) damagePlayer(enemy.config().damage);
     for (auto& rock : m_asteroids) {
         if (rock.active && rock.collisionEnabled() && circleIntersects(center, radius, rock.bounds()))
             rock.takeDamage(rock.health());
@@ -388,12 +468,12 @@ void Game::resolveContacts() {
         if (!enemy->active) continue;
         if (m_player.active && enemy->kind() == EnemyKind::Advanced &&
             enemy->bounds().intersects(m_player.bounds())) explode(*enemy);
-        else m_player.takeDamage(enemy->tryAttack(m_player));
+        else damagePlayer(enemy->tryAttack(m_player));
     }
     for (auto& rock : m_asteroids) {
         if (!rock.active || !rock.collisionEnabled()) continue;
         if (m_player.active && rock.bounds().intersects(m_player.bounds())) {
-            m_player.takeDamage(rock.config().damage);
+            damagePlayer(rock.config().damage);
             rock.takeDamage(rock.health());
             continue;
         }
@@ -407,8 +487,18 @@ void Game::resolveContacts() {
     }
     for (auto& item : m_pickups) {
         if (!item.active || !m_player.active || !item.bounds().intersects(m_player.bounds())) continue;
-        if (item.kind() == PickupKind::Engine) m_player.restoreEngine();
-        else m_player.weapon().upgrade();
+        if (item.kind() == PickupKind::Engine) {
+            if (m_player.restoreEngine()) ++m_stats.enginesRecovered;
+        } else {
+            bool applied = false;
+            if (m_config.weapon.legacyProgression) applied = m_player.weapon().upgrade();
+            else if (item.upgrade() && m_player.weapon().canApply(*item.upgrade()))
+                applied = m_player.weapon().applyUpgrade(*item.upgrade());
+            else if (const auto alternative = m_upgrades.chooseUpgrade(m_player.weapon(), m_random))
+                applied = m_player.weapon().applyUpgrade(*alternative);
+            if (applied) ++m_stats.upgradesCollected;
+            else if (!m_config.weapon.legacyProgression && m_player.restoreEngine()) ++m_stats.enginesRecovered;
+        }
         item.active = false;
     }
 }

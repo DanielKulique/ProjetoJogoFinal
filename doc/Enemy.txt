@@ -1,0 +1,33 @@
+Enemy.cpp — Inteligência e combate dos aliens
+===========================================
+Implementação: source/Enemy.cpp
+Interface: source/Enemy.hpp
+
+Responsabilidade
+----------------
+Implementa Enemy, derivado de NPC, com tipo normal ou avançado, resistência,
+máquina de estados, deriva física e temporizadores de ataque e navegação.
+O construtor valida a configuração e ajusta a caixa de colisão conforme o tipo.
+
+Decisão e movimento
+-------------------
+decideTarget() mantém aliens avançados em perseguição. Normais alternam entre
+Wandering e Chasing: detectam o jogador em um raio e perdem o alvo em outro
+maior. Durante exploração, sorteiam destinos com RNG local. Quando há mapa,
+buscam candidatos livres dentro do raio de exploração.
+
+update() escolhe o alvo, calcula a velocidade comandada e soma a deriva causada
+por aceleração externa. A deriva sofre amortecimento e limite de magnitude.
+Com um mapa fornecido, steeringTarget() usa A*, converte células em centros
+em pixels e acompanha os pontos da rota. A atualização da rota considera
+mudança de célula do alvo e um cooldown de 0,4 s.
+
+Combate e integração
+--------------------
+takeDamage() reduz resistência até desativar o alien. tryAttack() exige alvo
+ativo, sobreposição das AABBs e cooldown encerrado; retorna o dano a aplicar.
+
+Game fornece TileMap apenas nos cenários com paredes, restringe o movimento
+ao piso e resolve contatos, explosões dos avançados, drops e pontuação. Enemy
+não desenha nem decide recompensas. A IA usa seus próprios estados, não a
+árvore de comportamento genérica do projeto.

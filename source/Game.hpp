@@ -7,6 +7,9 @@
 #include "WaveManager.hpp"
 #include "Portal.hpp"
 #include "GameConfig.hpp"
+#include "GameStats.hpp"
+#include "Scenario.hpp"
+#include "UpgradeManager.hpp"
 
 #include <optional>
 #include <random>
@@ -31,7 +34,7 @@ struct Explosion {
 class Game {
 public:
     explicit Game(TileMap map, WaveConfig waves = {});
-    Game(TileMap map, GameConfig config);
+    Game(TileMap map, GameConfig config, std::optional<ScenarioInfo> scenario = std::nullopt);
     [[nodiscard]] const TileMap& map() const noexcept;
     [[nodiscard]] Vector2D initialCenter() const noexcept;
 
@@ -45,6 +48,11 @@ public:
     [[nodiscard]] const Portal& portal() const noexcept { return m_portal; }
     [[nodiscard]] GameState state() const noexcept { return m_state; }
     void restart();
+    void newGame();
+    [[nodiscard]] const ScenarioInfo& scenario() const noexcept { return m_scenario; }
+    [[nodiscard]] std::uint64_t score() const noexcept { return m_score; }
+    [[nodiscard]] const GameStats& stats() const noexcept { return m_stats; }
+    [[nodiscard]] const UpgradeManager& upgrades() const noexcept { return m_upgrades; }
     [[nodiscard]] const GameConfig& config() const noexcept { return m_config; }
     [[nodiscard]] const std::vector<Asteroid>& asteroids() const noexcept { return m_asteroids; }
     [[nodiscard]] const std::vector<Pickup>& pickups() const noexcept { return m_pickups; }
@@ -53,8 +61,14 @@ public:
     [[nodiscard]] double gameplayTime() const noexcept { return m_gameplayTime; }
 
 private:
+    friend struct StateCodec;
     friend struct GameTestAccess;
+    std::uint64_t m_score{0};
+    ScenarioInfo m_scenario;
     GameConfig m_config;
+    GameStats m_stats;
+    UpgradeManager m_upgrades;
+    double m_roundStartTime{0};
     std::mt19937 m_random;
     std::vector<Asteroid> m_asteroids;
     std::vector<Pickup> m_pickups;
@@ -89,4 +103,7 @@ private:
     [[nodiscard]] std::optional<Vector2D> findFreePosition(const Collision2D& shape);
     [[nodiscard]] std::optional<PickupKind> rollDrop();
     void tryDrop();
+    bool damagePlayer(int amount);
+    [[nodiscard]] std::optional<WeaponUpgrade> chooseAvailableUpgrade();
+    void emitProjectiles(std::vector<Projectile> volley);
 };

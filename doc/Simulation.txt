@@ -1,0 +1,41 @@
+Simulation.cpp — Simulação e agentes de teste de balanceamento
+============================================================
+Implementação: source/Simulation.cpp
+Interface: source/Simulation.hpp
+
+Responsabilidade
+----------------
+Executa o Game real sem janela para observar configurações de balanceamento.
+Fornece agentes beginner, intermediate e advanced, presets experimentais e
+exportação de métricas e configurações em CSV.
+
+Agentes
+-------
+AgentConfig::forProfile() parametriza reação, erros de mira e movimento,
+eficiência, distância preferida, defesa, coleta e previsão de alvo. validate()
+confere faixas e valores finitos. SimulatedAgent possui RNG próprio, derivado
+da semente da execução, separado do RNG das regras.
+
+input() conserva o comando entre instantes de reação. observeAndDecide() usa
+posições e tipos visíveis, geometria e atributos atuais: escolhe alvo, estima
+velocidade por observações anteriores, mira com erro, alterna aproximação e
+movimento lateral, busca itens e evita perigos. Ao concluir o round, busca o
+portal e atende à exigência de sair antes de entrar. Não consulta sorteios
+futuros ou estado privado da IA. A prevenção de paredes é local, sem A*.
+
+Execução e resultados
+--------------------
+runSimulation() cria arena livre 31 x 23 e atualiza a 1/60 s até derrota,
+limite de tempo ou quantidade de rounds concluídos. Resume duração, precisão,
+diversidade de padrões, projéteis simultâneos e GameStats. Resultados encerrados
+sem derrota são marcados como censurados. wallSeconds mede o custo no host,
+portanto não é uma métrica determinística de gameplay.
+
+experimentPresets() disponibiliza baseline, procedural_baseline, repair,
+balanced, gentle, pressure, variety e environment. Nesse contexto, procedural
+refere-se à progressão de armas; a arena simulada continua livre.
+
+As funções writeSimulationCSV* e writeConfigurationCSV* exportam métricas por
+padrão e parâmetros usados. SimulationMain controla a matriz de execuções.
+Esses agentes são aproximações para experimentos; não substituem avaliação
+de dificuldade e experiência com jogadores humanos.

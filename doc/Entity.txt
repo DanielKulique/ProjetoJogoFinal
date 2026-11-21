@@ -1,0 +1,26 @@
+Entity.cpp — Contrato comum das entidades
+========================================
+Implementação: source/Entity.cpp
+Interface e definições inline: source/Entity.hpp
+
+Responsabilidade
+----------------
+Representa a base comum dos objetos físicos do jogo. Reúne RigidBody2D,
+Collision2D, identificação e indicação de atividade. O corpo guarda posição,
+velocidade e aceleração; o componente de colisão guarda as meias extensões.
+
+Organização do arquivo
+---------------------
+Entity.cpp inclui o cabeçalho e documenta o contrato. Não contém uma segunda
+implementação da física: os membros, o destrutor virtual e bounds() estão
+definidos em Entity.hpp. bounds() obtém a AABB pelo centro atual do corpo.
+
+Integração
+----------
+Player, Projectile, Asteroid, GravityField, Pickup e Portal compartilham essa
+base. NPC também deriva de Entity, permitindo que Enemy reutilize o contrato.
+Game usa referências a Entity em operações comuns de contato e contenção.
+
+A atividade de uma entidade não a remove automaticamente dos contêineres:
+Game faz essa limpeza durante sua atualização. Entity não cria sprites,
+não avança o corpo por conta própria e não estabelece regras de combate.

@@ -1,0 +1,39 @@
+Weapon.cpp — Disparo, padrões e progressão da arma
+================================================
+Implementação: source/Weapon.cpp
+Interface: source/Weapon.hpp
+
+Responsabilidade
+----------------
+Mantém configuração, cooldown, padrão ativo, melhorias adquiridas, resíduo
+fracionário de dano e fila de rajada. É composta por Player, sem consultar
+teclado, alvos ou paredes.
+
+Atributos e melhorias
+---------------------
+effectiveStats() combina configuração e tiers. A progressão procedural usa
+raiz quadrada dos tiers e força de melhoria, com compensações entre dano,
+frequência, velocidade e alcance. Padrões alteram geometria e potência: pesado,
+rajada, circular, triangular, quadrado, espalhado e paralelo. O resultado
+respeita limites de cooldown, quantidade, velocidade e duração.
+
+canApply() rejeita definição inválida, tier já adquirido e atributos saturados.
+applyUpgrade() atualiza tier/força e troca o padrão quando apropriado, preservando
+os modificadores. upgrade() mantém uma API de compatibilidade e o modo legado
+de até três níveis; o jogo procedural usa a definição carregada pelo item.
+
+Disparo
+-------
+update(dt) reduz cooldown e temporizador da rajada. fireVolley() inicia uma
+emissão quando pronta e agenda tiros adicionais para Burst. pollProjectiles()
+libera os tiros pendentes no tempo, mesmo após soltar o gatilho. A mira e a
+posição dos tiros pendentes são fornecidas pelo chamador na atualização.
+
+emit() obtém raios de ProjectilePattern e constrói Projectile com dano e vida
+calculados. quantizedDamage() acumula a parte fracionária para reduzir perda
+por arredondamento repetido. tryFire() fornece o caminho de tiro individual
+compatível com a API anterior.
+
+summary() produz o texto de padrão, aquisições e atributos para o HUD.
+UpgradeManager controla desbloqueios; Game aplica coletas, limita projéteis
+ativos e resolve impactos. A arma não atribui score nem consome o RNG global.

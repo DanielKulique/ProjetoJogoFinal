@@ -1,0 +1,31 @@
+Player.cpp — Movimento, mira e motores da nave
+============================================
+Implementação: source/Player.cpp
+Interface: source/Player.hpp
+
+Responsabilidade
+----------------
+Implementa a nave derivada de Entity e composta por Weapon. Usa quatro motores
+como vidas, velocidade associada à quantidade de motores, mira, invulnerabilidade
+e deriva produzida pela aceleração externa.
+
+Movimento e mira
+----------------
+setMovementDirection() normaliza direções não nulas para manter a mesma rapidez
+em diagonais. update(dt) incorpora aceleração à deriva, aplica amortecimento
+exponencial e limite de magnitude e combina deriva com movimento comandado.
+Depois limpa a aceleração, integra RigidBody2D e atualiza arma e invulnerabilidade.
+
+aimAt(target) calcula atan2 em graus: direita é 0°, baixo 90° e cima -90°.
+Alvo coincidente não altera a orientação. aimDirection() converte o ângulo em
+vetor unitário. As posições são centros em pixels; a AABB mede 32 x 32 pixels.
+
+Dano e recuperação
+------------------
+takeDamage() ignora dano inválido, nave inativa ou em invulnerabilidade.
+Um dano aceito reduz motores, inicia cooldown e recalcula velocidade; zero
+desativa a nave. restoreEngine() recupera um motor até o máximo, apenas com
+a nave ativa. O construtor valida velocidades crescentes e parâmetros físicos.
+
+Game fornece movimento, alvo e aceleração e restringe o resultado às paredes.
+Player não lê WASD, não desenha e não resolve colisões com outras entidades.

@@ -1,0 +1,31 @@
+UpgradeManager.cpp — Catálogo de melhorias desbloqueadas
+=======================================================
+Implementação: source/UpgradeManager.cpp
+Interface: source/UpgradeManager.hpp
+
+Responsabilidade
+----------------
+Controla quais definições de WeaponUpgrade estão disponíveis para drops.
+Mantém último round processado, tiers por tipo, uma sacola de tipos e histórico
+de ofertas desbloqueadas. Não aplica melhorias automaticamente à arma.
+
+Desbloqueio
+-----------
+unlockForRound(round, random, weapon) processa apenas rounds novos e positivos.
+Para cada round ainda não processado, repõe a sacola quando necessário e
+sorteia um tipo elegível. O próximo tier considera tanto o catálogo quanto
+o que a arma já adquiriu.
+
+Com uma arma informada, evita atributos saturados. Se a sacola restante só
+contiver opções sem efeito, procura outros tipos úteis. Evita repetir o último
+tipo quando existe alternativa. Registra a definição e retorna a última oferta
+desbloqueada. No modo legado, preserva o comportamento compatível com seu teto.
+
+Escolha e integração
+--------------------
+chooseUpgrade() sorteia entre definições desbloqueadas que Weapon::canApply()
+aceita. Sem opções, retorna nullopt. reset() limpa catálogo, sacola e progresso.
+
+Game desbloqueia no início e ao avançar rounds, reserva ofertas dos itens já
+presentes e aplica melhorias na coleta. SaveManager preserva o estado da sacola
+e do catálogo para a continuação seguir a mesma sequência de sorteios.

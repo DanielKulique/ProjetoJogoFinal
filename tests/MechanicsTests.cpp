@@ -53,6 +53,7 @@ bool near(float a, float b, float tolerance = 0.005f) { return std::abs(a - b) <
 TileMap arena() { return TileMap(TileMap::Matrix(15, std::string(19, '.'))); }
 GameConfig quietConfig() {
     GameConfig config;
+    config.weapon.legacyProgression = true;
     config.asteroid.spawnChance = 0;
     config.gravity.spawnChance = 0;
     return config;
@@ -82,7 +83,9 @@ void testEnginesAndUpgrade() {
     configurable.update(dt);
     require(near(configurable.body.position.x, 5), "Velocidades configuraveis");
 
-    Weapon weapon;
+    WeaponConfig legacyWeapon;
+    legacyWeapon.legacyProgression = true;
+    Weapon weapon(legacyWeapon);
     require(weapon.level() == 1 && weapon.fireVolley({}, {1, 0}).size() == 1, "Tiro inicial simples");
     require(weapon.upgrade() && weapon.level() == 2, "Segundo nivel de arma");
     weapon.update(1);

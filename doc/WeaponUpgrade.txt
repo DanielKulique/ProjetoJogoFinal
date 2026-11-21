@@ -1,0 +1,29 @@
+WeaponUpgrade.cpp — Definições e nomes das melhorias
+==================================================
+Implementação: source/WeaponUpgrade.cpp
+Interface: source/WeaponUpgrade.hpp
+
+Responsabilidade
+----------------
+Oferece validação e rótulos das definições WeaponUpgrade. Cada definição possui
+tipo, tier e força; descreve uma oferta, não uma aquisição automática.
+
+Funções
+-------
+validUpgrade(upgrade) exige tipo conhecido, tier maior que zero e força finita
+no intervalo maior que zero e até 8.
+
+upgradeName(kind) traduz os tipos: padrão, rajada, pesado, circular, triangular,
+quadrado, espalhado, paralelo, cadência, velocidade, dano e duração. Um valor
+desconhecido recebe o texto "Desconhecido".
+
+upgradeLabel(upgrade) combina o nome do tipo e o tier em um rótulo simples.
+Produzir o rótulo não substitui a validação da definição.
+
+Integração
+----------
+UpgradeManager disponibiliza definições; Pickup pode carregar uma oferta;
+Weapon verifica se ela pode ser aplicada e atualiza seus atributos na coleta,
+por intermédio de Game. A correspondência dos primeiros tipos com os padrões
+permite tratar geometria e modificadores separadamente. Este arquivo não
+realiza sorteios, não cria projéteis e não controla temporizadores.

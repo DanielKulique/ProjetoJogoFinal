@@ -1,0 +1,32 @@
+WaveManager.cpp — Cronograma e progressão das ondas
+=================================================
+Implementação: source/WaveManager.cpp
+Interface: source/WaveManager.hpp
+
+Responsabilidade
+----------------
+Mantém round, inimigos pendentes e temporizador de spawn. Valida as configurações
+de progressão e reutiliza a validação de Enemy para seus parâmetros básicos.
+Não cria inimigos nem escolhe posições.
+
+Cronograma
+----------
+reset() inicia no round 1 com initialEnemies pendentes e spawn imediato.
+update(dt) reduz o temporizador. readyToSpawn() exige pendentes e tempo encerrado.
+confirmSpawn() só consome um pendente quando há prontidão e reinicia o intervalo;
+Game chama esse método apenas depois de realmente colocar o alien no cenário.
+
+spawnInterval() reduz a espera por round respeitando o piso configurado.
+remaining(alive) soma ativos e pendentes; completed(alive) só retorna true
+quando ambas as quantidades são zero.
+
+Progressão
+----------
+startNextRound() aumenta o número do round, calcula pendentes com crescimento
+linear e limite maxEnemies e reinicia o temporizador. Verifica estouros de
+round/resistência antes da transição.
+
+enemyConfig(kind) calcula resistência e velocidade conforme round e tipo,
+aplicando multiplicadores dos avançados e limites numéricos/de velocidade.
+Game controla mistura de tipos, maxActive, ocupação, portal e recompensa.
+Essa separação impede concluir uma onda que ainda tem spawns pendentes.

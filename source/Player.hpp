@@ -37,6 +37,7 @@ public:
     [[nodiscard]] const PlayerConfig& config() const noexcept { return m_config; }
 
 private:
+    friend struct StateCodec;
     PlayerConfig m_config;
     Weapon m_weapon;
     int m_engines{4};

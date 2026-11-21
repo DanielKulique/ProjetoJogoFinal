@@ -1,0 +1,41 @@
+SaveManager.cpp — Salvamento completo da partida
+==============================================
+Implementação: source/SaveManager.cpp
+Interface: source/SaveManager.hpp
+
+Responsabilidade
+----------------
+Converte Game em estado persistente e restaura uma partida continuável. Usa
+StateCodec para enumerar explicitamente os campos privados e LocalStorage
+para o envelope de arquivo e a escrita atômica.
+
+Serialização
+------------
+snapshot(game) valida a partida e produz texto em locale clássico. Grava
+ScenarioInfo, configuração, matriz e estado das regras, incluindo corpos,
+arma e rajada, catálogo, aliens e caminhos, ondas, portal, ambiente, itens,
+métricas, score, relógios e estados dos RNGs.
+
+Writer e Reader tratam números, enums, strings com std::quoted, coleções,
+opcionais, arrays e objetos. Floats usam precisão suficiente para ida e volta.
+Não grava ponteiros, padding, janela, texturas ou câmera.
+
+restore(payload, version) lê o esquema correspondente, constrói Game com o
+mapa e restaura os campos. Pisos livres e candidatos de spawn são reconstruídos
+pelo próprio Game. Rejeita dados extras e inconsistências: configurações,
+coleções, números, tipos, corpos e estados devem respeitar os limites.
+
+Versões e arquivos
+------------------
+save() escreve session.sav em versão 2. load() aceita versões 1 e 2; valid()
+testa se a carga funciona, e invalidate() remove a partida salva. Falhas são
+convertidas em mensagens de erro para o chamador.
+
+A versão 2 conserva tipo, semente de geração, caminho informativo e matriz;
+restaurar não depende do CSV externo nem executa o gerador. A versão 1 não
+tinha origem do cenário: mapas sem paredes são inferidos como Classic e os
+demais como Custom, preservando a matriz.
+
+defaultDirectory() usa XDG_DATA_HOME, HOME/.local/share ou pasta temporária.
+Menu controla autosave, save manual, confirmação e invalidação na derrota.
+O esquema e os limites estão detalhados em doc/PERSISTENCE.md.

@@ -5,6 +5,9 @@ Implementa o avanço de um corpo pontual em duas dimensões. position está em
 pixels, velocity em pixels por segundo e acceleration em pixels por segundo
 ao quadrado.
 
+Implementação: source/RigidBody2D.cpp
+Interface: source/RigidBody2D.hpp
+
 RigidBody2D::integrate(dt)
 --------------------------
 Avança o corpo por dt segundos usando Euler semi-implícito:
@@ -18,3 +21,13 @@ simulação com passo fixo, chame integrate com o mesmo dt a cada atualização.
 
 Exemplo: position = (1, 2), velocity = (3, 4), acceleration = (2, -2)
 e dt = 0,5 resultam em velocity = (4, 3) e position = (3, 3,5).
+
+Integração e limites
+-------------------
+Entity compõe um RigidBody2D. Player, Enemy, Projectile e Asteroid reutilizam
+integrate() e estabelecem suas velocidades, acelerações e amortecimento.
+O passo interativo normal é 1/60 s, fornecido pelo loop de DungeonVisualizer.
+
+RigidBody2D não conhece mapa, massa ou contatos, não zera aceleração após o
+passo e não impõe limite de velocidade. Cada componente controla o consumo
+da aceleração e seus limites; Game restringe o movimento às regiões livres.

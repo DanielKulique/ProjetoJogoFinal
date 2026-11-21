@@ -1,0 +1,31 @@
+LocalStorage.cpp — Envelope e escrita atômica
+===========================================
+Implementação: source/LocalStorage.cpp
+Interface: source/LocalStorage.hpp
+
+Responsabilidade
+----------------
+Lê e grava arquivos locais com assinatura, versão, tamanho e checksum. É a
+camada comum de SaveManager e ScoreManager, sem conhecer regras da partida.
+
+Leitura
+-------
+read(file, magic, actualVersion, maximumVersion) limita o tamanho do arquivo
+a 8 MiB e valida o cabeçalho ASCII. Confere assinatura, faixa de versões,
+tamanho do payload, fim do arquivo e checksum FNV-1a de 64 bits. Pode informar
+ao chamador a versão efetivamente lida. Erros geram exceções.
+
+Escrita
+-------
+write(file, magic, payload, version) cria o diretório de destino e um temporário
+exclusivo com mkstemp na mesma pasta. Grava cabeçalho e payload, trata escrita
+parcial e interrupções, sincroniza com fsync, fecha e promove por rename.
+Também tenta sincronizar a pasta. Em falha anterior à promoção, remove o
+temporário e preserva o arquivo anterior.
+
+Integração e limites
+-------------------
+SaveManager usa versão 2; o ranking permanece em versão 1. O checksum detecta
+corrupção acidental e não autentica o conteúdo. A implementação utiliza APIs
+POSIX, validada no Linux; não implementa bloqueio entre várias instâncias.
+Os detalhes do formato estão em doc/PERSISTENCE.md.

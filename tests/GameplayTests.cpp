@@ -193,7 +193,9 @@ void testSingleImpactIntegration() {
     const auto playerPosition = game.player().body.position;
     game.enemies()[0]->body.position = playerPosition + Vector2D{120, 0};
     game.enemies()[1]->body.position = playerPosition + Vector2D{170, 0};
-    game.player().weapon() = Weapon({0.2f, 12000, 50, 1});
+    WeaponConfig fastShot{0.2f, 12000, 50, 1};
+    fastShot.maximumProjectileSpeed = 12000; // Varredura deliberadamente muito maior que o limite de jogo.
+    game.player().weapon() = Weapon(fastShot);
     game.update(1.0f / 60, {{}, playerPosition + Vector2D{500, 0}, true});
     require(game.enemies().size() == 1 && game.enemies()[0]->health() == 50 && game.projectiles().empty(),
             "Um projetil rapido elimina apenas o primeiro alvo");
@@ -263,7 +265,9 @@ void testWallImpactIntegration() {
     game.update(1.0f / 60, {});
     require(game.enemies().size() == 1, "Fixture com inimigo atras da parede");
     game.enemies()[0]->body.position = game.map().cellCenter(10, 5);
-    game.player().weapon() = Weapon({0.2f, 12000, 50, 1});
+    WeaponConfig fastShot{0.2f, 12000, 50, 1};
+    fastShot.maximumProjectileSpeed = 12000; // Varredura deliberadamente muito maior que o limite de jogo.
+    game.player().weapon() = Weapon(fastShot);
     game.update(1.0f / 60, {{}, game.map().cellCenter(14, 5), true});
     require(game.enemies().size() == 1 && game.enemies()[0]->health() == 50 && game.projectiles().empty(),
             "Parede consome tiro antes do inimigo");

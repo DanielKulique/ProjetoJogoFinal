@@ -1,0 +1,28 @@
+Projectile.cpp — Movimento e duração dos tiros
+============================================
+Implementação: source/Projectile.cpp
+Interface: source/Projectile.hpp
+
+Responsabilidade
+----------------
+Representa um projétil derivado de Entity, com dano, duração, posição anterior
+e identificação do padrão de origem para observação das métricas.
+
+Criação e atualização
+--------------------
+O construtor recebe posição, direção, velocidade, dano e vida útil. Exige
+direção não nula e velocidade, dano e duração positivos; velocidade e duração
+precisam ser finitas. Normaliza a direção, define velocidade e usa uma caixa
+de colisão de 8 x 8 pixels.
+
+update(dt) guarda a posição anterior e integra somente a parte do passo ainda
+coberta pela vida útil. Reduz o tempo restante e desativa o tiro ao expirar.
+previousPosition() permite recuperar o início do percurso atualizado.
+
+Integração
+----------
+Weapon cria os projéteis. Game aplica gravidade/amortecimento quando apropriado,
+varre o percurso entre posição anterior e atual e escolhe o primeiro impacto
+contra parede, alien ou asteroide. Essa divisão evita depender apenas da posição
+final de um tiro rápido. Dano, pontuação e remoção pertencem a Game; Projectile
+não consulta TileMap nem procura alvos.

@@ -1,0 +1,29 @@
+Pickup.cpp — Itens coletáveis
+============================
+Implementação: source/Pickup.cpp
+Interface: source/Pickup.hpp
+
+Responsabilidade
+----------------
+Representa um item de motor ou de melhoria de arma, com posição, caixa de
+coleta e duração. Uma melhoria pode carregar uma definição WeaponUpgrade.
+
+Principais operações
+--------------------
+O construtor valida posição finita, duração e meia extensão positivas,
+limite de itens não nulo e um PickupKind conhecido. Define o corpo e a
+caixa de colisão, sem movimentar o item.
+
+update(dt) reduz o tempo de vida quando o item está ativo e o passo é válido.
+Ao terminar a duração, desativa o objeto. Consultas no cabeçalho permitem
+obter tipo, oferta de upgrade e vida restante.
+
+Integração
+----------
+Game decide quando e onde criar o item, verifica contato com a nave e aplica
+a recuperação de motor ou a melhoria. Desbloquear uma oferta no catálogo não
+equivale a coletá-la. Se a oferta ficar inaplicável, Game tenta uma alternativa
+útil ou recuperação de motor conforme suas regras.
+
+DungeonVisualizer distingue visualmente motores e upgrades. Pickup não sorteia
+drops, não altera Weapon diretamente e não concede pontuação por conta própria.

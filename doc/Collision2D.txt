@@ -4,6 +4,9 @@ Collision2D.cpp
 Implementa caixas de colisão alinhadas aos eixos (AABB). As coordenadas estão
 em pixels, com x crescente para a direita e y crescente para baixo.
 
+Implementação: source/Collision2D.cpp
+Interface: source/Collision2D.hpp
+
 AABB::intersects(other)
 -----------------------
 Retorna true quando as duas caixas se sobrepõem nos eixos x e y. Bordas que
@@ -24,3 +27,21 @@ halfExtents guarda metade da largura e metade da altura. O valor padrão é
 
 Exemplo: com position = (10, 20) e halfExtents padrão, bounds retorna
 min = (-22, -12) e max = (42, 52).
+
+Collision2D::firstIntersection(from, to, target)
+------------------------------------------------
+Calcula o primeiro contato de uma caixa que se desloca de from até to com
+uma AABB alvo. Expande o alvo pelas meias extensões da caixa móvel e encontra
+o intervalo de entrada/saída do segmento nos dois eixos.
+
+Retorna uma fração entre 0 e 1 do percurso ou nullopt se não há interseção.
+Uma sobreposição inicial retorna 0. Um eixo sem movimento só permite contato
+quando a posição nesse eixo já está dentro do intervalo expandido.
+
+Integração e limites
+-------------------
+Game usa firstIntersection() para escolher o primeiro obstáculo atingido por
+um projétil, evitando depender somente da sobreposição na posição final.
+intersects() atende a contatos entre entidades e coletas. A forma permanece
+alinhada aos eixos mesmo quando o desenho da nave gira. Este componente
+detecta contatos; a resolução de movimento e as regras de dano ficam em Game.

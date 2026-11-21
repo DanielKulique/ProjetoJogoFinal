@@ -36,6 +36,7 @@ public:
     [[nodiscard]] const WaveConfig& config() const noexcept { return m_config; }
 
 private:
+    friend struct StateCodec;
     WaveConfig m_config;
     int m_round{1};
     int m_pending{0};

@@ -1,0 +1,30 @@
+AStar.cpp — Busca de caminhos
+============================
+Implementação: source/AStar.cpp
+Interface: source/AStar.hpp
+
+Responsabilidade
+----------------
+Encontra uma rota entre duas células livres usando A*. As coordenadas recebidas
+são índices inteiros de coluna e linha, mesmo quando armazenadas em Vector2D;
+não são posições em pixels.
+
+Funcionamento
+-------------
+findPathAStar(maze, start, goal) valida uma matriz retangular com '.' para piso
+e '#' para parede. Rejeita posições fracionárias, não finitas, externas ou em
+paredes. A exploração considera quatro vizinhos, sem movimentos diagonais.
+
+Cada passo custa 1. A heurística é a distância Manhattan até o destino. Uma
+fila de prioridade escolhe o menor custo total estimado; em empate, prefere
+a menor distância estimada restante. Custos e pais permitem descartar entradas
+antigas da fila e reconstruir a rota.
+
+Resultado e integração
+----------------------
+Retorna as células ordenadas do início ao destino, incluindo ambas. Início
+igual ao destino retorna uma única célula. Dados inválidos ou ausência de
+caminho retornam um vetor vazio.
+
+Enemy usa a rota nos cenários com paredes e converte as células em centros em
+pixels pelo TileMap. A função não move entidades nem resolve suas colisões.
