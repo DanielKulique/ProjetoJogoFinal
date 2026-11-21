@@ -3,6 +3,7 @@
 
 #include "Global.hpp"
 #include "Vector2D.hpp"
+#include <optional>
 
 /**
  * @file Collision2D.hpp
@@ -37,6 +38,9 @@ struct Collision2D {
      * @return { position - halfExtents , position + halfExtents }.
      */
     [[nodiscard]] AABB bounds(const Vector2D& position) const noexcept;
+    // Primeiro contato da caixa movel com target, como fracao [0, 1] do segmento.
+    [[nodiscard]] std::optional<float> firstIntersection(Vector2D from, Vector2D to,
+                                                        const AABB& target) const noexcept;
 };
 
 #endif // GAME_COLLISION2D_HPP

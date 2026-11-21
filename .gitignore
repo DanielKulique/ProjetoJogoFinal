@@ -1,0 +1,25 @@
+# Saidas de compilacao e arquivos temporarios; preserva os marcadores de pastas.
+/build/*
+!/build/.gitkeep
+/cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+CTestTestfile.cmake
+cmake_install.cmake
+Testing/
+compile_commands.json
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dll
+*.exe
+*.pdb
+/space_arena
+/map_tests
+*.swp
+*.swo
+*~
+.DS_Store

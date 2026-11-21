@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
 #include <string>
+#include <memory>
 
 /**
  * @file NPC.hpp
@@ -15,7 +16,8 @@
  */
 struct NPC : Entity {
     // A textura pertence ao NPC e deve viver mais que seu sprite.
-    sf::Texture texture;
+    // Alocacao tardia: NPCs logicos podem existir sem display/contexto OpenGL.
+    std::unique_ptr<sf::Texture> texture;
     sf::Sprite sprite;   ///< Public: positioned and drawn by the game loop.
 
     NPC() = default;
